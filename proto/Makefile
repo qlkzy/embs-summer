@@ -1,4 +1,4 @@
-CFLAGS += -g -std=c99 -Wall -Wextra -Werror
+CFLAGS += -g -std=c99 -Wall -Wextra -Werror -O3
 
 SRC := $(wildcard *.c)
 OBJ := $(SRC:.c=.o)

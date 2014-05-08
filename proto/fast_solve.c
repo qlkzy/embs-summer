@@ -27,14 +27,17 @@ static int cp;
 
 static int side;
 
-static int colour(int p, int edge)
+/* static uint64_t rotations = 0; */
+/* static uint64_t substitutions = 0; */
+
+static inline int colour(int p, int edge)
 {
     const int tile = pp[p].tile;
     const int rot = pp[p].rot;
     return tiles[tile][(edge + rot) % 4];
 }
 
-static int check(void)
+static inline int check(void)
 {
     int left = cp - 1;
     int up = cp - side;
@@ -59,7 +62,7 @@ static int check(void)
     return 1;
 }
 
-static int down(void)
+static inline int down(void)
 {
     VERB("GOING DOWN");
 
@@ -68,6 +71,7 @@ static int down(void)
         if (avail[t]) {
             VERB("Choosing tile %d for place %d", t, cp);
             pp[cp].tile = t;
+            pp[cp].rot = 0;
             avail[t] = 0;
             return 1;
         }
@@ -77,11 +81,12 @@ static int down(void)
     return 0;
 }
 
-static int right(void)
+static inline int right(void)
 {
     VERB("GOING RIGHT");
     /* if we can, find a sibling to try by rotating this tile */
-    if (pp[cp].rot < 4) {
+    if (pp[cp].rot < 3) {
+        /* rotations++; */
         pp[cp].rot++;
         return 1;
     }
@@ -92,8 +97,10 @@ static int right(void)
     int t;
     for (t = pp[cp].tile + 1; t < side * side; t++) {
         if (avail[t]) {
+            /* substitutions++; */
             VERB("Moving right, choosing tile %d for place %d", t, cp);
             pp[cp].tile = t;
+            pp[cp].rot = 0;
             avail[t] = 0;
             return 1;
         }
@@ -138,11 +145,14 @@ static void solve(void)
 {
     int steps = 0;
     avail[0] = 0;
+    fprintf(stderr, "\n");
     while (cp < side * side) {
         step();
         steps++;
     }
+    fprintf(stderr, "\n");
     INFO("Solution took %d steps", steps);
+    /* INFO("%d rotations, %d substitutions", rotations, substitutions); */
 }
 
 static void init(void)
@@ -194,11 +204,6 @@ int main(int argc, char *argv[])
     readtiles();
     
     solve();
-
-    /* 
-     * for (int t = 0; t < side * side; t++)
-     *     pp[t].tile = t;
-     */
     
     print();
     

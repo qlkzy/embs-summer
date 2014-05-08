@@ -10,5 +10,5 @@ while (<>) {
     while ($rot-- > 0) {
         unshift(@cols, pop(@cols));
     }
-    print "(@{[join(',', @cols)]})\n";
+    print "(@{[join(', ', @cols)]})\n";
 }
