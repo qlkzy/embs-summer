@@ -2,3 +2,4 @@ deps
 gen
 draw
 solve
+fast_solve

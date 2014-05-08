@@ -42,4 +42,16 @@
 #define INFO(...) (void)0
 #endif  /* NOINFO */
 
+#ifndef NOVERB
+#define VERB(...)                                                   \
+    do {                                                            \
+        fprintf(stderr, "%s:%d: verbose debug in function %s: ",    \
+                __FILE__, __LINE__, __FUNCTION__);                  \
+        fprintf(stderr, __VA_ARGS__);                               \
+        fprintf(stderr, "\n");                                      \
+    } while (0)
+#else
+#define VERB(...) (void)0
+#endif  /* NOVERB */
+
 #endif /* UTIL_H */

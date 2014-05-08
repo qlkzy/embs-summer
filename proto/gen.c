@@ -33,8 +33,8 @@ int main(int argc, char *argv[])
         ERROR("Expected at least 2 colours");
     
     /* initialise random field */
-    for (int r = 0; r < NELEM(field); r++)
-        for (int c = 0; c < NELEM(field[0]); c++)
+    for (unsigned int r = 0; r < NELEM(field); r++)
+        for (unsigned int c = 0; c < NELEM(field[0]); c++)
             field[r][c] = rand() % maxcolour;
     
     for (int x = 0; x < side; x++)

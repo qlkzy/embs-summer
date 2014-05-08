@@ -1,9 +1,11 @@
-CFLAGS += -g -std=c99
+CFLAGS += -g -std=c99 -Wall -Wextra -Werror
 
 SRC := $(wildcard *.c)
 OBJ := $(SRC:.c=.o)
 
-all: gen draw solve
+all: gen draw solve fast_solve
+
+fast_solve: fast_solve.o
 
 gen: gen.o
 
