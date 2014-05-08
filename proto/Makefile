@@ -3,14 +3,20 @@ CFLAGS += -g -std=c99
 SRC := $(wildcard *.c)
 OBJ := $(SRC:.c=.o)
 
-all: gen draw
+all: gen draw solve
 
-gen: gen.o util.o
+gen: gen.o
 
-draw: draw.o util.o
+draw: draw.o
+
+solve: solve.o
 
 .PHONY: deps
 deps:
 	$(CC) -MM $(SRC) > deps
+
+.PHONY: clean
+clean:
+	rm -f *.o
 
 -include deps

@@ -1,26 +1,45 @@
 #ifndef UTIL_H
 #define UTIL_H
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #define NELEM(x) (sizeof(x) / sizeof((x)[0]))
 #define SENTINEL(x) (&(x)[NELEM(x)])
 
-#define DEBUG_INFO 2
-#define DEBUG_WARNING 1
-#define DEBUG_ERROR 0
+#define ERROR(...)                                          \
+    do {                                                    \
+        fprintf(stderr, "%s:%d: error in function %s: ",    \
+                __FILE__, __LINE__, __FUNCTION__);          \
+        fprintf(stderr, __VA_ARGS__);                       \
+        fprintf(stderr, "\n");                              \
+        abort();                                            \
+    } while (0)
 
-#define ERROR(...)                              \
-    error(__FILE__, __LINE__, __FUNCTION__, __VA_ARGS__)
 
-#define WARNING(...)                            \
-    warning(__FILE__, __LINE__, __FUNCTION__, __VA_ARGS__)
+#ifndef NOWARN
+#define WARN(...)                                          \
+    do {                                                   \
+        fprintf(stderr, "%s:%d: warning in function %s: ", \
+                __FILE__, __LINE__, __FUNCTION__);         \
+        fprintf(stderr, __VA_ARGS__);                      \
+        fprintf(stderr, "\n");                             \
+    } while (0)
+#else
+#define WARN(...) (void)0
+#endif  /* NOWARN */
 
-#define INFO(...)                               \
-    info(__FILE__, __LINE__, __FUNCTION__, __VA_ARGS__)
 
-void error(const char *file, int line, const char *function, ...);
-void warning(const char *file, int line, const char *function, ...);
-void info(const char *file, int line, const char *function, ...);
-
-void set_debug_level(int level);
+#ifndef NOINFO
+#define INFO(...)                                       \
+    do {                                                \
+        fprintf(stderr, "%s:%d: info in function %s: ", \
+                __FILE__, __LINE__, __FUNCTION__);      \
+        fprintf(stderr, __VA_ARGS__);                   \
+        fprintf(stderr, "\n");                          \
+    } while (0)
+#else
+#define INFO(...) (void)0
+#endif  /* NOINFO */
 
 #endif /* UTIL_H */
