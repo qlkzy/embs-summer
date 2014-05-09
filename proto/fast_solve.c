@@ -1,11 +1,15 @@
 #define NOVERB
 #include "util.h"
 
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 
+#define BIT(n) (1 << (n))
+
 #define MAX_SIDE  6
 #define MAX_TILES (MAX_SIDE * MAX_SIDE)
+#define MAX_COLOURS 10
 
 
 static int down(void);
@@ -18,8 +22,10 @@ typedef struct {
 } Placement;
 
 static Placement pp[MAX_TILES];
-static int avail[MAX_TILES];
+/* static int avail[MAX_TILES]; */
+static uint64_t avail;
 static int tiles[MAX_TILES][4];
+static int hascolour[MAX_COLOURS][MAX_TILES];
 
 /* static int avail_tiles; */
 
@@ -35,6 +41,22 @@ static inline int colour(int p, int edge)
     const int tile = pp[p].tile;
     const int rot = pp[p].rot;
     return tiles[tile][(edge + rot) % 4];
+}
+
+static inline int hasleftcolour(int t)
+{
+    int left = cp - 1;
+    if (left < 0 || left / side != cp / side)
+        return 1;
+    return hascolour[colour(cp, 1)][t];
+}
+
+static inline int hasupcolour(int t)
+{
+    int up = cp - side;
+    if (up < 0)
+        return 1;
+    return hascolour[colour(cp, 2)][t];
 }
 
 static inline int check(void)
@@ -68,11 +90,11 @@ static inline int down(void)
 
     cp++;
     for (int t = 0; t < side * side; t++) {
-        if (avail[t]) {
+        if (avail & BIT(t)) {
             VERB("Choosing tile %d for place %d", t, cp);
             pp[cp].tile = t;
             pp[cp].rot = 0;
-            avail[t] = 0;
+            avail &= ~BIT(t);
             return 1;
         }
     }
@@ -92,16 +114,16 @@ static inline int right(void)
     }
     
     /* otherwise, find a new tile */
-    avail[pp[cp].tile] = 1;
+    avail |= BIT(pp[cp].tile);
 
     int t;
     for (t = pp[cp].tile + 1; t < side * side; t++) {
-        if (avail[t]) {
+        if (avail & BIT(t)) {
             /* substitutions++; */
             VERB("Moving right, choosing tile %d for place %d", t, cp);
             pp[cp].tile = t;
             pp[cp].rot = 0;
-            avail[t] = 0;
+            avail &= ~BIT(t);
             return 1;
         }
     }
@@ -114,7 +136,7 @@ static inline int right(void)
 static int up(void)
 {
     VERB("GOING UP");
-    avail[pp[cp].tile] = 1;
+    avail |= BIT(pp[cp].tile);
     pp[cp].tile = 0;
     cp--;
     if (cp < 0)
@@ -144,7 +166,7 @@ static void step(void)
 static void solve(void)
 {
     int steps = 0;
-    avail[0] = 0;
+    avail &= ~BIT(0);
     fprintf(stderr, "\n");
     while (cp < side * side) {
         step();
@@ -159,7 +181,7 @@ static void init(void)
 {
     cp = 0;
     for (int t = 0; t < MAX_TILES; t++)
-        avail[t] = 1;
+        avail |= BIT(t);
 }
 
 static void readargs(int argc, char *argv[])
@@ -184,6 +206,13 @@ static void readtiles(void)
               &tiles[t][2], &tiles[t][3]);
 }
 
+static void mapcolours(void)
+{
+    for (int t = 0; t < side * side; t++)
+        for (int e = 0; e < 4; e++)
+            hascolour[tiles[t][e]][t] = 1;
+}
+
 static void print(void)
 {
     for (int p = 0; p < side * side; p++) {
@@ -202,6 +231,8 @@ int main(int argc, char *argv[])
     readargs(argc, argv);
     
     readtiles();
+    
+    mapcolours();
     
     solve();
     
