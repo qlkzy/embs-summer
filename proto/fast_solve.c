@@ -25,13 +25,16 @@ static Placement pp[MAX_TILES];
 /* static int avail[MAX_TILES]; */
 static uint64_t avail;
 static int tiles[MAX_TILES][4];
-static int hascolour[MAX_COLOURS][MAX_TILES];
+static uint64_t colours[MAX_COLOURS];
 
 /* static int avail_tiles; */
 
 static int cp;
 
 static int side;
+
+static int c_left = -1;
+static int c_up = -1;
 
 /* static uint64_t rotations = 0; */
 /* static uint64_t substitutions = 0; */
@@ -43,44 +46,49 @@ static inline int colour(int p, int edge)
     return tiles[tile][(edge + rot) % 4];
 }
 
-static inline int hasleftcolour(int t)
+static void left_up_colours(void)
 {
     int left = cp - 1;
-    if (left < 0 || left / side != cp / side)
-        return 1;
-    return hascolour[colour(cp, 1)][t];
-}
-
-static inline int hasupcolour(int t)
-{
     int up = cp - side;
-    if (up < 0)
-        return 1;
-    return hascolour[colour(cp, 2)][t];
+
+    if (left / side != cp / side)
+        left = -1;
+
+    c_left = left > 0 ? colour(left, 1) : -1;
+
+    c_up = up > 0 ? colour(up, 2) : -1;
 }
 
 static inline int check(void)
 {
-    int left = cp - 1;
-    int up = cp - side;
-    
-    if (left / side != cp / side)
-        left = -1;
-    
-    if (left >= 0 && colour(cp, 3) != colour(left, 1))
-        return 0;
-    
-    if (up >= 0 && (colour(cp, 0) != colour(up, 2)))
+    /* int left = cp - 1; */
+    /* int up = cp - side; */
+
+    /*
+     * if (left / side != cp / side)
+     *     left = -1;
+     *
+     * if (left >= 0 && colour(cp, 3) != colour(left, 1))
+     *     return 0;
+     *
+     * if (up >= 0 && (colour(cp, 0) != colour(up, 2)))
+     *     return 0;
+     */
+
+    if (c_left >= 0 && colour(cp, 3) != c_left)
         return 0;
 
-    /* 
+    if (c_up >= 0 && colour(cp, 0) != c_up)
+        return 0;
+
+    /*
      * if (up >= 0)
      *     VERB("cp=%d, up=%d; colour(cp, 0)=%d, colour(up, 2)=%d", cp, up, colour(cp, 0), colour(up, 2));
      *     /\* return 0; *\/
      */
-        
+
     VERB("Check passed");
-    
+
     return 1;
 }
 
@@ -105,6 +113,7 @@ static inline int down(void)
 
 static inline int right(void)
 {
+    uint64_t possible;
     VERB("GOING RIGHT");
     /* if we can, find a sibling to try by rotating this tile */
     if (pp[cp].rot < 3) {
@@ -112,13 +121,21 @@ static inline int right(void)
         pp[cp].rot++;
         return 1;
     }
-    
+
     /* otherwise, find a new tile */
     avail |= BIT(pp[cp].tile);
 
+    possible = avail;
+
+    if (c_left >= 0)
+        possible &= colours[c_left];
+
+    if (c_up >= 0)
+        possible &= colours[c_up];
+
     int t;
     for (t = pp[cp].tile + 1; t < side * side; t++) {
-        if (avail & BIT(t)) {
+        if (possible & BIT(t)) {
             /* substitutions++; */
             VERB("Moving right, choosing tile %d for place %d", t, cp);
             pp[cp].tile = t;
@@ -127,9 +144,9 @@ static inline int right(void)
             return 1;
         }
     }
-    
+
     VERB("No more distance to move right, cp=%d", cp);
-    
+
     return 0;
 }
 
@@ -152,13 +169,16 @@ static void step(void)
 
     if (cp == side * side)
         return;
-    
+
+    left_up_colours();
+
     if (check())
         return;
-    
+
     do {
         while (!right()) {
             up();
+            left_up_colours();
         }
     } while (!check());
 }
@@ -167,14 +187,11 @@ static void solve(void)
 {
     int steps = 0;
     avail &= ~BIT(0);
-    fprintf(stderr, "\n");
     while (cp < side * side) {
         step();
         steps++;
     }
-    fprintf(stderr, "\n");
     INFO("Solution took %d steps", steps);
-    /* INFO("%d rotations, %d substitutions", rotations, substitutions); */
 }
 
 static void init(void)
@@ -188,9 +205,9 @@ static void readargs(int argc, char *argv[])
 {
     if (argc < 2)
         ERROR("Expected at least 1 argument\n");
-    
+
     side = atoi(argv[1]);
-    
+
     if (side < 2)
         ERROR("Given side length (%d) is less than two", side);
 
@@ -210,7 +227,7 @@ static void mapcolours(void)
 {
     for (int t = 0; t < side * side; t++)
         for (int e = 0; e < 4; e++)
-            hascolour[tiles[t][e]][t] = 1;
+            colours[tiles[t][e]] |= BIT(t);
 }
 
 static void print(void)
@@ -227,16 +244,16 @@ static void print(void)
 int main(int argc, char *argv[])
 {
     init();
-    
+
     readargs(argc, argv);
-    
+
     readtiles();
-    
+
     mapcolours();
-    
+
     solve();
-    
+
     print();
-    
+
     return 0;
 }
