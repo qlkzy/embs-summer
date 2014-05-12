@@ -55,38 +55,20 @@ static void left_up_colours(void)
     if (left / side != cp / side)
         left = -1;
 
-    c_left = left > 0 ? colour(left, 1) : -1;
+    c_left = left >= 0 ? colour(left, 1) : -1;
 
-    c_up = up > 0 ? colour(up, 2) : -1;
+    c_up = up >= 0 ? colour(up, 2) : -1;
 }
 
 static inline int check(void)
 {
-    /* int left = cp - 1; */
-    /* int up = cp - side; */
-
-    /*
-     * if (left / side != cp / side)
-     *     left = -1;
-     *
-     * if (left >= 0 && colour(cp, 3) != colour(left, 1))
-     *     return 0;
-     *
-     * if (up >= 0 && (colour(cp, 0) != colour(up, 2)))
-     *     return 0;
-     */
+    left_up_colours();
 
     if (c_left >= 0 && colour(cp, 3) != c_left)
         return 0;
 
     if (c_up >= 0 && colour(cp, 0) != c_up)
         return 0;
-
-    /*
-     * if (up >= 0)
-     *     VERB("cp=%d, up=%d; colour(cp, 0)=%d, colour(up, 2)=%d", cp, up, colour(cp, 0), colour(up, 2));
-     *     /\* return 0; *\/
-     */
 
     VERB("Check passed");
 
@@ -175,6 +157,8 @@ static int up(void)
     avail |= BIT64(pp[cp].tile);
     pp[cp].tile = 0;
     cp--;
+    if (cp == 1)
+        INFO("Went up to tile 3");
     if (cp < 0)
         ERROR("Tried to rewind past the top of the tree");
     return 1;
@@ -189,15 +173,12 @@ static void step(void)
     if (cp == side * side)
         return;
 
-    left_up_colours();
-
     if (check())
         return;
 
     do {
         while (!right()) {
             up();
-            left_up_colours();
         }
     } while (!check());
 }
@@ -272,6 +253,9 @@ int main(int argc, char *argv[])
 
     solve();
 
+    /* for (int p = 0; p < side * side; p++) */
+        /* INFO("p=%d: pp[p].tile=%d; pp[p].rot=%d", p, pp[p].tile, pp[p].rot); */
+    
     print();
 
     return 0;
