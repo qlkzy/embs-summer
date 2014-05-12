@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 #define BIT(n) (1 << (n))
+#define BIT64(n) (((uint64_t)1) << (n))
 
 #define MAX_SIDE  6
 #define MAX_TILES (MAX_SIDE * MAX_SIDE)
@@ -94,15 +95,28 @@ static inline int check(void)
 
 static inline int down(void)
 {
+    uint64_t possible = avail;
+
     VERB("GOING DOWN");
 
     cp++;
+
+    left_up_colours();
+    
+    if (c_left >= 0)
+        possible &= colours[c_left];
+
+    if (c_up >= 0)
+        possible &= colours[c_up];
+
+    VERB("possible=%" PRIX64, possible);    
+    
     for (int t = 0; t < side * side; t++) {
-        if (avail & BIT(t)) {
+        if (possible & BIT64(t)) {
             VERB("Choosing tile %d for place %d", t, cp);
             pp[cp].tile = t;
             pp[cp].rot = 0;
-            avail &= ~BIT(t);
+            avail &= ~BIT64(t);
             return 1;
         }
     }
@@ -117,15 +131,17 @@ static inline int right(void)
     VERB("GOING RIGHT");
     /* if we can, find a sibling to try by rotating this tile */
     if (pp[cp].rot < 3) {
-        /* rotations++; */
         pp[cp].rot++;
+        VERB("Tile %d in place %d at rotation %d", pp[cp].tile, cp, pp[cp].rot);
         return 1;
     }
 
     /* otherwise, find a new tile */
-    avail |= BIT(pp[cp].tile);
+    avail |= BIT64(pp[cp].tile);
 
     possible = avail;
+
+    left_up_colours();
 
     if (c_left >= 0)
         possible &= colours[c_left];
@@ -133,14 +149,17 @@ static inline int right(void)
     if (c_up >= 0)
         possible &= colours[c_up];
 
+    
+    VERB("possible=%" PRIX64, possible);
+    
     int t;
     for (t = pp[cp].tile + 1; t < side * side; t++) {
-        if (possible & BIT(t)) {
+        if (possible & BIT64(t)) {
             /* substitutions++; */
             VERB("Moving right, choosing tile %d for place %d", t, cp);
             pp[cp].tile = t;
             pp[cp].rot = 0;
-            avail &= ~BIT(t);
+            avail &= ~BIT64(t);
             return 1;
         }
     }
@@ -153,7 +172,7 @@ static inline int right(void)
 static int up(void)
 {
     VERB("GOING UP");
-    avail |= BIT(pp[cp].tile);
+    avail |= BIT64(pp[cp].tile);
     pp[cp].tile = 0;
     cp--;
     if (cp < 0)
@@ -186,7 +205,7 @@ static void step(void)
 static void solve(void)
 {
     int steps = 0;
-    avail &= ~BIT(0);
+    avail &= ~BIT64(0);
     while (cp < side * side) {
         step();
         steps++;
@@ -198,7 +217,7 @@ static void init(void)
 {
     cp = 0;
     for (int t = 0; t < MAX_TILES; t++)
-        avail |= BIT(t);
+        avail |= BIT64(t);
 }
 
 static void readargs(int argc, char *argv[])
@@ -227,7 +246,7 @@ static void mapcolours(void)
 {
     for (int t = 0; t < side * side; t++)
         for (int e = 0; e < 4; e++)
-            colours[tiles[t][e]] |= BIT(t);
+            colours[tiles[t][e]] |= BIT64(t);
 }
 
 static void print(void)
