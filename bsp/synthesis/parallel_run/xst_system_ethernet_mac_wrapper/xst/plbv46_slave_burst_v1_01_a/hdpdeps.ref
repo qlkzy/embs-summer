@@ -1,0 +1,109 @@
+V3 61
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/addr_reg_cntr_brst_flex.vhd 2012/10/02.11:15:38 P.40xd
+EN plbv46_slave_burst_v1_01_a/addr_reg_cntr_brst_flex 1399978648 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/addr_reg_cntr_brst_flex.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/NUMERIC_STD 1350103249 \
+      LB proc_common_v3_00_a LB unisim PH unisim/VCOMPONENTS 1350103252 \
+      LB plbv46_slave_burst_v1_01_a PB proc_common_v3_00_a/proc_common_pkg 1399978512
+AR plbv46_slave_burst_v1_01_a/addr_reg_cntr_brst_flex/implementation 1399978649 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/addr_reg_cntr_brst_flex.vhd \
+      EN plbv46_slave_burst_v1_01_a/addr_reg_cntr_brst_flex 1399978648 CP natural \
+      CP FDRE CP std_logic CP std_logic_vector \
+      CP plbv46_slave_burst_v1_01_a/flex_addr_cntr
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/be_reset_gen.vhd 2012/10/02.11:15:38 P.40xd
+EN plbv46_slave_burst_v1_01_a/be_reset_gen 1399978640 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/be_reset_gen.vhd \
+      PB ieee/std_logic_1164 1350103243 LB proc_common_v3_00_a LB unisim \
+      PH unisim/VCOMPONENTS 1350103252
+AR plbv46_slave_burst_v1_01_a/be_reset_gen/implementation 1399978641 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/be_reset_gen.vhd \
+      EN plbv46_slave_burst_v1_01_a/be_reset_gen 1399978640 CP std_logic \
+      CP std_logic_vector
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/burst_support.vhd 2012/10/02.11:15:38 P.40xd
+EN plbv46_slave_burst_v1_01_a/burst_support 1399978646 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/burst_support.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/NUMERIC_STD 1350103249 \
+      LB proc_common_v3_00_a LB unisim PH unisim/VCOMPONENTS 1350103252 \
+      PB proc_common_v3_00_a/proc_common_pkg 1399978512 \
+      PB proc_common_v3_00_a/ipif_pkg 1399978557 \
+      PB proc_common_v3_00_a/family_support 1399978510 \
+      EN proc_common_v3_00_a/counter_f 1399978624
+AR plbv46_slave_burst_v1_01_a/burst_support/implementation 1399978647 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/burst_support.vhd \
+      EN plbv46_slave_burst_v1_01_a/burst_support 1399978646 \
+      CP proc_common_v3_00_a/counter_f
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/data_mirror_128.vhd 2012/10/02.11:15:38 P.40xd
+EN plbv46_slave_burst_v1_01_a/data_mirror_128 1399978672 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/data_mirror_128.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/NUMERIC_STD 1350103249 LB unisim
+AR plbv46_slave_burst_v1_01_a/data_mirror_128/implementation 1399978673 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/data_mirror_128.vhd \
+      EN plbv46_slave_burst_v1_01_a/data_mirror_128 1399978672
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/flex_addr_cntr.vhd 2012/10/02.11:15:38 P.40xd
+EN plbv46_slave_burst_v1_01_a/flex_addr_cntr 1399978630 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/flex_addr_cntr.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/NUMERIC_STD 1350103249 LB unisim \
+      PH unisim/VCOMPONENTS 1350103252
+AR plbv46_slave_burst_v1_01_a/flex_addr_cntr/implementation 1399978631 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/flex_addr_cntr.vhd \
+      EN plbv46_slave_burst_v1_01_a/flex_addr_cntr 1399978630 CP LUT4 CP MUXCY \
+      CP XORCY CP FDRE CP std_logic CP FDRSE
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/plbv46_slave_burst.vhd 2012/10/02.11:15:38 P.40xd
+EN plbv46_slave_burst_v1_01_a/plbv46_slave_burst 1399978680 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/plbv46_slave_burst.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/NUMERIC_STD 1350103249 \
+      PB ieee/std_logic_misc 1350103245 LB proc_common_v3_00_a LB unisim \
+      PH unisim/VCOMPONENTS 1350103252 LB plbv46_slave_burst_v1_01_a \
+      PB proc_common_v3_00_a/proc_common_pkg 1399978512 \
+      PB proc_common_v3_00_a/family_support 1399978510 \
+      PB proc_common_v3_00_a/ipif_pkg 1399978557
+AR plbv46_slave_burst_v1_01_a/plbv46_slave_burst/implementation 1399978681 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/plbv46_slave_burst.vhd \
+      EN plbv46_slave_burst_v1_01_a/plbv46_slave_burst 1399978680 \
+      CP std_logic_vector CP plbv46_slave_burst_v1_01_a/plb_slave_attachment \
+      CP plbv46_slave_burst_v1_01_a/data_mirror_128
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/plb_address_decoder.vhd 2012/10/02.11:15:38 P.40xd
+EN plbv46_slave_burst_v1_01_a/plb_address_decoder 1399978642 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/plb_address_decoder.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/NUMERIC_STD 1350103249 \
+      LB proc_common_v3_00_a LB unisim PH unisim/VCOMPONENTS 1350103252 \
+      PB proc_common_v3_00_a/proc_common_pkg 1399978512 \
+      EN proc_common_v3_00_a/pselect_f 1399978622 \
+      EN proc_common_v3_00_a/or_gate128 1399978592 \
+      PB proc_common_v3_00_a/ipif_pkg 1399978557 \
+      PB proc_common_v3_00_a/family_support 1399978510
+AR plbv46_slave_burst_v1_01_a/plb_address_decoder/IMP 1399978643 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/plb_address_decoder.vhd \
+      EN plbv46_slave_burst_v1_01_a/plb_address_decoder 1399978642 CP FDRE \
+      CP std_logic_vector CP proc_common_v3_00_a/pselect_f CP integer \
+      CP proc_common_v3_00_a/or_gate128
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd 2012/10/02.11:15:38 P.40xd
+EN plbv46_slave_burst_v1_01_a/plb_slave_attachment 1399978670 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/NUMERIC_STD 1350103249 \
+      PB ieee/std_logic_misc 1350103245 LB proc_common_v3_00_a LB unisim \
+      PH unisim/VCOMPONENTS 1350103252 LB plbv46_slave_burst_v1_01_a \
+      PB proc_common_v3_00_a/proc_common_pkg 1399978512 \
+      PB proc_common_v3_00_a/ipif_pkg 1399978557 \
+      PB proc_common_v3_00_a/family_support 1399978510
+AR plbv46_slave_burst_v1_01_a/plb_slave_attachment/implementation 1399978671 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd \
+      EN plbv46_slave_burst_v1_01_a/plb_slave_attachment 1399978670 \
+      CP plbv46_slave_burst_v1_01_a/be_reset_gen \
+      CP plbv46_slave_burst_v1_01_a/plb_address_decoder CP PLB_ADDR_CNTRL_STATES \
+      CP std_logic CP FDRSE CP IPIF_WR_CNTRL_STATES CP PLB_WRDATA_CNTRL_STATES \
+      CP std_logic_vector CP FDR CP plbv46_slave_burst_v1_01_a/wr_buffer CP integer \
+      CP plbv46_slave_burst_v1_01_a/burst_support \
+      CP plbv46_slave_burst_v1_01_a/addr_reg_cntr_brst_flex \
+      CP proc_common_v3_00_a/counter_f
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/wr_buffer.vhd 2012/10/02.11:15:38 P.40xd
+EN plbv46_slave_burst_v1_01_a/wr_buffer 1399978644 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/wr_buffer.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/NUMERIC_STD 1350103249 \
+      PB ieee/std_logic_misc 1350103245 LB proc_common_v3_00_a LB unisim \
+      PH unisim/VCOMPONENTS 1350103252 PB proc_common_v3_00_a/family_support 1399978510
+AR plbv46_slave_burst_v1_01_a/wr_buffer/imp 1399978645 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_burst_v1_01_a/hdl/vhdl/wr_buffer.vhd \
+      EN plbv46_slave_burst_v1_01_a/wr_buffer 1399978644 CP std_logic_vector \
+      CP std_logic CP FDR CP MUXCY_L CP XORCY CP FDRE CP SRL16E CP LUT3 CP SRLC16E \
+      CP MUXF5 CP MUXF6 CP dataType

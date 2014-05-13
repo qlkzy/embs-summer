@@ -6,16 +6,16 @@
 #include <stdlib.h>
 
 #define BIT(n) (1 << (n))
-#define BIT64(n) (((uint64_t)1) << (n))
+#define BIT64(n) (((u64)1) << (n))
 
 #define MAX_SIDE  6
 #define MAX_TILES (MAX_SIDE * MAX_SIDE)
 #define MAX_COLOURS 10
 
-
-static int down(void);
-static int right(void);
-static int up(void);
+typedef uint64_t u64;
+typedef uint8_t u8;
+typedef int8_t s8;
+typedef bit u8;
 
 typedef struct {
     int tile;
@@ -24,9 +24,9 @@ typedef struct {
 
 static Placement pp[MAX_TILES];
 /* static int avail[MAX_TILES]; */
-static uint64_t avail;
-static int tiles[MAX_TILES][4];
-static uint64_t colours[MAX_COLOURS];
+static u64 avail;
+static u8 tiles[MAX_TILES][4];
+static u64 colours[MAX_COLOURS];
 
 /* static int avail_tiles; */
 
@@ -37,8 +37,8 @@ static int side;
 static int c_left = -1;
 static int c_up = -1;
 
-/* static uint64_t rotations = 0; */
-/* static uint64_t substitutions = 0; */
+/* static u64 rotations = 0; */
+/* static u64 substitutions = 0; */
 
 static inline int colour(int p, int edge)
 {
@@ -77,7 +77,7 @@ static inline int check(void)
 
 static inline int down(void)
 {
-    uint64_t possible = avail;
+    u64 possible = avail;
 
     VERB("GOING DOWN");
 
@@ -109,7 +109,7 @@ static inline int down(void)
 
 static inline int right(void)
 {
-    uint64_t possible;
+    u64 possible;
     VERB("GOING RIGHT");
     /* if we can, find a sibling to try by rotating this tile */
     if (pp[cp].rot < 3) {

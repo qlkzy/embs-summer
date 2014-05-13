@@ -1,0 +1,8 @@
+V3 5
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/lmb_v10_v2_00_b/hdl/vhdl/lmb_v10.vhd 2012/10/02.11:15:00 P.40xd
+EN lmb_v10_v2_00_b/lmb_v10 1399978249 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/lmb_v10_v2_00_b/hdl/vhdl/lmb_v10.vhd \
+      PB ieee/std_logic_1164 1350103243
+AR lmb_v10_v2_00_b/lmb_v10/IMP 1399978250 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/lmb_v10_v2_00_b/hdl/vhdl/lmb_v10.vhd \
+      EN lmb_v10_v2_00_b/lmb_v10 1399978249 LB unisim CP FDS

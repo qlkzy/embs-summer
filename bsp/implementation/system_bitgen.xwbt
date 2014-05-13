@@ -1,0 +1,7 @@
+INFILE=/usr/userfs/d/drm511/embs/embs-summer/bsp/implementation/system.ncd
+OUTFILE=/usr/userfs/d/drm511/embs/embs-summer/bsp/implementation/system.bit
+FAMILY=Spartan3E
+PART=xc3s500e-4fg320
+WORKINGDIR=/usr/userfs/d/drm511/embs/embs-summer/bsp/implementation
+LICENSE=ISE
+USER_INFO=174131719_174131720_210570364_844

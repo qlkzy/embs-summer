@@ -1,0 +1,758 @@
+Release 14.3 par P.40xd (lin64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+pc768s::  Tue May 13 12:03:20 2014
+
+par -w -ol high system_map.ncd system.ncd system.pcf 
+
+
+Constraints file: system.pcf.
+Loading device for application Rf_Device from file '3s500e.nph' in environment
+/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/ISE/:/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/1
+4.3/ISE_DS/EDK.
+   "system" is an NCD, version 3.2, device xc3s500e, package fg320, speed -4
+WARNING:ConstraintSystem - The Offset constraint <OFFSET = IN 6 ns BEFORE COMP "fpga_0_Ethernet_MAC_PHY_rx_clk_pin";>
+   [system.pcf(14942)], is specified without a duration.  This will result in a lack of hold time checks in timing
+   reports.  If hold time checks are desired a duration value should be specified following the 'VALID' keyword.
+
+
+Initializing temperature to 85.000 Celsius. (default - Range: -40.000 to 100.000 Celsius)
+Initializing voltage to 1.140 Volts. (default - Range: 1.140 to 1.320 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.27 2012-10-12".
+
+
+
+Design Summary Report:
+
+ Number of External IOBs                          84 out of 232    36%
+
+   Number of External Input IOBs                 20
+
+      Number of External Input IBUFs             20
+        Number of LOCed External Input IBUFs     20 out of 20    100%
+
+
+   Number of External Output IOBs                44
+
+      Number of External Output DIFFMs            1
+        Number of LOCed External Output DIFFMs    1 out of 1     100%
+
+      Number of External Output DIFFSs            1
+        Number of LOCed External Output DIFFSs    1 out of 1     100%
+
+      Number of External Output IOBs             42
+        Number of LOCed External Output IOBs     42 out of 42    100%
+
+
+   Number of External Bidir IOBs                 20
+
+      Number of External Bidir IOBs              20
+        Number of LOCed External Bidir IOBs      20 out of 20    100%
+
+
+   Number of BSCANs                          1 out of 1     100%
+   Number of BUFGMUXs                        6 out of 24     25%
+   Number of DCMs                            2 out of 4      50%
+   Number of MULT18X18SIOs                   3 out of 20     15%
+   Number of RAMB16s                        16 out of 20     80%
+   Number of Slices                       3947 out of 4656   84%
+      Number of SLICEMs                    325 out of 2328   13%
+
+   Number of LOCed Slices                   62 out of 3947    1%
+      Number of LOCed SLICEMs               41 out of 325    12%
+
+
+
+Overall effort level (-ol):   High 
+Router effort level (-rl):    High 
+
+INFO:Timing:2802 - Read 106 constraints.  If you are experiencing memory or runtime issues it may help to consolidate
+   some of these constraints.  For more details please do a search for "timing:2802" at http://www.xilinx.com/support.
+INFO:Timing:3386 - Intersecting Constraints found and resolved.  For more information, see the TSI report.  Please
+   consult the Xilinx Command Line Tools User Guide for information on generating a TSI report.
+Starting initial Timing Analysis.  REAL time: 9 secs 
+Finished initial Timing Analysis.  REAL time: 9 secs 
+
+Starting Router
+
+
+Phase  1  : 29747 unrouted;      REAL time: 12 secs 
+
+Phase  2  : 25518 unrouted;      REAL time: 13 secs 
+
+Phase  3  : 8650 unrouted;      REAL time: 17 secs 
+
+Phase  4  : 8652 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 19 secs 
+
+Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 25 secs 
+
+Updating file: system.ncd with current fully routed design.
+
+Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 29 secs 
+
+Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 30 secs 
+
+Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 31 secs 
+WARNING:Route:455 - CLK Net:fpga_0_clk_1_sys_clk_pin_IBUFG may have excessive skew because 
+      1 CLK pins and 0 NON_CLK pins failed to route using a CLK template.
+WARNING:Route:455 - CLK Net:fpga_0_Ethernet_MAC_PHY_tx_clk_pin_IBUF may have excessive skew because 
+      1 CLK pins and 1 NON_CLK pins failed to route using a CLK template.
+
+Total REAL time to Router completion: 31 secs 
+Total CPU time to Router completion: 30 secs 
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Generating "PAR" statistics.
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|      clk_50_0000MHz | BUFGMUX_X1Y11| No   | 2292 |  0.087     |  0.204      |
++---------------------+--------------+------+------+------------+-------------+
+| clk_100_0000MHzDCM0 |  BUFGMUX_X2Y1| No   |  688 |  0.087     |  0.204      |
++---------------------+--------------+------+------+------------+-------------+
+|clk_100_0000MHz90DCM |              |      |      |            |             |
+|                   0 |  BUFGMUX_X1Y0| No   |  174 |  0.079     |  0.196      |
++---------------------+--------------+------+------+------------+-------------+
+|     mdm_0/Dbg_Clk_1 |  BUFGMUX_X1Y1| No   |  149 |  0.085     |  0.202      |
++---------------------+--------------+------+------+------------+-------------+
+|      clk_25_0000MHz | BUFGMUX_X1Y10| No   |   61 |  0.065     |  0.200      |
++---------------------+--------------+------+------+------------+-------------+
+|clock_generator_0/cl |              |      |      |            |             |
+|ock_generator_0/SIG_ |              |      |      |            |             |
+|      DCM1_CLK2X_BUF | BUFGMUX_X2Y11| No   |    5 |  0.026     |  0.175      |
++---------------------+--------------+------+------+------------+-------------+
+|fpga_0_Ethernet_MAC_ |              |      |      |            |             |
+| PHY_tx_clk_pin_IBUF |         Local|      |   33 |  0.982     |  2.812      |
++---------------------+--------------+------+------+------------+-------------+
+|  mdm_0/Dbg_Update_1 |         Local|      |   35 |  0.456     |  2.243      |
++---------------------+--------------+------+------+------------+-------------+
+|DDR_SDRAM/DDR_SDRAM/ |              |      |      |            |             |
+|mpmc_core_0/gen_s3_d |              |      |      |            |             |
+|dr_phy.mpmc_phy_if_0 |              |      |      |            |             |
+|/data_path/dqs_delay |              |      |      |            |             |
+|          ed_col1<0> |         Local|      |   11 |  0.017     |  0.371      |
++---------------------+--------------+------+------+------------+-------------+
+|DDR_SDRAM/DDR_SDRAM/ |              |      |      |            |             |
+|mpmc_core_0/gen_s3_d |              |      |      |            |             |
+|dr_phy.mpmc_phy_if_0 |              |      |      |            |             |
+|/data_path/dqs_delay |              |      |      |            |             |
+|          ed_col1<1> |         Local|      |   11 |  0.019     |  0.373      |
++---------------------+--------------+------+------+------------+-------------+
+|DDR_SDRAM/DDR_SDRAM/ |              |      |      |            |             |
+|mpmc_core_0/gen_s3_d |              |      |      |            |             |
+|dr_phy.mpmc_phy_if_0 |              |      |      |            |             |
+|/data_path/dqs_delay |              |      |      |            |             |
+|          ed_col0<0> |         Local|      |   11 |  0.017     |  0.371      |
++---------------------+--------------+------+------+------------+-------------+
+|DDR_SDRAM/DDR_SDRAM/ |              |      |      |            |             |
+|mpmc_core_0/gen_s3_d |              |      |      |            |             |
+|dr_phy.mpmc_phy_if_0 |              |      |      |            |             |
+|/data_path/dqs_delay |              |      |      |            |             |
+|          ed_col0<1> |         Local|      |   11 |  0.019     |  0.373      |
++---------------------+--------------+------+------+------------+-------------+
+|fpga_0_Ethernet_MAC_ |              |      |      |            |             |
+| PHY_rx_clk_pin_IBUF |         Local|      |   35 |  0.811     |  2.708      |
++---------------------+--------------+------+------+------------+-------------+
+|fpga_0_clk_1_sys_clk |              |      |      |            |             |
+|          _pin_IBUFG |         Local|      |    5 |  0.008     |  2.184      |
++---------------------+--------------+------+------+------------+-------------+
+
+* Net Skew is the difference between the minimum and maximum routing
+only delays for the net. Note this is different from Clock Skew which
+is reported in TRCE timing report. Clock Skew is the difference between
+the minimum and maximum path delays which includes logic delays.
+
+* The fanout is the number of component pins not the individual BEL loads,
+for example SLICE loads not FF loads.
+
+Timing Score: 0 (Setup: 0, Hold: 0, Component Switching Limit: 0)
+
+Asterisk (*) preceding a constraint indicates it was not met.
+   This may be due to a setup or hold violation.
+
+----------------------------------------------------------------------------------------------------------
+  Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
+                                            |             |    Slack   | Achievable | Errors |    Score   
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.005ns|     0.195ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[0]..u_dqs_ |             |            |            |        |            
+  delay_col0/delay2"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.005ns|     0.195ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[0]..u_dqs_ |             |            |            |        |            
+  delay_col1/delay2"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.005ns|     0.195ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[1]..u_dqs_ |             |            |            |        |            
+  delay_col0/delay2"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.005ns|     0.195ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[1]..u_dqs_ |             |            |            |        |            
+  delay_col1/delay2"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.011ns|     0.469ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<11>"          |             |            |            |        |            
+  MAXDELAY = 0.48 ns                        |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.011ns|     0.469ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<13>"          |             |            |            |        |            
+  MAXDELAY = 0.48 ns                        |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.011ns|     0.469ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<0>"         M |             |            |            |        |            
+  AXDELAY = 0.48 ns                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.011ns|     0.469ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<7>"         M |             |            |            |        |            
+  AXDELAY = 0.48 ns                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.011ns|     0.469ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<15>"          |             |            |            |        |            
+  MAXDELAY = 0.48 ns                        |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.011ns|     0.469ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<9>"         M |             |            |            |        |            
+  AXDELAY = 0.48 ns                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.011ns|     0.469ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<4>"         M |             |            |            |        |            
+  AXDELAY = 0.48 ns                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.011ns|     0.469ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<3>"         M |             |            |            |        |            
+  AXDELAY = 0.48 ns                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.062ns|     0.418ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<1>"         M |             |            |            |        |            
+  AXDELAY = 0.48 ns                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.062ns|     0.418ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<2>"         M |             |            |            |        |            
+  AXDELAY = 0.48 ns                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.062ns|     0.418ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<8>"         M |             |            |            |        |            
+  AXDELAY = 0.48 ns                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.062ns|     0.418ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<5>"         M |             |            |            |        |            
+  AXDELAY = 0.48 ns                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.062ns|     0.418ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<6>"         M |             |            |            |        |            
+  AXDELAY = 0.48 ns                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.062ns|     0.418ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<14>"          |             |            |            |        |            
+  MAXDELAY = 0.48 ns                        |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.062ns|     0.418ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<10>"          |             |            |            |        |            
+  MAXDELAY = 0.48 ns                        |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_ | MAXDELAY    |     0.062ns|     0.418ns|       0|           0
+  s3_ddr_phy.mpmc_phy_if_0/dq<12>"          |             |            |            |        |            
+  MAXDELAY = 0.48 ns                        |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.081ns|     0.119ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[0]..u_dqs_ |             |            |            |        |            
+  delay_col1/delay5"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.081ns|     0.119ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[0]..u_dqs_ |             |            |            |        |            
+  delay_col0/delay5"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.081ns|     0.119ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[1]..u_dqs_ |             |            |            |        |            
+  delay_col1/delay5"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.081ns|     0.119ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[1]..u_dqs_ |             |            |            |        |            
+  delay_col0/delay5"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.090ns|     0.390ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/dqs_int_ |             |            |            |        |            
+  delay_in<0>"         MAXDELAY = 0.48 ns   |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.090ns|     0.110ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[0]..u_dqs_ |             |            |            |        |            
+  delay_col0/delay3"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.090ns|     0.110ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[0]..u_dqs_ |             |            |            |        |            
+  delay_col1/delay3"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.090ns|     0.110ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[1]..u_dqs_ |             |            |            |        |            
+  delay_col1/delay3"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.090ns|     0.390ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/dqs_int_ |             |            |            |        |            
+  delay_in<1>"         MAXDELAY = 0.48 ns   |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.090ns|     0.110ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[1]..u_dqs_ |             |            |            |        |            
+  delay_col0/delay3"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.125ns|     0.075ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[0]..u_dqs_ |             |            |            |        |            
+  delay_col0/delay4"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.125ns|     0.075ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[0]..u_dqs_ |             |            |            |        |            
+  delay_col1/delay4"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.125ns|     0.075ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[1]..u_dqs_ |             |            |            |        |            
+  delay_col1/delay4"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.125ns|     0.075ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/gen_dqs[1]..u_dqs_ |             |            |            |        |            
+  delay_col0/delay4"         MAXDELAY = 0.2 |             |            |            |        |            
+   ns                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.167ns|     1.833ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_wr_addr_out<1><0>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_clock_generator_0_clock_generator_0_SI | SETUP       |     0.170ns|     9.660ns|       0|           0
+  G_DCM0_CLK90 = PERIOD TIMEGRP         "cl | HOLD        |     0.980ns|            |       0|           0
+  ock_generator_0_clock_generator_0_SIG_DCM |             |            |            |        |            
+  0_CLK90"         TS_clock_generator_0_clo |             |            |            |        |            
+  ck_generator_0_SIG_DCM1_CLK2X PHASE 2.5 n |             |            |            |        |            
+  s         HIGH 50%                        |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.170ns|     1.830ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_wr_addr_out<0><2>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.199ns|     1.801ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_wr_addr_out<1><3>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.201ns|     1.799ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_wr_addr_out<1><1>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.206ns|     1.794ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_wr_addr_out<1><2>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.229ns|     1.771ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/fifo_0_wr_en<0>"         MAXDELAY = 2 n |             |            |            |        |            
+  s                                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.231ns|     1.769ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_wr_addr_out<0><1>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.294ns|     1.706ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_wr_addr_out<1><0>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.317ns|     1.683ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_wr_addr_out<0><3>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.330ns|     1.670ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/fifo_1_wr_en<1>"         MAXDELAY = 2 n |             |            |            |        |            
+  s                                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.373ns|     1.627ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_wr_addr_out<0><2>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.388ns|     1.612ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_wr_addr_out<1><2>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.428ns|     1.572ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_wr_addr_out<0><0>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.442ns|     2.058ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/rst_dqs_div"       |             |            |            |        |            
+     MAXDELAY = 2.5 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.463ns|     1.537ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/fifo_0_wr_en<1>"         MAXDELAY = 2 n |             |            |            |        |            
+  s                                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.494ns|     1.506ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_wr_addr_out<0><0>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.504ns|     1.496ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/fifo_1_wr_en<0>"         MAXDELAY = 2 n |             |            |            |        |            
+  s                                         |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.527ns|     1.473ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_wr_addr_out<1><3>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.551ns|     1.449ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_wr_addr_out<0><1>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.591ns|     1.409ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_wr_addr_out<1><1>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_clock_generator_0_clock_generator_0_SI | SETUP       |     0.608ns|    18.784ns|       0|           0
+  G_DCM1_CLK0 = PERIOD TIMEGRP         "clo | HOLD        |     0.697ns|            |       0|           0
+  ck_generator_0_clock_generator_0_SIG_DCM1 |             |            |            |        |            
+  _CLK0" TS_sys_clk_pin         HIGH 50%    |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.627ns|     0.373ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/dqs_delayed_col1<1>"         MAXDELAY = |             |            |            |        |            
+   1 ns                                     |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.627ns|     0.373ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/dqs_delayed_col0<1>"         MAXDELAY = |             |            |            |        |            
+   1 ns                                     |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.629ns|     0.371ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/dqs_delayed_col0<0>"         MAXDELAY = |             |            |            |        |            
+   1 ns                                     |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.629ns|     0.371ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/dqs_delayed_col1<0>"         MAXDELAY = |             |            |            |        |            
+   1 ns                                     |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.650ns|     1.350ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_wr_addr_out<0><3>"     |             |            |            |        |            
+       MAXDELAY = 2 ns                      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.676ns|     1.324ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<10>"          |             |            |            |        |            
+  MAXDELAY = 2 ns                           |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.697ns|     1.303ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<11>"          |             |            |            |        |            
+  MAXDELAY = 2 ns                           |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.861ns|     1.139ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<0>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_clock_generator_0_clock_generator_0_SI | SETUP       |     0.890ns|     8.813ns|       0|           0
+  G_DCM0_CLK0 = PERIOD TIMEGRP         "clo | HOLD        |     0.611ns|            |       0|           0
+  ck_generator_0_clock_generator_0_SIG_DCM0 |             |            |            |        |            
+  _CLK0"         TS_clock_generator_0_clock |             |            |            |        |            
+  _generator_0_SIG_DCM1_CLK2X HIGH 50%      |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.968ns|     1.032ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<10>"          |             |            |            |        |            
+  MAXDELAY = 2 ns                           |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.971ns|     1.029ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<8>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.978ns|     1.022ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<9>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     0.987ns|     1.013ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<8>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.067ns|     0.933ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<15>"          |             |            |            |        |            
+  MAXDELAY = 2 ns                           |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.094ns|     0.906ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<13>"          |             |            |            |        |            
+  MAXDELAY = 2 ns                           |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.094ns|     0.906ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<14>"          |             |            |            |        |            
+  MAXDELAY = 2 ns                           |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.097ns|     0.903ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<12>"          |             |            |            |        |            
+  MAXDELAY = 2 ns                           |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.259ns|     0.741ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<9>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.259ns|     0.741ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<11>"          |             |            |            |        |            
+  MAXDELAY = 2 ns                           |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.259ns|     0.741ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<13>"          |             |            |            |        |            
+  MAXDELAY = 2 ns                           |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.279ns|     0.721ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<2>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.293ns|     0.707ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<1>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.293ns|     0.707ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<5>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.320ns|     0.680ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<4>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.320ns|     0.680ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<4>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.380ns|     0.620ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<15>"          |             |            |            |        |            
+  MAXDELAY = 2 ns                           |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.380ns|     0.620ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<12>"          |             |            |            |        |            
+  MAXDELAY = 2 ns                           |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.534ns|     0.466ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<2>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.559ns|     0.441ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<6>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.560ns|     0.440ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<7>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.560ns|     0.440ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<6>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.560ns|     0.440ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<5>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.567ns|     0.433ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<7>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.594ns|     0.406ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<1>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.594ns|     0.406ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<3>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.595ns|     0.405ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_0_data_out<3>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.631ns|     0.369ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<14>"          |             |            |            |        |            
+  MAXDELAY = 2 ns                           |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.633ns|     0.367ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read/fifo_1_data_out<0>"         M |             |            |            |        |            
+  AXDELAY = 2 ns                            |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET         "DDR_SDRAM/DDR_SDRAM/mpmc_cor | MAXDELAY    |     1.928ns|     0.072ns|       0|           0
+  e_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_pat |             |            |            |        |            
+  h/data_read_controller/.rst_dqs_div_delay |             |            |            |        |            
+  ed/delay5"         MAXDELAY = 2 ns        |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_clk2_clk1 = MAXDELAY FROM TIMEGRP "clk | SETUP       |     3.353ns|     6.647ns|       0|           0
+  2" TO TIMEGRP "clk1" 10 ns         DATAPA |             |            |            |        |            
+  THONLY                                    |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "fpga_0_Ethernet_MAC_PHY_tx_clk_pin_I | NETSKEW     |     3.652ns|     1.348ns|       0|           0
+  BUF" MAXSKEW = 5 ns                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "fpga_0_Ethernet_MAC_PHY_rx_clk_pin_I | NETSKEW     |     3.810ns|     1.190ns|       0|           0
+  BUF" MAXSKEW = 5 ns                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_clk1_clk2 = MAXDELAY FROM TIMEGRP "clk | SETUP       |     4.197ns|     5.803ns|       0|           0
+  1" TO TIMEGRP "clk2" 10 ns         DATAPA |             |            |            |        |            
+  THONLY                                    |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_clock_generator_0_clock_generator_0_SI | SETUP       |     7.400ns|     2.600ns|       0|           0
+  G_DCM1_CLK2X = PERIOD TIMEGRP         "cl | HOLD        |     1.233ns|            |       0|           0
+  ock_generator_0_clock_generator_0_SIG_DCM | MINLOWPULSE |     5.200ns|     4.800ns|       0|           0
+  1_CLK2X" TS_sys_clk_pin *         2 HIGH  |             |            |            |        |            
+  50%                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  OFFSET = IN 6 ns BEFORE COMP "fpga_0_Ethe | SETUP       |     6.482ns|    -0.482ns|       0|           0
+  rnet_MAC_PHY_rx_clk_pin"                  |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_ | SETUP       |    17.580ns|     2.420ns|       0|           0
+  pin" 50 MHz HIGH 50%                      | HOLD        |     0.779ns|            |       0|           0
+                                            | MINLOWPULSE |    14.000ns|     6.000ns|       0|           0
+----------------------------------------------------------------------------------------------------------
+  TSTXOUT_Ethernet_MAC = MAXDELAY FROM TIME | MAXDELAY    |     7.088ns|     2.912ns|       0|           0
+  GRP "TXCLK_GRP_Ethernet_MAC" TO         T |             |            |            |        |            
+  IMEGRP "PADS" 10 ns                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  NET "fpga_0_Ethernet_MAC_PHY_rx_clk_pin_I | SETUP       |     9.456ns|    12.982ns|       0|           0
+  BUF" PERIOD = 40 ns HIGH 14 ns            | HOLD        |     0.718ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  NET "fpga_0_Ethernet_MAC_PHY_tx_clk_pin_I | SETUP       |    20.693ns|     8.164ns|       0|           0
+  BUF" PERIOD = 40 ns HIGH 14 ns            | HOLD        |     0.756ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_clock_generator_0_clock_generator_0_SI | SETUP       |    32.650ns|     7.350ns|       0|           0
+  G_DCM1_CLKDV = PERIOD TIMEGRP         "cl | HOLD        |     0.971ns|            |       0|           0
+  ock_generator_0_clock_generator_0_SIG_DCM |             |            |            |        |            
+  1_CLKDV" TS_sys_clk_pin /         2 HIGH  |             |            |            |        |            
+  50%                                       |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Review Timing Report for more details on the following derived constraints.
+To create a Timing Report, run "trce -v 12 -fastpaths -o design_timing_report design.ncd design.pcf"
+or "Run Timing Analysis" from Timing Analyzer (timingan).
+Derived Constraints for TS_sys_clk_pin
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|TS_sys_clk_pin                 |     20.000ns|      6.000ns|     19.320ns|            0|            0|            3|       272747|
+| TS_clock_generator_0_clock_gen|     20.000ns|     18.784ns|          N/A|            0|            0|       261753|            0|
+| erator_0_SIG_DCM1_CLK0        |             |             |             |             |             |             |             |
+| TS_clock_generator_0_clock_gen|     10.000ns|      4.800ns|      9.660ns|            0|            0|            3|        10055|
+| erator_0_SIG_DCM1_CLK2X       |             |             |             |             |             |             |             |
+|  TS_clock_generator_0_clock_ge|     10.000ns|      8.813ns|          N/A|            0|            0|         9522|            0|
+|  nerator_0_SIG_DCM0_CLK0      |             |             |             |             |             |             |             |
+|  TS_clock_generator_0_clock_ge|     10.000ns|      9.660ns|          N/A|            0|            0|          533|            0|
+|  nerator_0_SIG_DCM0_CLK90     |             |             |             |             |             |             |             |
+| TS_clock_generator_0_clock_gen|     40.000ns|      7.350ns|          N/A|            0|            0|          936|            0|
+| erator_0_SIG_DCM1_CLKDV       |             |             |             |             |             |             |             |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+All constraints were met.
+
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 33 secs 
+Total CPU time to PAR completion: 32 secs 
+
+Peak Memory Usage:  604 MB
+
+Placer: Placement generated during map.
+Routing: Completed - No errors found.
+Timing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 3
+Number of info messages: 2
+
+Writing design to file system.ncd
+
+
+
+PAR done!

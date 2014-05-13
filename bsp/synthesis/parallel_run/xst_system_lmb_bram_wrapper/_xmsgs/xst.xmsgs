@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="Xst" num="2211" delta="new" >&quot;<arg fmt="%s" index="1">/usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/lmb_bram_elaborate_v1_00_a/hdl/vhdl/lmb_bram_elaborate.vhd</arg>&quot; line <arg fmt="%d" index="2">81</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">RAMB16_S4_S4</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2211" delta="new" >&quot;<arg fmt="%s" index="1">/usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/lmb_bram_elaborate_v1_00_a/hdl/vhdl/lmb_bram_elaborate.vhd</arg>&quot; line <arg fmt="%d" index="2">103</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">RAMB16_S4_S4</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2211" delta="new" >&quot;<arg fmt="%s" index="1">/usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/lmb_bram_elaborate_v1_00_a/hdl/vhdl/lmb_bram_elaborate.vhd</arg>&quot; line <arg fmt="%d" index="2">125</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">RAMB16_S4_S4</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2211" delta="new" >&quot;<arg fmt="%s" index="1">/usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/lmb_bram_elaborate_v1_00_a/hdl/vhdl/lmb_bram_elaborate.vhd</arg>&quot; line <arg fmt="%d" index="2">147</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">RAMB16_S4_S4</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2211" delta="new" >&quot;<arg fmt="%s" index="1">/usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/lmb_bram_elaborate_v1_00_a/hdl/vhdl/lmb_bram_elaborate.vhd</arg>&quot; line <arg fmt="%d" index="2">169</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">RAMB16_S4_S4</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2211" delta="new" >&quot;<arg fmt="%s" index="1">/usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/lmb_bram_elaborate_v1_00_a/hdl/vhdl/lmb_bram_elaborate.vhd</arg>&quot; line <arg fmt="%d" index="2">191</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">RAMB16_S4_S4</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2211" delta="new" >&quot;<arg fmt="%s" index="1">/usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/lmb_bram_elaborate_v1_00_a/hdl/vhdl/lmb_bram_elaborate.vhd</arg>&quot; line <arg fmt="%d" index="2">213</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">RAMB16_S4_S4</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2211" delta="new" >&quot;<arg fmt="%s" index="1">/usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/lmb_bram_elaborate_v1_00_a/hdl/vhdl/lmb_bram_elaborate.vhd</arg>&quot; line <arg fmt="%d" index="2">235</arg>: Instantiating black box module &lt;<arg fmt="%s" index="3">RAMB16_S4_S4</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">BRAM_Addr_A&lt;0:17&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">BRAM_Addr_A&lt;30:31&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">BRAM_Addr_B&lt;0:17&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">BRAM_Addr_B&lt;30:31&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="info" file="Xst" num="2169" delta="new" >HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+</msg>
+
+</messages>
+

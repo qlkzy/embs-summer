@@ -1,0 +1,16 @@
+V3 9
+FL /usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/embs_vga_v1_00_a/hdl/vhdl/embs_vga.vhd 2014/04/19.16:23:03 P.40xd
+EN embs_vga_v1_00_a/embs_vga 1399978790 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/embs_vga_v1_00_a/hdl/vhdl/embs_vga.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
+      PB ieee/STD_LOGIC_UNSIGNED 1350103247 LB proc_common_v3_00_a \
+      LB plbv46_slave_single_v1_01_a LB plbv46_master_burst_v1_01_a \
+      PB proc_common_v3_00_a/proc_common_pkg 1399978650 \
+      PB proc_common_v3_00_a/ipif_pkg 1399978693 \
+      EN plbv46_slave_single_v1_01_a/plbv46_slave_single 1399978786 \
+      EN plbv46_master_burst_v1_01_a/plbv46_master_burst 1399978788
+AR embs_vga_v1_00_a/embs_vga/IMP 1399978791 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/embs_vga_v1_00_a/hdl/vhdl/embs_vga.vhd \
+      EN embs_vga_v1_00_a/embs_vga 1399978790 \
+      CP plbv46_slave_single_v1_01_a/plbv46_slave_single \
+      CP plbv46_master_burst_v1_01_a/plbv46_master_burst CP user_logic

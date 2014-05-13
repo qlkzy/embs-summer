@@ -1,0 +1,14 @@
+##############################################################################
+## Filename:          /home/russell/s3e-vga/pcores/embs_vga_v1_00_a/data/embs_vga_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Sat Mar  8 22:17:27 2014 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a all
+lib plbv46_slave_single_v1_01_a all
+lib plbv46_master_burst_v1_01_a all
+lib embs_vga_v1_00_a vga_fifo_x2 verilog
+lib embs_vga_v1_00_a vga_fifo_x1 verilog
+lib embs_vga_v1_00_a vga verilog
+lib embs_vga_v1_00_a user_logic verilog
+lib embs_vga_v1_00_a embs_vga vhdl

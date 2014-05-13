@@ -1,0 +1,3 @@
+PROCESSOR=microblaze_0
+REPOSITORIES=
+HWSPEC=/usr/userfs/d/drm511/workspace/bsp_hw_platform/system.xml

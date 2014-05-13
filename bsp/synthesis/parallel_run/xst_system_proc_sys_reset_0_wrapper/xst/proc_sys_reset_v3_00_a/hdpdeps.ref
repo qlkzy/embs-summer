@@ -1,0 +1,35 @@
+V3 18
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/lpf.vhd 2012/10/02.11:15:44 P.40xd
+EN proc_sys_reset_v3_00_a/lpf 1399978637 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/lpf.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
+      LB unisim
+AR proc_sys_reset_v3_00_a/lpf/imp 1399978638 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/lpf.vhd \
+      EN proc_sys_reset_v3_00_a/lpf 1399978637 CP SRL16
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/proc_sys_reset.vhd 2012/10/02.11:15:44 P.40xd
+EN proc_sys_reset_v3_00_a/proc_sys_reset 1399978641 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/proc_sys_reset.vhd \
+      PB ieee/std_logic_1164 1350103243 LB unisim PH unisim/VCOMPONENTS 1350103252 \
+      LB proc_sys_reset_v3_00_a
+AR proc_sys_reset_v3_00_a/proc_sys_reset/imp 1399978642 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/proc_sys_reset.vhd \
+      EN proc_sys_reset_v3_00_a/proc_sys_reset 1399978641 \
+      CP proc_sys_reset_v3_00_a/UPCNT_N CP proc_sys_reset_v3_00_a/LPF \
+      CP proc_sys_reset_v3_00_a/SEQUENCE
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/sequence.vhd 2012/10/02.11:15:44 P.40xd
+EN proc_sys_reset_v3_00_a/sequence 1399978639 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/sequence.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244 \
+      LB unisim PH unisim/VCOMPONENTS 1350103252 LB proc_sys_reset_v3_00_a
+AR proc_sys_reset_v3_00_a/sequence/imp 1399978640 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/sequence.vhd \
+      EN proc_sys_reset_v3_00_a/sequence 1399978639 \
+      CP proc_sys_reset_v3_00_a/UPCNT_N
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/upcnt_n.vhd 2012/10/02.11:15:44 P.40xd
+EN proc_sys_reset_v3_00_a/upcnt_n 1399978635 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/upcnt_n.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_arith 1350103244
+AR proc_sys_reset_v3_00_a/upcnt_n/imp 1399978636 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/upcnt_n.vhd \
+      EN proc_sys_reset_v3_00_a/upcnt_n 1399978635

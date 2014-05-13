@@ -1,0 +1,9 @@
+V3 6
+FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_dip_switches_4bit_wrapper.vhd 2014/05/13.11:49:58 P.40xd
+EN work/system_dip_switches_4bit_wrapper 1399978470 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_dip_switches_4bit_wrapper.vhd \
+      PB ieee/std_logic_1164 1350103243 LB UNISIM PH unisim/VCOMPONENTS 1350103252 \
+      LB xps_gpio_v2_00_a
+AR work/system_dip_switches_4bit_wrapper/STRUCTURE 1399978471 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_dip_switches_4bit_wrapper.vhd \
+      EN work/system_dip_switches_4bit_wrapper 1399978470 CP xps_gpio

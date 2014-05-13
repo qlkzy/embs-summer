@@ -1,0 +1,8 @@
+V3 5
+FL /usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/lmb_bram_elaborate_v1_00_a/hdl/vhdl/lmb_bram_elaborate.vhd 2014/05/13.11:49:54 P.40xd
+EN lmb_bram_elaborate_v1_00_a/lmb_bram_elaborate 1399978283 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/lmb_bram_elaborate_v1_00_a/hdl/vhdl/lmb_bram_elaborate.vhd \
+      PB ieee/std_logic_1164 1350103243 LB UNISIM PH unisim/VCOMPONENTS 1350103252
+AR lmb_bram_elaborate_v1_00_a/lmb_bram_elaborate/STRUCTURE 1399978284 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/lmb_bram_elaborate_v1_00_a/hdl/vhdl/lmb_bram_elaborate.vhd \
+      EN lmb_bram_elaborate_v1_00_a/lmb_bram_elaborate 1399978283 CP RAMB16_S4_S4

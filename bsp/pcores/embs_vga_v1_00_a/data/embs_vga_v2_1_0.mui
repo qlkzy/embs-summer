@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE doc SYSTEM "../../ipdialog.dtd" [
+	<!ENTITY RESOLUTION '
+	<widget id="RESOLUTION">
+		<key>RESOLUTION</key>
+		<label>Screen resolution</label>
+		<tip>Resolution of VGA output - requires changing pixel clock to 25MHz for 640x480, 40MHz for 800x600, 65MHz for 1024x768</tip>
+	</widget>
+	'>
+	<!ENTITY PIXEL_WIDTH '
+	<widget id="PIXEL_WIDTH">
+		<key>PIXEL_WIDTH</key>
+		<label>Pixel width in DDR</label>
+		<tip>Width of each pixel in memory - 4-bit will use half the memory space/bandwidth as 8-bit by packing two pixels into a byte</tip>
+	</widget>
+	'>
+	<!ENTITY CHIPSCOPE '
+	<widget id="CHIPSCOPE">
+		<key>CHIPSCOPE</key>
+		<label>Include ChipScope debug ports</label>
+		<tip>Adds ports for testing core signals with ChipScope Pro</tip>
+	</widget>
+	'>
+]>
+
+<doc>
+	<view id="User">
+		<display>User</display>
+		<group id="All">
+			<display>All</display>
+			<item>&RESOLUTION;</item>
+			<item>&PIXEL_WIDTH;</item>
+			<item>&CHIPSCOPE;</item>
+		</group>
+	</view>
+	<view id="System">
+		<display>System</display>
+		<group id="Addresses">
+			<display>Addresses</display>
+			<item>&C_BASEADDR;</item>
+			<item>&C_HIGHADDR;</item>
+		</group>
+		<group id="SPLB">
+			<display>SPLB</display>
+			<item>&C_SPLB_DWIDTH;</item>
+			<item>&C_SPLB_NATIVE_DWIDTH;</item>
+			<item>&C_SPLB_AWIDTH;</item>
+			<item>&C_SPLB_MID_WIDTH;</item>
+			<item>&C_SPLB_NUM_MASTERS;</item>
+		</group>
+		<group id="MPLB">
+			<display>MPLB</display>
+			<item>&C_MPLB_DWIDTH;</item>
+			<item>&C_MPLB_NATIVE_DWIDTH;</item>
+			<item>&C_MPLB_AWIDTH;</item>
+		</group>
+		<group id="Hidden">
+			<display>Hidden</display>
+			<item>&C_FAMILY;</item>
+		</group>
+	</view>
+</doc>
