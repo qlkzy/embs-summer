@@ -2,7 +2,8 @@ Release 14.3 - platgen Xilinx EDK 14.3 Build EDK_P.40xd
  (lin64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-Command Line: platgen -p xc3s500efg320-4 -lang vhdl -intstyle default -msg
+Command Line: platgen -p xc3s500efg320-4 -lang vhdl -intstyle default -lp
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/ -msg
 __xps/ise/xmsgprops.lst -parallel yes system.mhs 
 
 Parse /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs ...
@@ -140,7 +141,7 @@ INFO:EDK:4087 - IPNAME: xps_ethernetlite, INSTANCE: Ethernet_MAC - This design
    Please refer to the data sheet for details.  
    The PLB clock frequency must be greater than or equal to 50 MHz for 100 Mbs
    Ethernet operation and greater than or equal to 5.0 MHz for 10 Mbs Ethernet
-   operation. - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 201
+   operation. - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 205
 INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tool is overriding
    PARAMETER C_DPLB_DWIDTH value to 64 -
    /opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxP
@@ -276,6 +277,15 @@ IPNAME: lmb_v10, INSTANCE: ilmb - 1 master(s) : 1 slave(s)
 IPNAME: lmb_v10, INSTANCE: dlmb - 1 master(s) : 1 slave(s) 
 
 Checking port drivers...
+WARNING:EDK:4180 - PORT: S0_AXIS_TLAST, CONNECTOR:
+   toplevel_top_0_output_V_V_TLAST - No driver found. Port will be driven to GND
+   -
+   /opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxP
+   rocessorIPLib/pcores/microblaze_v8_40_b/data/microblaze_v2_1_0.mpd line 863 
+WARNING:EDK:4181 - PORT: M0_AXIS_TLAST, CONNECTOR: microblaze_0_M0_AXIS_TLAST -
+   floating connection -
+   /opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxP
+   rocessorIPLib/pcores/microblaze_v8_40_b/data/microblaze_v2_1_0.mpd line 859 
 
 Performing Clock DRCs...
 
@@ -835,16 +845,66 @@ Creating hardware output directories ...
 
 Managing hardware (BBD-specified) netlist files ...
 IPNAME:embs_vga INSTANCE:embs_vga_0 -
-/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 275 - Copying
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 280 - Copying
 (BBD-specified) netlist files.
 
 Managing cache ...
+IPNAME:microblaze INSTANCE:microblaze_0 -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 56 - Copying cache
+implementation netlist
+IPNAME:plb_v46 INSTANCE:mb_plb -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 74 - Copying cache
+implementation netlist
+IPNAME:lmb_v10 INSTANCE:ilmb -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 81 - Copying cache
+implementation netlist
+IPNAME:lmb_v10 INSTANCE:dlmb -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 88 - Copying cache
+implementation netlist
+IPNAME:lmb_bram_if_cntlr INSTANCE:dlmb_cntlr -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 95 - Copying cache
+implementation netlist
+IPNAME:lmb_bram_if_cntlr INSTANCE:ilmb_cntlr -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 104 - Copying cache
+implementation netlist
+IPNAME:bram_block INSTANCE:lmb_bram -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 113 - Copying cache
+implementation netlist
+IPNAME:xps_uartlite INSTANCE:rs232_dte -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 120 - Copying cache
+implementation netlist
+IPNAME:xps_gpio INSTANCE:leds_8bit -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 134 - Copying cache
+implementation netlist
+IPNAME:xps_gpio INSTANCE:dip_switches_4bit -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 147 - Copying cache
+implementation netlist
+IPNAME:xps_gpio INSTANCE:buttons_4bit -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 160 - Copying cache
+implementation netlist
+IPNAME:mpmc INSTANCE:ddr_sdram -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 173 - Copying cache
+implementation netlist
+IPNAME:xps_ethernetlite INSTANCE:ethernet_mac -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 205 - Copying cache
+implementation netlist
+IPNAME:mdm INSTANCE:mdm_0 - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs
+line 254 - Copying cache implementation netlist
+IPNAME:proc_sys_reset INSTANCE:proc_sys_reset_0 -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 266 - Copying cache
+implementation netlist
+IPNAME:embs_vga INSTANCE:embs_vga_0 -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 280 - Copying cache
+implementation netlist
+IPNAME:toplevel_top INSTANCE:toplevel_top_0 -
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 297 - Copying cache
+implementation netlist
 
 Elaborating instances ...
 IPNAME:bram_block INSTANCE:lmb_bram -
-/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 109 - elaborating IP
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 113 - elaborating IP
 IPNAME:clock_generator INSTANCE:clock_generator_0 -
-/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 220 - elaborating IP
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 224 - elaborating IP
 ClkGen elaborate status: PASSED
 ----------------------------------------
 ----------------------------------------
@@ -855,7 +915,11 @@ Inserting wrapper level ...
 Completion time: 1.00 seconds
 
 Constructing platform-level connectivity ...
-Completion time: 0.00 seconds
+WARNING:EDK:4059 - INSTANCE: toplevel_top_0, Overriding connection of PORT:
+   aresetn, VALUE: proc_sys_reset_0_Peripheral_aresetn - which is part of the
+   connected BUSIF: input_V_V -
+   /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 297
+Completion time: 1.00 seconds
 
 Writing (top-level) BMM ...
 
@@ -869,62 +933,19 @@ INFO:EDK:4211 - The following instances are synthesized with XST. The MPD option
    IMP_NETLIST=TRUE indicates that a NGC file is to be produced using XST
    synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
 INFO:EDK:4194 - Running XST parallelly on 2 processors
-INSTANCE:microblaze_0 - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs
-line 56 - Running XST synthesis
-INSTANCE:mb_plb - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 70 -
-Running XST synthesis
-INSTANCE:ilmb - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 77 -
-Running XST synthesis
-INSTANCE:dlmb - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 84 -
-Running XST synthesis
-INSTANCE:dlmb_cntlr - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line
-91 - Running XST synthesis
-INSTANCE:ilmb_cntlr - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line
-100 - Running XST synthesis
-INSTANCE:lmb_bram - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line
-109 - Running XST synthesis
-INSTANCE:rs232_dte - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line
-116 - Running XST synthesis
-INSTANCE:leds_8bit - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line
-130 - Running XST synthesis
-INSTANCE:dip_switches_4bit -
-/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 143 - Running XST
-synthesis
-INSTANCE:buttons_4bit - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs
-line 156 - Running XST synthesis
-INSTANCE:ddr_sdram - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line
-169 - Running XST synthesis
-INSTANCE:ethernet_mac - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs
-line 201 - Running XST synthesis
 INSTANCE:clock_generator_0 -
-/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 220 - Running XST
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 224 - Running XST
 synthesis
-INSTANCE:mdm_0 - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 250 -
-Running XST synthesis
-INSTANCE:proc_sys_reset_0 - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs
-line 262 - Running XST synthesis
-INSTANCE:embs_vga_0 - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line
-275 - Running XST synthesis
+INSTANCE:toplevel_top_0 - /usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs
+line 297 - Running XST synthesis
 
 Running NGCBUILD ...
-IPNAME:system_microblaze_0_wrapper INSTANCE:microblaze_0 -
-/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 56 - Running NGCBUILD
-IPNAME:system_ilmb_wrapper INSTANCE:ilmb -
-/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 77 - Running NGCBUILD
-IPNAME:system_dlmb_wrapper INSTANCE:dlmb -
-/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 84 - Running NGCBUILD
-IPNAME:system_ddr_sdram_wrapper INSTANCE:ddr_sdram -
-/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 169 - Running NGCBUILD
-IPNAME:system_ethernet_mac_wrapper INSTANCE:ethernet_mac -
-/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 201 - Running NGCBUILD
 IPNAME:system_clock_generator_0_wrapper INSTANCE:clock_generator_0 -
-/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 220 - Running NGCBUILD
-IPNAME:system_embs_vga_0_wrapper INSTANCE:embs_vga_0 -
-/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 275 - Running NGCBUILD
+/usr/userfs/d/drm511/embs/embs-summer/bsp/system.mhs line 224 - Running NGCBUILD
 INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
    If any constraint needs to be overridden, this should be done by modifying
    the data/system.ucf file.
 
 Rebuilding cache ...
 
-Total run time: 535.00 seconds
+Total run time: 66.00 seconds

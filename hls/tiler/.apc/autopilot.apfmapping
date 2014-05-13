@@ -2,6 +2,9 @@
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
     <originFiles name="toplevel.cpp" path="/usr/userfs/d/drm511/embs/embs-summer/hls/toplevel.cpp"/>
+    <originFiles name="toplevel.h" path="/usr/userfs/d/drm511/embs/embs-summer/hls/toplevel.h"/>
   </source>
-  <testbench/>
+  <testbench>
+    <originFiles name="testbench.cpp" path="/usr/userfs/d/drm511/embs/embs-summer/hls/testbench.cpp"/>
+  </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

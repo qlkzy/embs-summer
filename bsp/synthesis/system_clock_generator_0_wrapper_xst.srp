@@ -5,7 +5,7 @@ Parameter TMPDIR set to /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/xst_
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> 
 
@@ -32,7 +32,7 @@ TABLE OF CONTENTS
 ---- Source Parameters
 Input Format                       : MIXED
 Input File Name                    : "system_clock_generator_0_wrapper_xst.prj"
-Verilog Include Directory          : {"/usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/" "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxBFMinterface/pcores/" "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/" }
+Verilog Include Directory          : {"/usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/" "/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/" "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxBFMinterface/pcores/" "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/" }
 
 ---- Target Parameters
 Target Device                      : xc3s500efg320-4
@@ -60,37 +60,33 @@ Cores Search Directories           : {./}
 *                          HDL Compilation                              *
 =========================================================================
 Compiling vhdl file "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/clock_generator_v4_03_a/hdl/vhdl/dcm_module.vhd" in Library clock_generator_v4_03_a.
-Entity <dcm_module> compiled.
-Entity <dcm_module> (Architecture <STRUCT>) compiled.
+Architecture struct of Entity dcm_module is up to date.
 Compiling vhdl file "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/clock_generator_v4_03_a/hdl/vhdl/pll_module.vhd" in Library clock_generator_v4_03_a.
-Entity <pll_module> compiled.
-Entity <pll_module> (Architecture <STRUCT>) compiled.
+Architecture struct of Entity pll_module is up to date.
 Compiling vhdl file "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/clock_generator_v4_03_a/hdl/vhdl/mmcm_module.vhd" in Library clock_generator_v4_03_a.
-Entity <mmcm_module> compiled.
-Entity <mmcm_module> (Architecture <STRUCT>) compiled.
+Architecture struct of Entity mmcm_module is up to date.
 Compiling vhdl file "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/clock_generator_v4_03_a/hdl/vhdl/plle2_module.vhd" in Library clock_generator_v4_03_a.
-Entity <plle2_module> compiled.
-Entity <plle2_module> (Architecture <STRUCT>) compiled.
+Architecture struct of Entity plle2_module is up to date.
 Compiling vhdl file "/usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/clock_generator_0_v4_03_a/hdl/vhdl/clock_generator.vhd" in Library clock_generator_0_v4_03_a.
 Entity <clock_generator> compiled.
-Entity <clock_generator> (Architecture <STRUCTURE>) compiled.
+Entity <clock_generator> (Architecture <structure>) compiled.
 Compiling vhdl file "/usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_clock_generator_0_wrapper.vhd" in Library work.
 Entity <system_clock_generator_0_wrapper> compiled.
-Entity <system_clock_generator_0_wrapper> (Architecture <STRUCTURE>) compiled.
+Entity <system_clock_generator_0_wrapper> (Architecture <structure>) compiled.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
 =========================================================================
-Analyzing hierarchy for entity <system_clock_generator_0_wrapper> in library <work> (architecture <STRUCTURE>).
+Analyzing hierarchy for entity <system_clock_generator_0_wrapper> in library <work> (architecture <structure>).
 
-Analyzing hierarchy for entity <clock_generator> in library <clock_generator_0_v4_03_a> (architecture <STRUCTURE>) with generics.
+Analyzing hierarchy for entity <clock_generator> in library <clock_generator_0_v4_03_a> (architecture <structure>) with generics.
 	C_CLK_GEN = "PASSED"
 	C_DEVICE = "3s500e"
 	C_FAMILY = "spartan3e"
 	C_PACKAGE = "fg320"
 	C_SPEEDGRADE = "-4"
 
-Analyzing hierarchy for entity <dcm_module> in library <clock_generator_v4_03_a> (architecture <STRUCT>) with generics.
+Analyzing hierarchy for entity <dcm_module> in library <clock_generator_v4_03_a> (architecture <struct>) with generics.
 	C_CLK0_BUF = false
 	C_CLK180_BUF = false
 	C_CLK270_BUF = false
@@ -119,7 +115,7 @@ Analyzing hierarchy for entity <dcm_module> in library <clock_generator_v4_03_a>
 	C_PHASE_SHIFT = 0
 	C_STARTUP_WAIT = false
 
-Analyzing hierarchy for entity <dcm_module> in library <clock_generator_v4_03_a> (architecture <STRUCT>) with generics.
+Analyzing hierarchy for entity <dcm_module> in library <clock_generator_v4_03_a> (architecture <struct>) with generics.
 	C_CLK0_BUF = false
 	C_CLK180_BUF = false
 	C_CLK270_BUF = false
@@ -152,10 +148,10 @@ Analyzing hierarchy for entity <dcm_module> in library <clock_generator_v4_03_a>
 =========================================================================
 *                            HDL Analysis                               *
 =========================================================================
-Analyzing Entity <system_clock_generator_0_wrapper> in library <work> (Architecture <STRUCTURE>).
+Analyzing Entity <system_clock_generator_0_wrapper> in library <work> (Architecture <structure>).
 Entity <system_clock_generator_0_wrapper> analyzed. Unit <system_clock_generator_0_wrapper> generated.
 
-Analyzing generic Entity <clock_generator> in library <clock_generator_0_v4_03_a> (Architecture <STRUCTURE>).
+Analyzing generic Entity <clock_generator> in library <clock_generator_0_v4_03_a> (Architecture <structure>).
 	C_CLK_GEN = "PASSED"
 	C_DEVICE = "3s500e"
 	C_FAMILY = "spartan3e"
@@ -171,7 +167,7 @@ WARNING:Xst:753 - "/usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/clock
 WARNING:Xst:753 - "/usr/userfs/d/drm511/embs/embs-summer/bsp/hdl/elaborate/clock_generator_0_v4_03_a/hdl/vhdl/clock_generator.vhd" line 397: Unconnected output port 'STATUS' of component 'dcm_module'.
 Entity <clock_generator> analyzed. Unit <clock_generator> generated.
 
-Analyzing generic Entity <dcm_module.1> in library <clock_generator_v4_03_a> (Architecture <STRUCT>).
+Analyzing generic Entity <dcm_module.1> in library <clock_generator_v4_03_a> (Architecture <struct>).
 	C_CLK0_BUF = false
 	C_CLK180_BUF = false
 	C_CLK270_BUF = false
@@ -219,7 +215,7 @@ WARNING:Xst:819 - "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_D
     Set user-defined property "STARTUP_WAIT =  FALSE" for instance <Using_Virtex.DCM_INST> in unit <dcm_module.1>.
 Entity <dcm_module.1> analyzed. Unit <dcm_module.1> generated.
 
-Analyzing generic Entity <dcm_module.2> in library <clock_generator_v4_03_a> (Architecture <STRUCT>).
+Analyzing generic Entity <dcm_module.2> in library <clock_generator_v4_03_a> (Architecture <struct>).
 	C_CLK0_BUF = false
 	C_CLK180_BUF = false
 	C_CLK270_BUF = false
@@ -516,13 +512,13 @@ Delay:               1.319ns (Levels of Logic = 0)
 =========================================================================
 
 
-Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 4.49 secs
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 5.16 secs
  
 --> 
 
 
-Total memory usage is 524212 kilobytes
+Total memory usage is 524368 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   50 (   0 filtered)

@@ -35,6 +35,8 @@
 
   <RENDERIMG RASNAME="/usr/userfs/d/drm511/embs/embs-summer/bsp/SDK/SDK_Export/hw/imgs/embs_vga_0.jpg" SVGNAME="/usr/userfs/d/drm511/embs/embs-summer/bsp/SDK/SDK_Export/hw/imgs/embs_vga_0.svg" TMPSVGFN="/usr/userfs/d/drm511/embs/embs-summer/bsp/__xps/.dswkshop/embs_vga_0.svg"/>
 
+  <RENDERIMG RASNAME="/usr/userfs/d/drm511/embs/embs-summer/bsp/SDK/SDK_Export/hw/imgs/toplevel_top_0.jpg" SVGNAME="/usr/userfs/d/drm511/embs/embs-summer/bsp/SDK/SDK_Export/hw/imgs/toplevel_top_0.svg" TMPSVGFN="/usr/userfs/d/drm511/embs/embs-summer/bsp/__xps/.dswkshop/toplevel_top_0.svg"/>
+
   <RENDERIMG RASNAME="/usr/userfs/d/drm511/embs/embs-summer/bsp/SDK/SDK_Export/hw/imgs/system_blkd.jpg" SVGNAME="/usr/userfs/d/drm511/embs/embs-summer/bsp/SDK/SDK_Export/hw/imgs/system_blkd.svg" TMPSVGFN="/usr/userfs/d/drm511/embs/embs-summer/bsp/__xps/.dswkshop/system_blkd.svg"/>
 
 </RENDERBATCH>

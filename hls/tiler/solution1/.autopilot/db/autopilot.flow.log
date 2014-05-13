@@ -1,0 +1,569 @@
+@I [HLS-0] Workspace /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1 opened at Tue May 13 16:19:23 BST 2014
+@I [HLS-100] Command "config_clock -quiet -name default -period 20 -default=false "
+@I [SYN-201] Setting up clock 'default' with a period of 20ns.
+@I [HLS-100] Command 'config_clock' returned 0; elapsed 0Total elapsed time: 1.363 sec.
+@I [HLS-100] Command "open_platform DefaultPlatform "
+@I [HLS-100] Command 'open_platform' returned 0; elapsed 0Total elapsed time: 1.376 sec.
+@I [HLS-100] Command "import_lib /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx.lib "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/xilinx_interface.lib "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/plb46.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.392 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/fsl.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.395 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/axi4.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.398 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 1.398 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/dsp48.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.401 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfft.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.405 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfir.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.408 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 1.412 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_old.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.416 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx.hlp "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/target_info.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.428 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/dsp48.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.432 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 1.432 sec.
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 0Total elapsed time: 1.433 sec.
+@I [HLS-100] Command "config_chip_info -quiet -resource  {SLICE 8672} {LUT 17344} {MULT18x18 28} {BRAM 28}  "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 0Total elapsed time: 1.433 sec.
+@I [HLS-100] Command "config_chip_info -quiet -speed medium "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 0Total elapsed time: 1.433 sec.
+@I [HLS-100] Command 'import_lib' returned 0; elapsed 0.03Total elapsed time: 1.435 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 1.449 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.453 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.461 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 1.481 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 1.502 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.508 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.12Total elapsed time: 1.629 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/tps/tcl/tcllib1.11.1/struct/list.tcl "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/tps/tcl/tcllib1.11.1/cmdline/cmdline.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.684 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 1.685 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/tps/tcl/tcllib1.11.1/math/bignum.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.700 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.03Total elapsed time: 1.711 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.2Total elapsed time: 1.711 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.717 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.2Total elapsed time: 1.717 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.2Total elapsed time: 1.717 sec.
+@I [HLS-100] Command "open_platform DefaultPlatform "
+@I [HLS-100] Command 'open_platform' returned 0; elapsed 0Total elapsed time: 1.718 sec.
+@I [HLS-100] Command "import_lib /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e_fpv5 "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_fpv5_old.lib "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_fpv5.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.730 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.731 sec.
+@I [HLS-100] Command 'import_lib' returned 0; elapsed 0Total elapsed time: 1.740 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e_fpv5.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_fpv5.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.767 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 1.767 sec.
+@I [HLS-100] Command "set_part xc3s500efg320-4 "
+@I [HLS-100] Command "add_library xilinx/spartan3e/spartan3e:xc3s500e:fg320:-4 "
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 0Total elapsed time: 1.777 sec.
+@I [HLS-100] Command "license_exists VIVADO_HLS "
+@I [HLS-100] Command 'license_exists' returned 0; elapsed 0Total elapsed time: 1.777 sec.
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 0Total elapsed time: 1.784 sec.
+@I [HLS-100] Command "config_chip_info -quiet -resource  {SLICE 4656} {LUT 9312} {MULT18x18 20} {BRAM 20}  "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 0Total elapsed time: 1.784 sec.
+@I [HLS-100] Command "config_chip_info -quiet -speed medium "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 0Total elapsed time: 1.784 sec.
+@I [HLS-100] Command 'add_library' returned 0; elapsed 0.01Total elapsed time: 1.790 sec.
+@I [HLS-100] Command "add_library xilinx/spartan3e/spartan3e_fpv5 "
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 0Total elapsed time: 1.792 sec.
+@I [HLS-100] Command "license_exists VIVADO_HLS "
+@I [HLS-100] Command 'license_exists' returned 0; elapsed 0Total elapsed time: 1.792 sec.
+@I [HLS-100] Command 'add_library' returned 0; elapsed 0Total elapsed time: 1.801 sec.
+@I [HLS-10] Setting target device to 'xc3s500efg320-4'
+@I [HLS-100] Command 'set_part' returned 0; elapsed 0.01Total elapsed time: 1.801 sec.
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 0Total elapsed time: 1.801 sec.
+@I [HLS-100] Command "config_chip_info -quiet -resource  {SLICE 4656} {LUT 9312} {MULT18x18 20} {BRAM 20}  "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 0Total elapsed time: 1.801 sec.
+@I [HLS-100] Command "config_chip_info -quiet -speed medium "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 0Total elapsed time: 1.801 sec.
+@I [HLS-100] Command 'open_solution' returned 0; elapsed 0.27Total elapsed time: 1.805 sec.
+@I [HLS-100] Command "export_design -format pcore -version 1.00.a -use_netlist none "
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.817 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/common.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/APCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.841 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.842 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.844 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op_simcore.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 1.847 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/interface.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.849 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.851 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.862 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 1.865 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.872 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 1.889 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 1.899 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 1.902 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.1Total elapsed time: 2.14 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.04Total elapsed time: 2.48 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.18Total elapsed time: 2.48 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.52 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.18Total elapsed time: 2.52 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.18Total elapsed time: 2.52 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e_fpv5.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_fpv5.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.59 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.59 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.61 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 2.85 sec.
+@I [IMPL-8] Exporting the design as a Pcore for EDK.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.89 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.117 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/common.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/APCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.124 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 2.125 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.128 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op_simcore.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.131 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/interface.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.134 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.136 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 2.147 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.150 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.157 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 2.174 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 2.192 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.197 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.11Total elapsed time: 2.305 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 2.327 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 2.327 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.335 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 2.335 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 2.335 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e_fpv5.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_fpv5.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.344 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.344 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/down.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.361 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/right_r.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.368 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/solve.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.372 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 2.379 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/down.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.857 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/right_r.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.860 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/solve.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.862 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.compgen.tcl "
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.rtl_wrap.cfg.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.870 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.rtl_wrap.cfg.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.874 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.tbgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.878 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.tbgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 2.881 sec.
+@I [IMPL-200] Port 'input_V_V' is mapped to 'TDATA' by default.
+@I [IMPL-200] Port 'output_V_V' is mapped to 'TDATA' by default.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.04Total elapsed time: 2.945 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/down.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 3.83 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/right_r.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 3.86 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/solve.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 3.89 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 3.93 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 4.465 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.constraint.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 4.476 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.10 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.178 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.constraint.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.237 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.constraint.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.264 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/common.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/APCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.667 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.668 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.670 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op_simcore.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 5.674 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/interface.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.676 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.679 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.694 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.698 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 5.705 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 5.723 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 5.742 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.746 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.11Total elapsed time: 5.858 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 5.881 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 5.881 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.885 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 5.885 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 5.885 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e_fpv5.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_fpv5.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.890 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 5.890 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.28 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/common.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/APCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.57 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.58 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.60 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op_simcore.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.64 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/interface.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.66 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.70 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.80 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.83 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 6.89 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 6.107 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 6.126 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.129 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.1Total elapsed time: 6.237 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 6.260 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 6.260 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.265 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 6.265 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 6.265 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e_fpv5.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_fpv5.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.270 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.270 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 6.272 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.289 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.306 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/common.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/APCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.343 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.343 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.345 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op_simcore.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.348 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/interface.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.350 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.352 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.362 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.364 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 6.368 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 6.376 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 6.386 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.389 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.11Total elapsed time: 6.509 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 6.534 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.16Total elapsed time: 6.534 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.538 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 6.538 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 6.538 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e_fpv5.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_fpv5.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.542 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.542 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/down.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.547 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/right_r.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.549 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/solve.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.552 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.555 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 6.943 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.constraint.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 6.957 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/common.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/APCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 7.10 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 7.11 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.19 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op_simcore.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.24 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/interface.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.27 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.30 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.40 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.43 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 7.49 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 7.67 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 7.85 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.89 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.11Total elapsed time: 7.195 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 7.226 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 7.226 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.235 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 7.235 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 7.235 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e_fpv5.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_fpv5.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.247 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.247 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.362 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/common.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/APCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.410 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.411 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.414 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op_simcore.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.418 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/interface.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.420 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.425 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.440 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.444 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.451 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 7.469 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 7.478 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.480 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.11Total elapsed time: 7.591 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 7.614 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.16Total elapsed time: 7.614 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.617 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.16Total elapsed time: 7.617 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.16Total elapsed time: 7.618 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e_fpv5.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_fpv5.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.623 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.623 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.626 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.643 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.660 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/common.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/APCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.684 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.685 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.688 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op_simcore.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 7.691 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/interface.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.693 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.695 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.704 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.707 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 7.713 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 7.731 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 7.747 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.750 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.1Total elapsed time: 7.858 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.03Total elapsed time: 7.882 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 7.882 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.885 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 7.885 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 7.885 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e_fpv5.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_fpv5.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.889 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.889 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/down.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.893 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/right_r.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.895 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/solve.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.896 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.compgen.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 7.899 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 8.194 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/toplevel.constraint.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.203 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/common.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/APCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.250 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.251 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.254 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/op_simcore.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.01Total elapsed time: 8.258 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/generic/autopilot/interface.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.262 sec.
+@I [HLS-100] Command "source /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/.autopilot/db/global.setting.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.264 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.275 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.278 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.284 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 8.302 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.02Total elapsed time: 8.322 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.325 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.1Total elapsed time: 8.432 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.03Total elapsed time: 8.455 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 8.455 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.458 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 8.458 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.17Total elapsed time: 8.459 sec.
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/spartan3e/spartan3e_fpv5.gen "
+@I [HLS-100] Command "source /opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/common/technology/xilinx/common/xilinx_fpv5.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.463 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0Total elapsed time: 8.463 sec.
+@I [HLS-100] Command 'export_design' returned 0; elapsed 2.26Total elapsed time: 8.558 sec.
+@I [HLS-100] Command "cleanup_all "
+@I [HLS-100] Command 'cleanup_all' returned 0; elapsed 0Total elapsed time: 8.559 sec.

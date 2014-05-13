@@ -5,6 +5,15 @@ IPNAME: lmb_v10, INSTANCE: ilmb - 1 master(s) : 1 slave(s)
 IPNAME: lmb_v10, INSTANCE: dlmb - 1 master(s) : 1 slave(s) 
 
 Checking port drivers...
+WARNING:EDK:4180 - PORT: S0_AXIS_TLAST, CONNECTOR:
+   toplevel_top_0_output_V_V_TLAST - No driver found. Port will be driven to GND
+   -
+   /opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxP
+   rocessorIPLib/pcores/microblaze_v8_40_b/data/microblaze_v2_1_0.mpd line 863 
+WARNING:EDK:4181 - PORT: M0_AXIS_TLAST, CONNECTOR: microblaze_0_M0_AXIS_TLAST -
+   floating connection -
+   /opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxP
+   rocessorIPLib/pcores/microblaze_v8_40_b/data/microblaze_v2_1_0.mpd line 859 
 
 Performing Clock DRCs...
 

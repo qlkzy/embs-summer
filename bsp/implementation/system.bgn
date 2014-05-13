@@ -11,7 +11,7 @@ Loading device for application Rf_Device from file '3s500e.nph' in environment
    "system" is an NCD, version 3.2, device xc3s500e, package fg320, speed -4
 Opened constraints file system.pcf.
 
-Tue May 13 12:04:13 2014
+Tue May 13 16:27:39 2014
 
 /opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/ISE/bin/lin64/unwrapped/bitgen -w -g CclkPin:PULLUP -g TdoPin:PULLNONE -g M1Pin:PULLDOWN -g DonePin:PULLUP -g StartUpClk:JTAGCLK -g M0Pin:PULLUP -g M2Pin:PULLUP -g ProgPin:PULLUP -g TckPin:PULLUP -g TdiPin:PULLUP -g TmsPin:PULLUP -g LCK_cycle:NoWait -g Security:NONE -g Persist:No system.ncd 
 
@@ -96,38 +96,30 @@ There were 0 CONFIG constraint(s) processed from system.pcf.
 
 
 
-INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_0' at 'RAMB16_X1Y9' location successfully updated with design data.
+INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_0' at 'RAMB16_X1Y8' location successfully updated with design data.
 
 
-INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_1' at 'RAMB16_X1Y7' location successfully updated with design data.
+INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_1' at 'RAMB16_X1Y5' location successfully updated with design data.
 
 
-INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_2' at 'RAMB16_X1Y6' location successfully updated with design data.
+INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_2' at 'RAMB16_X1Y3' location successfully updated with design data.
 
 
-INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_3' at 'RAMB16_X1Y8' location successfully updated with design data.
+INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_3' at 'RAMB16_X1Y2' location successfully updated with design data.
 
 
-INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_4' at 'RAMB16_X1Y3' location successfully updated with design data.
+INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_4' at 'RAMB16_X1Y6' location successfully updated with design data.
 
 
-INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_5' at 'RAMB16_X1Y5' location successfully updated with design data.
+INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_5' at 'RAMB16_X1Y4' location successfully updated with design data.
 
 
-INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_6' at 'RAMB16_X1Y4' location successfully updated with design data.
+INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_6' at 'RAMB16_X1Y9' location successfully updated with design data.
 
 
-INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_7' at 'RAMB16_X1Y2' location successfully updated with design data.
+INFO::100 - BRAM 'lmb_bram/lmb_bram/ramb16_s4_s4_7' at 'RAMB16_X1Y7' location successfully updated with design data.
 
 Running DRC.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_path/dqs_de
-   layed_col1<0> is sourced by a combinatorial pin. This is not good design
-   practice. Use the CE pin to control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_path/dqs_de
-   layed_col1<1> is sourced by a combinatorial pin. This is not good design
-   practice. Use the CE pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_path/dqs_de
    layed_col0<0> is sourced by a combinatorial pin. This is not good design
@@ -135,6 +127,14 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_path/dqs_de
    layed_col0<1> is sourced by a combinatorial pin. This is not good design
+   practice. Use the CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_path/dqs_de
+   layed_col1<1> is sourced by a combinatorial pin. This is not good design
+   practice. Use the CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_path/dqs_de
+   layed_col1<0> is sourced by a combinatorial pin. This is not good design
    practice. Use the CE pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:1060 - Issue with pin connections and/or configuration
    on

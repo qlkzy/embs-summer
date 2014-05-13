@@ -12,4 +12,4 @@ run
 -iobuf YES
 -max_fanout 10000
 -sd {../../../implementation}
--vlgincdir {"/usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/" "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxBFMinterface/pcores/" "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/" }
+-vlgincdir {"/usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/" "/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/" "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxBFMinterface/pcores/" "/opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/" }

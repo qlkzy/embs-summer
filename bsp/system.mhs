@@ -59,11 +59,15 @@ BEGIN microblaze
  PARAMETER C_USE_BARREL = 1
  PARAMETER C_DEBUG_ENABLED = 1
  PARAMETER HW_VER = 8.40.b
- BUS_INTERFACE DLMB = dlmb
- BUS_INTERFACE ILMB = ilmb
+ PARAMETER C_FSL_LINKS = 1
+ PARAMETER C_STREAM_INTERCONNECT = 1
  BUS_INTERFACE DPLB = mb_plb
  BUS_INTERFACE IPLB = mb_plb
  BUS_INTERFACE DEBUG = microblaze_0_mdm_bus
+ BUS_INTERFACE DLMB = dlmb
+ BUS_INTERFACE ILMB = ilmb
+ BUS_INTERFACE M0_AXIS = microblaze_0_M0_AXIS
+ BUS_INTERFACE S0_AXIS = toplevel_top_0_output_V_V
  PORT MB_RESET = mb_reset
 END
 
@@ -270,6 +274,7 @@ BEGIN proc_sys_reset
  PORT MB_Reset = mb_reset
  PORT Bus_Struct_Reset = sys_bus_reset
  PORT Peripheral_Reset = sys_periph_reset
+ PORT Peripheral_aresetn = proc_sys_reset_0_Peripheral_aresetn
 END
 
 BEGIN embs_vga
@@ -287,5 +292,14 @@ BEGIN embs_vga
  PORT Blue = embs_vga_0_Blue
  PORT VSync = embs_vga_0_VSync
  PORT Pixel_Clk = clk_25_0000MHz
+END
+
+BEGIN toplevel_top
+ PARAMETER INSTANCE = toplevel_top_0
+ PARAMETER HW_VER = 1.00.a
+ BUS_INTERFACE input_V_V = microblaze_0_M0_AXIS
+ BUS_INTERFACE output_V_V = toplevel_top_0_output_V_V
+ PORT aclk = clk_50_0000MHz
+ PORT aresetn = proc_sys_reset_0_Peripheral_aresetn
 END
 

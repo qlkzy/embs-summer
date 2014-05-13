@@ -9,7 +9,7 @@ Target Device  : xc3s500e
 Target Package : fg320
 Target Speed   : -4
 Mapper Version : spartan3e -- $Revision: 1.55 $
-Mapped Date    : Tue May 13 12:01:56 2014
+Mapped Date    : Tue May 13 16:24:15 2014
 
 Mapping design into LUTs...
 WARNING:MapLib:701 - Signal fpga_0_Ethernet_MAC_PHY_col_pin connected to top
@@ -198,55 +198,59 @@ WARNING:Pack:266 - The function generator
 Running delay-based LUT packing...
 Updating timing models...
 Running timing-driven placement...
-Total REAL time at the beginning of Placer: 21 secs 
-Total CPU  time at the beginning of Placer: 15 secs 
+Total REAL time at the beginning of Placer: 22 secs 
+Total CPU  time at the beginning of Placer: 19 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:68632d91) REAL time: 25 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:e5fba4c) REAL time: 24 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:68632d91) REAL time: 25 secs 
+Phase 2.7  Design Feasibility Check (Checksum:e5fba4c) REAL time: 24 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:31f5458) REAL time: 25 secs 
+Phase 3.31  Local Placement Optimization (Checksum:203aef1) REAL time: 24 secs 
 
 Phase 4.2  Initial Clock and IO Placement
 
 
 
-Phase 4.2  Initial Clock and IO Placement (Checksum:afbef094) REAL time: 28 secs 
+Phase 4.2  Initial Clock and IO Placement (Checksum:6770f832) REAL time: 28 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:afbef094) REAL time: 28 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:6770f832) REAL time: 28 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:afbef094) REAL time: 28 secs 
+Phase 6.36  Local Placement Optimization (Checksum:6770f832) REAL time: 28 secs 
 
 Phase 7.8  Global Placement
-............................
-.........................................................................
-...
-..............................................................
+.........................
+...........................................................................................
+..................
+........................................................
 ................
 ................
 ................
-........................
-Phase 7.8  Global Placement (Checksum:471e2667) REAL time: 55 secs 
+....................
+Phase 7.8  Global Placement (Checksum:56660193) REAL time: 1 mins 28 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:471e2667) REAL time: 55 secs 
+Phase 8.5  Local Placement Optimization (Checksum:56660193) REAL time: 1 mins 28 secs 
 
 Phase 9.18  Placement Optimization
-Phase 9.18  Placement Optimization (Checksum:44fb1067) REAL time: 1 mins 14 secs 
+Phase 9.18  Placement Optimization (Checksum:32c7f5c1) REAL time: 1 mins 59 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:44fb1067) REAL time: 1 mins 14 secs 
+Phase 10.5  Local Placement Optimization (Checksum:32c7f5c1) REAL time: 2 mins 
 
-Total REAL time to Placer completion: 1 mins 16 secs 
-Total CPU  time to Placer completion: 1 mins 8 secs 
+Total REAL time to Placer completion: 2 mins 3 secs 
+Total CPU  time to Placer completion: 1 mins 59 secs 
 Running post-placement packing...
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_path/dqs_delayed_col1<0> is sourced by a
+   DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_path/dqs_delayed_col0<0> is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the
+   flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_path/dqs_delayed_col0<1> is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the
    flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
@@ -254,11 +258,7 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
    combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the
    flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_path/dqs_delayed_col0<0> is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the
-   flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_path/dqs_delayed_col0<1> is sourced by a
+   DDR_SDRAM/DDR_SDRAM/mpmc_core_0/gen_s3_ddr_phy.mpmc_phy_if_0/data_path/dqs_delayed_col1<0> is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the
    flip-flop.
 WARNING:PhysDesignRules:1060 - Issue with pin connections and/or configuration on
@@ -277,20 +277,20 @@ Design Summary:
 Number of errors:      0
 Number of warnings:   51
 Logic Utilization:
-  Number of Slice Flip Flops:         4,115 out of   9,312   44%
-  Number of 4 input LUTs:             5,103 out of   9,312   54%
+  Number of Slice Flip Flops:         5,300 out of   9,312   56%
+  Number of 4 input LUTs:             7,252 out of   9,312   77%
 Logic Distribution:
-  Number of occupied Slices:          3,947 out of   4,656   84%
-    Number of Slices containing only related logic:   3,947 out of   3,947 100%
-    Number of Slices containing unrelated logic:          0 out of   3,947   0%
+  Number of occupied Slices:          4,527 out of   4,656   97%
+    Number of Slices containing only related logic:   4,527 out of   4,527 100%
+    Number of Slices containing unrelated logic:          0 out of   4,527   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:       5,345 out of   9,312   57%
-    Number used as logic:             4,508
-    Number used as a route-thru:        242
+  Total Number of 4 input LUTs:       7,592 out of   9,312   81%
+    Number used as logic:             6,611
+    Number used as a route-thru:        340
     Number used as 16x1 RAMs:             4
     Number used for Dual Port RAMs:     342
       (Two LUTs used per Dual Port RAM)
-    Number used as Shift registers:     249
+    Number used as Shift registers:     295
 
   The Slice Logic Distribution report is not meaningful if the design is
   over-mapped for a non-slice resource or if Placement fails.
@@ -303,17 +303,17 @@ Logic Distribution:
     Number of DDR_ALIGNMENT = NONE       22
     Number of DDR_ALIGNMENT = C0          0
     Number of DDR_ALIGNMENT = C1          0
-  Number of RAMB16s:                     16 out of      20   80%
+  Number of RAMB16s:                     20 out of      20  100%
   Number of BUFGMUXs:                     6 out of      24   25%
   Number of DCMs:                         2 out of       4   50%
   Number of BSCANs:                       1 out of       1  100%
-  Number of MULT18X18SIOs:                3 out of      20   15%
+  Number of MULT18X18SIOs:               10 out of      20   50%
 
-Average Fanout of Non-Clock Nets:                3.38
+Average Fanout of Non-Clock Nets:                3.29
 
-Peak Memory Usage:  794 MB
-Total REAL time to MAP completion:  1 mins 20 secs 
-Total CPU time to MAP completion:   1 mins 12 secs 
+Peak Memory Usage:  841 MB
+Total REAL time to MAP completion:  2 mins 9 secs 
+Total CPU time to MAP completion:   2 mins 5 secs 
 
 Mapping completed.
 See MAP report file "system_map.mrp" for details.

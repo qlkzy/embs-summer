@@ -3634,6 +3634,19 @@ architecture STRUCTURE of system is
     );
   end component;
 
+  component system_toplevel_top_0_wrapper is
+    port (
+      aclk : in std_logic;
+      aresetn : in std_logic;
+      input_V_V_TVALID : in std_logic;
+      input_V_V_TREADY : out std_logic;
+      input_V_V_TDATA : in std_logic_vector(31 downto 0);
+      output_V_V_TVALID : out std_logic;
+      output_V_V_TREADY : in std_logic;
+      output_V_V_TDATA : out std_logic_vector(31 downto 0)
+    );
+  end component;
+
   component IOBUF is
     port (
       I : in std_logic;
@@ -3792,6 +3805,9 @@ architecture STRUCTURE of system is
   signal mb_plb_Sl_wrComp : std_logic_vector(0 to 7);
   signal mb_plb_Sl_wrDAck : std_logic_vector(0 to 7);
   signal mb_reset : std_logic;
+  signal microblaze_0_M0_AXIS_TDATA : std_logic_vector(31 downto 0);
+  signal microblaze_0_M0_AXIS_TREADY : std_logic;
+  signal microblaze_0_M0_AXIS_TVALID : std_logic;
   signal microblaze_0_mdm_bus_Dbg_Capture : std_logic;
   signal microblaze_0_mdm_bus_Dbg_Clk : std_logic;
   signal microblaze_0_mdm_bus_Dbg_Reg_En : std_logic_vector(0 to 7);
@@ -3821,9 +3837,13 @@ architecture STRUCTURE of system is
   signal pgassign2 : std_logic_vector(0 to 0);
   signal pgassign3 : std_logic_vector(0 to 0);
   signal pgassign4 : std_logic_vector(0 to 0);
+  signal proc_sys_reset_0_Peripheral_aresetn : std_logic_vector(0 to 0);
   signal sys_bus_reset : std_logic_vector(0 to 0);
   signal sys_periph_reset : std_logic_vector(0 to 0);
   signal sys_rst_s : std_logic;
+  signal toplevel_top_0_output_V_V_TDATA : std_logic_vector(31 downto 0);
+  signal toplevel_top_0_output_V_V_TREADY : std_logic;
+  signal toplevel_top_0_output_V_V_TVALID : std_logic;
 
   attribute BUFFER_TYPE : STRING;
   attribute BOX_TYPE : STRING;
@@ -3846,6 +3866,7 @@ architecture STRUCTURE of system is
   attribute BOX_TYPE of system_mdm_0_wrapper : component is "user_black_box";
   attribute BOX_TYPE of system_proc_sys_reset_0_wrapper : component is "user_black_box";
   attribute BOX_TYPE of system_embs_vga_0_wrapper : component is "user_black_box";
+  attribute BOX_TYPE of system_toplevel_top_0_wrapper : component is "user_black_box";
 
 begin
 
@@ -4335,13 +4356,13 @@ begin
       FSL15_M_CONTROL => open,
       FSL15_M_FULL => net_gnd0,
       M0_AXIS_TLAST => open,
-      M0_AXIS_TDATA => open,
-      M0_AXIS_TVALID => open,
-      M0_AXIS_TREADY => net_gnd0,
+      M0_AXIS_TDATA => microblaze_0_M0_AXIS_TDATA,
+      M0_AXIS_TVALID => microblaze_0_M0_AXIS_TVALID,
+      M0_AXIS_TREADY => microblaze_0_M0_AXIS_TREADY,
       S0_AXIS_TLAST => net_gnd0,
-      S0_AXIS_TDATA => net_gnd32(0 to 31),
-      S0_AXIS_TVALID => net_gnd0,
-      S0_AXIS_TREADY => open,
+      S0_AXIS_TDATA => toplevel_top_0_output_V_V_TDATA,
+      S0_AXIS_TVALID => toplevel_top_0_output_V_V_TVALID,
+      S0_AXIS_TREADY => toplevel_top_0_output_V_V_TREADY,
       M1_AXIS_TLAST => open,
       M1_AXIS_TDATA => open,
       M1_AXIS_TVALID => open,
@@ -7349,7 +7370,7 @@ begin
       Bus_Struct_Reset => sys_bus_reset(0 to 0),
       Peripheral_Reset => sys_periph_reset(0 to 0),
       Interconnect_aresetn => open,
-      Peripheral_aresetn => open
+      Peripheral_aresetn => proc_sys_reset_0_Peripheral_aresetn(0 to 0)
     );
 
   embs_vga_0 : system_embs_vga_0_wrapper
@@ -7445,6 +7466,18 @@ begin
       CS_fifoIn => open,
       CS_fifoCountW => open,
       CS_fifoCountR => open
+    );
+
+  toplevel_top_0 : system_toplevel_top_0_wrapper
+    port map (
+      aclk => clk_50_0000MHz,
+      aresetn => proc_sys_reset_0_Peripheral_aresetn(0),
+      input_V_V_TVALID => microblaze_0_M0_AXIS_TVALID,
+      input_V_V_TREADY => microblaze_0_M0_AXIS_TREADY,
+      input_V_V_TDATA => microblaze_0_M0_AXIS_TDATA,
+      output_V_V_TVALID => toplevel_top_0_output_V_V_TVALID,
+      output_V_V_TREADY => toplevel_top_0_output_V_V_TREADY,
+      output_V_V_TDATA => toplevel_top_0_output_V_V_TDATA
     );
 
   iobuf_0 : IOBUF

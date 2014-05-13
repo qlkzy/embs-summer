@@ -5,18 +5,22 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="ConstraintSystem" num="0" >The Offset constraint &lt;OFFSET = IN 6 ns BEFORE COMP &quot;fpga_0_Ethernet_MAC_PHY_rx_clk_pin&quot;;&gt; [system.pcf(14942)], is specified without a duration.  This will result in a lack of hold time checks in timing reports.  If hold time checks are desired a duration value should be specified following the &apos;VALID&apos; keyword.
+<msg type="warning" file="ConstraintSystem" num="0" >The Offset constraint &lt;OFFSET = IN 6 ns BEFORE COMP &quot;fpga_0_Ethernet_MAC_PHY_rx_clk_pin&quot;;&gt; [system.pcf(19472)], is specified without a duration.  This will result in a lack of hold time checks in timing reports.  If hold time checks are desired a duration value should be specified following the &apos;VALID&apos; keyword.
 </msg>
 
-<msg type="info" file="Timing" num="2802" delta="new" >Read <arg fmt="%d" index="1">106</arg> constraints.  If you are experiencing memory or runtime issues it may help to consolidate some of these constraints.  For more details please do a search for &quot;timing:2802&quot; at http://www.xilinx.com/support.</msg>
+<msg type="info" file="Timing" num="2802" delta="old" >Read <arg fmt="%d" index="1">106</arg> constraints.  If you are experiencing memory or runtime issues it may help to consolidate some of these constraints.  For more details please do a search for &quot;timing:2802&quot; at http://www.xilinx.com/support.</msg>
 
-<msg type="info" file="Timing" num="3386" delta="new" >Intersecting Constraints found and resolved.  For more information, see the TSI report.  Please consult the Xilinx Command Line Tools User Guide for information on generating a TSI report.</msg>
+<msg type="info" file="Timing" num="3386" delta="old" >Intersecting Constraints found and resolved.  For more information, see the TSI report.  Please consult the Xilinx Command Line Tools User Guide for information on generating a TSI report.</msg>
 
-<msg type="warning" file="Route" num="455" delta="new" >CLK Net:<arg fmt="%s" index="1">fpga_0_clk_1_sys_clk_pin_IBUFG</arg> may have excessive skew because 
+<msg type="warning" file="Route" num="455" delta="new" >CLK Net:<arg fmt="%s" index="1">mdm_0/Dbg_Update_1</arg> may have excessive skew because 
    <arg fmt="%d" index="2">1</arg> CLK pins and <arg fmt="%d" index="3">0</arg> NON_CLK pins failed to route using a CLK template.
 </msg>
 
-<msg type="warning" file="Route" num="455" delta="new" >CLK Net:<arg fmt="%s" index="1">fpga_0_Ethernet_MAC_PHY_tx_clk_pin_IBUF</arg> may have excessive skew because 
+<msg type="warning" file="Route" num="455" delta="old" >CLK Net:<arg fmt="%s" index="1">fpga_0_clk_1_sys_clk_pin_IBUFG</arg> may have excessive skew because 
+   <arg fmt="%d" index="2">1</arg> CLK pins and <arg fmt="%d" index="3">0</arg> NON_CLK pins failed to route using a CLK template.
+</msg>
+
+<msg type="warning" file="Route" num="455" delta="old" >CLK Net:<arg fmt="%s" index="1">fpga_0_Ethernet_MAC_PHY_tx_clk_pin_IBUF</arg> may have excessive skew because 
    <arg fmt="%d" index="2">1</arg> CLK pins and <arg fmt="%d" index="3">1</arg> NON_CLK pins failed to route using a CLK template.
 </msg>
 

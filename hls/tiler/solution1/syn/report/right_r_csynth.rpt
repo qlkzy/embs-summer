@@ -1,0 +1,201 @@
+
+
+================================================================
+== Vivado HLS Report for 'right_r'
+================================================================
+* Date:           Tue May 13 16:18:58 2014
+
+* Version:        2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)
+* Project:        tiler
+* Solution:       solution1
+* Product family: spartan3e spartan3e_fpv5 
+* Target device:  xc3s500efg320-4
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |  20.00|     15.33|        2.50|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    2|   16|    2|   16|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Loop 1  |    0|    0|         1|          -|          -|     0|    no    |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+------+----------+
+|       Name      | BRAM_18K|  FF |  LUT | MULT18x18|
++-----------------+---------+-----+------+----------+
+|Expression       |        -|    0|   372|         1|
+|FIFO             |        -|    -|     -|         -|
+|Instance         |        -|  176|   208|         -|
+|Memory           |        -|    -|     -|         -|
+|Multiplexer      |        -|    -|    78|         -|
+|Register         |        -|  174|     -|         -|
+|ShiftMemory      |        -|    -|     -|         -|
++-----------------+---------+-----+------+----------+
+|Total            |        0|  350|   658|         1|
++-----------------+---------+-----+------+----------+
+|Available        |       20|    -|  9312|        20|
++-----------------+---------+-----+------+----------+
+|Utilization (%)  |        0|    -|     7|         5|
++-----------------+---------+-----+------+----------+
+
++ Detail: 
+    * Instance: 
+    +--------------------------------+----------------------------+---------+-------+----+-----+
+    |            Instance            |           Module           | BRAM_18K| DSP48E| FF | LUT |
+    +--------------------------------+----------------------------+---------+-------+----+-----+
+    |toplevel_sdiv_9s_9ns_9_12_U10   |toplevel_sdiv_9s_9ns_9_12   |        0|      0|  88|  104|
+    |toplevel_udiv_8ns_8ns_8_11_U11  |toplevel_udiv_8ns_8ns_8_11  |        0|      0|  88|  104|
+    +--------------------------------+----------------------------+---------+-------+----+-----+
+    |Total                           |                            |        0|      0| 176|  208|
+    +--------------------------------+----------------------------+---------+-------+----+-----+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Shift register: 
+    N/A
+
+    * Expression: 
+    +-------------------------+----------+-------+---+----+------------+------------+
+    |      Variable Name      | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------+----------+-------+---+----+------------+------------+
+    |r_V_7_fu_390_p2          |     *    |      0|  0|   0|           8|           8|
+    |grp_fu_170_p2            |     +    |      0|  0|   2|           2|           1|
+    |left_V_fu_192_p2         |     +    |      0|  0|   8|           8|           2|
+    |t_V_fu_402_p2            |     +    |      0|  0|   8|           8|           1|
+    |up_V_fu_215_p2           |     -    |      0|  0|   8|           8|           8|
+    |p_5_i_fu_326_p3          |  Select  |      0|  0|   5|           1|           2|
+    |p_i_fu_312_p3            |  Select  |      0|  0|   5|           1|           2|
+    |possible_V_3_fu_373_p3   |  Select  |      0|  0|  36|           1|           2|
+    |possible_V_4_fu_380_p3   |  Select  |      0|  0|  36|           1|           2|
+    |this_assign_i_fu_274_p3  |  Select  |      0|  0|   8|           1|           8|
+    |ap_sig_bdd_146           |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_406           |    and   |      0|  0|   1|           1|           1|
+    |r_V_9_fu_433_p2          |    and   |      0|  0|  36|          36|          36|
+    |tmp1_fu_396_p2           |    and   |      0|  0|  36|          36|          36|
+    |tmp2_fu_428_p2           |    and   |      0|  0|  36|          36|          36|
+    |tmp_9_fu_450_p2          |    and   |      0|  0|  36|          36|          36|
+    |tmp_61_i_fu_268_p2       |   icmp   |      0|  0|   6|           9|           9|
+    |tmp_6_fu_413_p2          |   icmp   |      0|  0|   9|          16|          16|
+    |tmp_8_fu_438_p2          |   icmp   |      0|  0|  19|          36|           1|
+    |tmp_s_fu_186_p2          |   icmp   |      0|  0|   1|           2|           2|
+    |possible_V_fu_361_p2     |    or    |      0|  0|  36|          36|          36|
+    |p_4_fu_444_p2            |    xor   |      0|  0|  36|          36|           2|
+    |r_V_3_fu_237_p2          |    xor   |      0|  0|   3|           2|           3|
+    +-------------------------+----------+-------+---+----+------------+------------+
+    |Total                    |          |      0|  0| 372|         322|         251|
+    +-------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------+----+-----------+-----+-----------+
+    |        Name        | LUT| Input Size| Bits| Total Bits|
+    +--------------------+----+-----------+-----+-----------+
+    |avail_V_o           |  36|          3|   36|        108|
+    |p_078_0_in_reg_145  |   8|          2|    8|         16|
+    |pp_rot_V_address0   |  12|          5|    6|         30|
+    |pp_rot_V_d0         |   2|          3|    2|          6|
+    |pp_tile_V_address0  |  12|          4|    6|         24|
+    |tiles_V_address0    |   8|          3|    8|         24|
+    +--------------------+----+-----------+-----+-----------+
+    |Total               |  78|         20|   66|        208|
+    +--------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------+----+-----+-----------+
+    |          Name          | FF | Bits| Const Bits|
+    +------------------------+----+-----+-----------+
+    |ap_CS_fsm               |   5|    5|          0|
+    |ap_return_preg          |   1|    1|          0|
+    |left_V_reg_487          |   8|    8|          0|
+    |p_078_0_in_reg_145      |   8|    8|          0|
+    |p_s_reg_154             |   1|    1|          0|
+    |possible_V_4_reg_576    |  36|   36|          0|
+    |possible_V_reg_571      |  36|   36|          0|
+    |pp_rot_V_addr_reg_473   |   6|    6|          0|
+    |pp_tile_V_addr_reg_482  |   6|    6|          0|
+    |r_V_7_reg_581           |  16|   16|          0|
+    |tiles_V_load_6_reg_530  |   4|    4|          0|
+    |tmp1_reg_586            |  36|   36|          0|
+    |tmp_35_reg_535          |   1|    1|          0|
+    |tmp_36_reg_509          |   1|    1|          0|
+    |tmp_reg_468             |   8|   64|         56|
+    |tmp_s_reg_478           |   1|    1|          0|
+    +------------------------+----+-----+-----------+
+    |Total                   | 174|  230|         56|
+    +------------------------+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------+-----+-----+------------+--------------+--------------+
+|      RTL Ports     | Dir | Bits|  Protocol  | Source Object|    C Type    |
++--------------------+-----+-----+------------+--------------+--------------+
+|ap_clk              |  in |    1| ap_ctrl_hs |     right    | return value |
+|ap_rst              |  in |    1| ap_ctrl_hs |     right    | return value |
+|ap_start            |  in |    1| ap_ctrl_hs |     right    | return value |
+|ap_done             | out |    1| ap_ctrl_hs |     right    | return value |
+|ap_idle             | out |    1| ap_ctrl_hs |     right    | return value |
+|ap_ready            | out |    1| ap_ctrl_hs |     right    | return value |
+|ap_return           | out |    1| ap_ctrl_hs |     right    | return value |
+|cp_V                |  in |    8|   ap_none  |     cp_V     |    pointer   |
+|pp_rot_V_address0   | out |    6|  ap_memory |   pp_rot_V   |     array    |
+|pp_rot_V_ce0        | out |    1|  ap_memory |   pp_rot_V   |     array    |
+|pp_rot_V_we0        | out |    1|  ap_memory |   pp_rot_V   |     array    |
+|pp_rot_V_d0         | out |    2|  ap_memory |   pp_rot_V   |     array    |
+|pp_rot_V_q0         |  in |    2|  ap_memory |   pp_rot_V   |     array    |
+|pp_tile_V_address0  | out |    6|  ap_memory |   pp_tile_V  |     array    |
+|pp_tile_V_ce0       | out |    1|  ap_memory |   pp_tile_V  |     array    |
+|pp_tile_V_we0       | out |    1|  ap_memory |   pp_tile_V  |     array    |
+|pp_tile_V_d0        | out |    8|  ap_memory |   pp_tile_V  |     array    |
+|pp_tile_V_q0        |  in |    8|  ap_memory |   pp_tile_V  |     array    |
+|avail_V_i           |  in |   36|   ap_ovld  |    avail_V   |    pointer   |
+|avail_V_o           | out |   36|   ap_ovld  |    avail_V   |    pointer   |
+|avail_V_o_ap_vld    | out |    1|   ap_ovld  |    avail_V   |    pointer   |
+|side_V              |  in |    8|   ap_none  |    side_V    |    pointer   |
+|tiles_V_address0    | out |    8|  ap_memory |    tiles_V   |     array    |
+|tiles_V_ce0         | out |    1|  ap_memory |    tiles_V   |     array    |
+|tiles_V_q0          |  in |    4|  ap_memory |    tiles_V   |     array    |
+|colours_V_address0  | out |    4|  ap_memory |   colours_V  |     array    |
+|colours_V_ce0       | out |    1|  ap_memory |   colours_V  |     array    |
+|colours_V_q0        |  in |   36|  ap_memory |   colours_V  |     array    |
+|colours_V_address1  | out |    4|  ap_memory |   colours_V  |     array    |
+|colours_V_ce1       | out |    1|  ap_memory |   colours_V  |     array    |
+|colours_V_q1        |  in |   36|  ap_memory |   colours_V  |     array    |
++--------------------+-----+-----+------------+--------------+--------------+
+

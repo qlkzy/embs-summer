@@ -4,6 +4,8 @@ xc3s500efg320-4
 vhdl
 -intstyle
 default
+-lp
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/
 -msg
 __xps/ise/xmsgprops.lst
 -parallel

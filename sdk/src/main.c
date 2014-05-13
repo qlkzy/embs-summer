@@ -3,8 +3,7 @@
 #include "xil_types.h"
 #include "xuartlite_l.h"
 #include "xemaclite.h"
-
-
+#include "fsl.h"
 
 #define WIDTH          640
 #define HEIGHT         480
@@ -35,7 +34,7 @@ static u8 colours[2][10] = {
                 0x66,  // Yellow
                 0x77,  // White
                 0x00,  // Black
-                0x07,  // Vertical stripes
+                0x70,  // Vertical stripes
                 0x00,  // Horizontal stripe
         },
         {
@@ -48,7 +47,7 @@ static u8 colours[2][10] = {
                 0x66,  // Yellow
                 0x77,  // White
                 0x00,  // Black
-                0x07,  // Vertical stripes
+                0x70,  // Vertical stripes
                 0x77,  // Horizontal stripe
         }
 };
@@ -206,7 +205,7 @@ static void request_puzzle()
 
     memcpy(&tx_buffer[DATA_OFFSET], req, NELEM(req));
 
-    display_packet(tx_buffer);
+    //display_packet(tx_buffer);
 
     XEmacLite_FlushReceive(&ether); //Clear any received messages
     XEmacLite_Send(&ether, tx_buffer, NELEM(req) + XEL_HEADER_SIZE);
@@ -225,6 +224,12 @@ void drawTile(volatile u8 *offset_fb, u8 *start_edge)
         for (i = 0; i < 2; i++) {
             // columns
             for (c = 0; c < TILE_WIDTH; c++) {
+                if (c == 0 ||  r+i == 0 ||
+                    c == d1 || c == d2) {
+                    *offset_fb++ = 0;
+                    continue;
+                }
+
                 if (c > d1 && c < d2) {
                     e = 0;
                 } else if (c > d1 && c > d2) {
@@ -234,8 +239,6 @@ void drawTile(volatile u8 *offset_fb, u8 *start_edge)
                 } else if (c < d1 && c < d2) {
                     e = 3;
                 } else {
-                    *offset_fb++ = 0;
-                    continue;
                 }
                 *offset_fb++ = colours[i][*(start_edge + e)];
             }
@@ -294,7 +297,7 @@ static void receive_tiles()
         if (rx_len) {
             u8 *buffer = &rx_buffer[DATA_OFFSET];
 
-            display_packet(rx_buffer);
+           // display_packet(rx_buffer);
 
             memcpy(tiles, buffer+7, SIDE * SIDE * 4);
 //            drawBoard(SIDE, buffer+7);
@@ -302,6 +305,18 @@ static void receive_tiles()
     }
 }
 
+void solve(void)
+{
+    int e;
+    putfslx(SIDE, 0, FSL_DEFAULT);
+    for (e = 0; e < SIDE * SIDE * 4; e++) {
+        putfslx(tiles[e], 0, FSL_DEFAULT);
+    }
+
+    for (e = 0; e < SIDE * SIDE * 4; e++) {
+        getfslx(tiles[e], 0, FSL_DEFAULT);
+    }
+}
 
 int main(void) {
     print("\n\n\rSTARTING...\n\r\n");
@@ -323,14 +338,16 @@ int main(void) {
 	*((volatile unsigned int *) XPAR_EMBS_VGA_0_BASEADDR + 1) = 1;
 
 	while (1) {
-	    print("\r\nRequesting tiles\r\n");
+	    print("\r\nRequesting tiles...");
 	    request_puzzle();
-	    print("\r\nTiles requested\r\n");
-	    clearScreen();
+	    print("tiles requested...");
 	    receive_tiles();
-	    print("\r\nTiles received\r\n");
-        drawBoard(SIDE, tiles);
-//	    drawBoard(2, tiles);
+	    print("tiles received\r\n");
+	    print("Solving...");
+	    solve();
+	    print("done.\r\n");
+        clearScreen();
+	    drawBoard(SIDE, tiles);
 	    waitForKey();
 	}
 

@@ -21,7 +21,7 @@ INTSTYLE = default
 
 XPS_HDL_LANG = vhdl
 GLOBAL_SEARCHPATHOPT = 
-PROJECT_SEARCHPATHOPT = 
+PROJECT_SEARCHPATHOPT =  -lp /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/
 
 SEARCHPATHOPT = $(PROJECT_SEARCHPATHOPT) $(GLOBAL_SEARCHPATHOPT)
 
@@ -58,7 +58,19 @@ DEFAULT_SIM_SCRIPT = $(BEHAVIORAL_SIM_SCRIPT)
 SIMGEN_OPTIONS = -p $(DEVICE) -lang $(XPS_HDL_LANG) -intstyle $(INTSTYLE) $(SEARCHPATHOPT) $(BRAMINIT_ELF_SIM_FILE_ARGS) -msg __xps/ise/xmsgprops.lst -s mgm
 
 
-CORE_STATE_DEVELOPMENT_FILES = 
+CORE_STATE_DEVELOPMENT_FILES = /usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/toplevel_udiv_8ns_8ns_8_11.v \
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/down.v \
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/right_r.v \
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/solve.v \
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/toplevel_colours_V.v \
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/toplevel_pp_rot_V.v \
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/toplevel_pp_tile_V.v \
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/toplevel_tiles_V.v \
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/toplevel.v \
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/toplevel_ap_rst_if.v \
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/toplevel_input_V_V_if.v \
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/toplevel_output_V_V_if.v \
+/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1/impl/pcores/toplevel_top_v1_00_a/synhdl/verilog/toplevel_top.v
 
 WRAPPER_NGC_FILES = implementation/system_microblaze_0_wrapper.ngc \
 implementation/system_mb_plb_wrapper.ngc \
@@ -76,7 +88,8 @@ implementation/system_ethernet_mac_wrapper.ngc \
 implementation/system_clock_generator_0_wrapper.ngc \
 implementation/system_mdm_0_wrapper.ngc \
 implementation/system_proc_sys_reset_0_wrapper.ngc \
-implementation/system_embs_vga_0_wrapper.ngc
+implementation/system_embs_vga_0_wrapper.ngc \
+implementation/system_toplevel_top_0_wrapper.ngc
 
 POSTSYN_NETLIST = implementation/$(SYSTEM).ngc
 
