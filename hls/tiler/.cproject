@@ -25,7 +25,6 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.396681822" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.263865705" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1121072848" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/usr/userfs/d/drm511/embs/embs-summer/hls"/>
 									<listOptionValue builtIn="false" value="/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/include/etc"/>
 									<listOptionValue builtIn="false" value="/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/include"/>
 									<listOptionValue builtIn="false" value="/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/lnx64/tools/auto_cc/include"/>
@@ -38,7 +37,6 @@
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.exe.debug.option.optimization.level.1337652330" name="Optimization Level" superClass="gnu.c.compiler.exe.debug.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.99866093" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1068481016" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/usr/userfs/d/drm511/embs/embs-summer/hls"/>
 									<listOptionValue builtIn="false" value="/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/include/etc"/>
 									<listOptionValue builtIn="false" value="/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/include"/>
 									<listOptionValue builtIn="false" value="/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/lnx64/tools/auto_cc/include"/>
@@ -101,7 +99,6 @@
 								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.1765341137" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.release.option.debugging.level.1544914836" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.384694444" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/usr/userfs/d/drm511/embs/embs-summer/hls"/>
 									<listOptionValue builtIn="false" value="/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/include/etc"/>
 									<listOptionValue builtIn="false" value="/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/include"/>
 									<listOptionValue builtIn="false" value="/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/lnx64/tools/auto_cc/include"/>
@@ -114,7 +111,6 @@
 								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.exe.release.option.optimization.level.2108588783" name="Optimization Level" superClass="gnu.c.compiler.exe.release.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.release.option.debugging.level.1549937758" name="Debug Level" superClass="gnu.c.compiler.exe.release.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1517686539" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/usr/userfs/d/drm511/embs/embs-summer/hls"/>
 									<listOptionValue builtIn="false" value="/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/include/etc"/>
 									<listOptionValue builtIn="false" value="/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/include"/>
 									<listOptionValue builtIn="false" value="/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/lnx64/tools/auto_cc/include"/>

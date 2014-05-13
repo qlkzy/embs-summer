@@ -8191,3 +8191,8 @@ specified on the element <use> - may be a problem of id
 Report generated.
 Report generation completed.
 Done!
+Writing filter settings....
+Done writing filter settings to:
+	/usr/userfs/d/drm511/embs/embs-summer/bsp/etc/system.filters
+Done writing Tab View settings to:
+	/usr/userfs/d/drm511/embs/embs-summer/bsp/etc/system.gui
