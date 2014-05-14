@@ -3,6 +3,7 @@
 \title{EMBS Summer Assessment Report}
 \author{Y8143160}
 
+\usepackage{graphicx}
 \usepackage[table]{xcolor}
 
 
@@ -17,10 +18,8 @@
 \maketitle
 
 \begin{center}
-  601 words, per \texttt{M-x tex-count-words}
+  983 words, per \texttt{M-x tex-count-words}
 \end{center}
-
-\section{Introduction}
 
 \section{Design}
 
@@ -68,11 +67,18 @@ trying to be tricky. Depth-first search is cheaper (or more easily
 cheap) from a memory point of view, so that is where I started.
 
 The natural way to fit depth-first search to this problem is to
-stipulate that or and removing nodes outright corresponds to moving
+stipulate that adding or removing nodes outright corresponds to moving
 down or up the tree, and rotating or replacing the most-recent node
 corresponds to moving left or right between sibling nodes.
 
-\todo{figure}
+\begin{figure}
+  
+  \begin{center}
+    \includegraphics[scale=0.5]{tree}
+    \caption{Correspondence between tile placement and the search tree}
+  \end{center}
+  
+\end{figure}
 
 Serendipitously, this approach has a natural and memory-efficient
 representation as an array of pairs $(tile, rotation)$. Denoting tiles
@@ -85,7 +91,14 @@ visualisation as a carousel of tiles, the edges of which are carried
 on epicycles; the whole whirling along a row of tiles forming a
 partial solution, \textit{viz}:
 
-\todo{figure}
+\begin{figure}
+  
+  \begin{center}
+    \includegraphics[scale=0.3]{spinner}
+    \caption{The implicit tree structure used by the program}
+  \end{center}
+  
+\end{figure}
 
 \section{Implementation}
 
@@ -131,28 +144,39 @@ manipulate it.
 \footnote{For reasons of exposition, this is mentioned here, but
   obviously this structure was present in the prototype. Converting
   the prototype to an HLS component consisted largely in replacing
-  \texttt{scanf()} with \verb!axi\_stream::read()!}.
+  \texttt{scanf()} with \texttt{axi\_stream::read()}}.
 Notwithstanding the stigma attached to global state, this proved
-pleasantly readable, and required little tuning to compile well:
-taking advantage of arbitrary-precision integers to narrow the more
-obvious types was sufficient to produce a component small enough to
-fit alongside the other components and (to my great delight) meet the
-aforementioned performance obligations.
+pleasantly readable, and required little tuning to compile reasonably
+well: taking advantage of arbitrary-precision integers to narrow the
+more obvious types was sufficient to produce a component small enough
+to fit alongside the other components and (to my great delight) meet
+the aforementioned performance obligations.
 
 The tile-solver was augmented further to allow commands and responses
-sent back and forth across the AXI stream to abort and restart
+sent back and forth across the AXI streams to abort and restart
 solving, and trigger extra backtracking to search for more than one
-solution.
+solution. This makes it straightforward to page through all of the
+possible solutions to a problem. In the existing implementation,
+paging \emph{backwards} through solutions is rather expensive; for the
+sake of simplicity, it is accomplished by restarting the solver and
+scanning forward by the appropriate number of solutions; obviously,
+this makes, say, paging backwards from the hundredth solution to the
+ninety-ninth very slow. This could be solved either with a caching
+approach or by allowing the solver to traverse the tree right-to-left
+as well as left-to-right.
 
-\todo{next/prev stuff}
-
-The tile-solver is deeply inefficient in its transfer of data back and
-forth between the HLS component and the Microblaze, often using 32-bit
-integers to transfer 4-bit values. However, this wastes a few dozen
-streaming transfers surrounding a few million tree-manipulation
-operations; streaming transfers may not be hugely fast, but optimising
-this would be misplaced effort.
+The tile-solver is not maximally inefficient in its transfer of data
+back and forth between the HLS component and the Microblaze, often
+using 32-bit integers to transfer 4-bit values. However, this wastes a
+few dozen streaming transfers surrounding a few million
+tree-manipulation operations; streaming transfers may not be hugely
+fast, but optimising this would be misplaced effort.
 
 \section{Testing}
+
+Little formal testing was conducted: various implementation activities
+naturally led to each component being exercised sufficiently
+thoroughly to give reasonable confidence that the system was correct
+and robust enough for the context.
 
 \end{document}
