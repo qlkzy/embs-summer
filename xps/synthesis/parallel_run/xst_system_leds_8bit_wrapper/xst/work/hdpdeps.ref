@@ -1,0 +1,9 @@
+V3 6
+FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_leds_8bit_wrapper.vhd 2014/05/15.10:55:50 P.40xd
+EN work/system_leds_8bit_wrapper 1400147990 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_leds_8bit_wrapper.vhd \
+      PB ieee/std_logic_1164 1350103243 LB UNISIM PH unisim/VCOMPONENTS 1350103252 \
+      LB xps_gpio_v2_00_a
+AR work/system_leds_8bit_wrapper/STRUCTURE 1400147991 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_leds_8bit_wrapper.vhd \
+      EN work/system_leds_8bit_wrapper 1400147990 CP xps_gpio

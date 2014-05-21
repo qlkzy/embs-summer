@@ -1,0 +1,45 @@
+V3 21
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plbv46_slave_single.vhd 2012/10/02.11:15:38 P.40xd
+EN plbv46_slave_single_v1_01_a/plbv46_slave_single 1400148154 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plbv46_slave_single.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/STD_LOGIC_UNSIGNED 1350103247 \
+      PB ieee/NUMERIC_STD 1350103249 PB ieee/std_logic_misc 1350103245 \
+      LB proc_common_v3_00_a LB unisim PH unisim/VCOMPONENTS 1350103252 \
+      LB plbv46_slave_single_v1_01_a PB proc_common_v3_00_a/proc_common_pkg 1400147926 \
+      PB proc_common_v3_00_a/family_support 1400147924 \
+      PB proc_common_v3_00_a/ipif_pkg 1400148043 \
+      EN proc_common_v3_00_a/or_gate128 1400148004
+AR plbv46_slave_single_v1_01_a/plbv46_slave_single/implementation 1400148155 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plbv46_slave_single.vhd \
+      EN plbv46_slave_single_v1_01_a/plbv46_slave_single 1400148154 \
+      CP std_logic_vector CP plbv46_slave_single_v1_01_a/plb_slave_attachment
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_address_decoder.vhd 2012/10/02.11:15:38 P.40xd
+EN plbv46_slave_single_v1_01_a/plb_address_decoder 1400148066 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_address_decoder.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/NUMERIC_STD 1350103249 \
+      LB proc_common_v3_00_a LB unisim PH unisim/VCOMPONENTS 1350103252 \
+      PB proc_common_v3_00_a/proc_common_pkg 1400147926 \
+      EN proc_common_v3_00_a/pselect_f 1400148034 \
+      EN proc_common_v3_00_a/or_gate128 1400148004 \
+      PB proc_common_v3_00_a/ipif_pkg 1400148043 \
+      PB proc_common_v3_00_a/family_support 1400147924
+AR plbv46_slave_single_v1_01_a/plb_address_decoder/IMP 1400148067 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_address_decoder.vhd \
+      EN plbv46_slave_single_v1_01_a/plb_address_decoder 1400148066 CP integer \
+      CP std_logic_vector CP proc_common_v3_00_a/pselect_f \
+      CP proc_common_v3_00_a/or_gate128
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd 2012/10/02.11:15:38 P.40xd
+EN plbv46_slave_single_v1_01_a/plb_slave_attachment 1400148116 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/NUMERIC_STD 1350103249 \
+      PB ieee/STD_LOGIC_UNSIGNED 1350103247 PB ieee/std_logic_misc 1350103245 \
+      LB proc_common_v3_00_a LB unisim PH unisim/VCOMPONENTS 1350103252 \
+      LB plbv46_slave_single_v1_01_a PB proc_common_v3_00_a/proc_common_pkg 1400147926 \
+      PB proc_common_v3_00_a/ipif_pkg 1400148043 \
+      PB proc_common_v3_00_a/family_support 1400147924 \
+      EN proc_common_v3_00_a/counter_f 1400148036
+AR plbv46_slave_single_v1_01_a/plb_slave_attachment/implementation 1400148117 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd \
+      EN plbv46_slave_single_v1_01_a/plb_slave_attachment 1400148116 CP std_logic \
+      CP std_logic_vector CP plbv46_slave_single_v1_01_a/plb_address_decoder \
+      CP PLB_ADDR_CNTRL_STATES CP integer CP proc_common_v3_00_a/counter_f

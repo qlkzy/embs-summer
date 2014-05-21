@@ -40896,7 +40896,14 @@ typedef ap_int<32> int32;
 //Prototypes
 void toplevel(hls::stream<uint32> &input, hls::stream<uint32> &output);
 # 2 "toplevel.cpp" 2
-# 15 "toplevel.cpp"
+
+
+
+
+
+
+
+
 typedef ap_uint<36> u36;
 typedef ap_uint<8> u8;
 typedef ap_int<8> s8;
@@ -40909,27 +40916,37 @@ typedef struct {
     u2 rot;
 
 friend class ::aesl_keep_name_class;
-# 25 "toplevel.cpp"
+# 20 "toplevel.cpp"
 } Placement;
 
+/* implicit search tree of placements. We call it pp because it's everywhere */
 static Placement pp[(6 * 6)];
-/* static int avail[MAX_TILES]; */
-static u36 avail;
+
+/* big set of tiles */
 static u4 tiles[(6 * 6)][4];
+
+/* bitmask set of available tiles*/
+static u36 avail;
+
+/* bitmask constant for all tiles */
+static const u36 all_tiles = 0xfffffffff;
+
+/* lookup table from colours to bitmask set of tiles having that colour */
 static u36 colours[10];
 
-/* static int avail_tiles; */
+/* current position in tree */
+static s8 cp;
 
-static u8 cp;
-
+/* side length of square to tile */
 static u8 side;
 
-static s8 c_left = -1;
-static s8 c_up = -1;
+/* number of tiles */
+static u8 ntiles;
 
-/* static u36 rotations = 0; */
-/* static u36 substitutions = 0; */
+/* flag to indicate finishing */
+static bool terminate;
 
+/* map from a placement-index and an edge to the colour on that edge */
 static inline u4 colour(u8 p, u2 edge)
 {
     const u8 tile = pp[p].tile;
@@ -40937,55 +40954,66 @@ static inline u4 colour(u8 p, u2 edge)
     return tiles[tile][(edge + rot) % 4];
 }
 
-static void left_up_colours(void)
+static bool left_colour_match(s8 p)
 {
-    s8 left = cp - 1;
-    s8 up = cp - side;
-
-    if (left / side != cp / side)
-        left = -1;
-
-    c_left = (left >= 0) ? (s8)colour(left, 1) : (s8)-1;
-
-    c_up = (up >= 0) ? (s8)colour(up, 2) : (s8)-1;
+ if (p == 0 || (p % side) == 0)
+  return true;
+ return colour(p - 1, 1) == colour(p, 3);
 }
 
-static inline bool check(void)
+static bool up_colour_match(s8 p)
 {
-    left_up_colours();
-
-    if (c_left >= 0 && colour(cp, 3) != c_left)
-        return false;
-
-    if (c_up >= 0 && colour(cp, 0) != c_up)
-        return false;
-
-                        ;
-
-    return true;
+ s8 up = p - side;
+ if (up < 0)
+  return true;
+ return colour(up, 2) == colour(p, 0);
 }
 
-static inline bool down(void)
+static u36 left_possible_mask(s8 p)
 {
-    u36 possible = avail;
+ s8 left = p - 1;
+ if (p == 0)
+  return all_tiles;
+ if ((left / side) != (p / side))
+  return all_tiles;
+ return colours[colour(left, 1)];
+}
 
-                      ;
+static u36 up_possible_mask(s8 p)
+{
+ s8 up = p - side;
+ if (up < 0)
+  return all_tiles;
+ return colours[colour(up, 2)];
+}
 
+/* check that the most-recent tile fits with the rest */
+static inline bool check(s8 p)
+{
+ return left_colour_match(p) && up_colour_match(p);
+}
+
+/* move down the search tree */
+static bool down(void)
+{
+    u36 possible;
+
+    /* ensure that cp stays in range */
+    if (cp >= (ntiles - 1))
+     return false;
+
+    /* move current position down the tree */
     cp++;
 
-    left_up_colours();
+    /* filter tiles to those which are unused */
+    possible = avail;
+    /* filter tiles to those which include the colours of neighbours*/
+    possible &= left_possible_mask(cp);
+    possible &= up_possible_mask(cp);
 
-    if (c_left >= 0)
-        possible &= colours[c_left];
-
-    if (c_up >= 0)
-        possible &= colours[c_up];
-
-                                       ;
-
-    for (int t = 0; t < side * side; t++) {
+    /* choose the next possible tile */
+    for (int t = 0; t < ntiles; t++) {
         if (possible & (((u36)1) << (t))) {
-                                                        ;
             pp[cp].tile = t;
             pp[cp].rot = 0;
             avail &= ~(((u36)1) << (t));
@@ -40993,42 +41021,32 @@ static inline bool down(void)
         }
     }
 
-                                          ;
     return false;
 }
 
-static inline bool right(void)
+/* move right to the next sibling in the search tree */
+static bool right(void)
 {
     u36 possible;
-                       ;
     /* if we can, find a sibling to try by rotating this tile */
     if (pp[cp].rot < 3) {
         pp[cp].rot++;
-                                                                               ;
         return true;
     }
 
     /* otherwise, find a new tile */
     avail |= (((u36)1) << (pp[cp].tile));
 
+    /* filter tiles to those which are unused */
     possible = avail;
 
-    left_up_colours();
+    /* filter tiles to those which include the colours of neighbours*/
+    possible &= left_possible_mask(cp);
+    possible &= up_possible_mask(cp);
 
-    if (c_left >= 0)
-        possible &= colours[c_left];
-
-    if (c_up >= 0)
-        possible &= colours[c_up];
-
-
-                                       ;
-
-    u8 t;
-    for (t = pp[cp].tile + 1; t < side * side; t++) {
+    /* choose the first available tile, slowly */
+    for (u8 t = pp[cp].tile + 1; t < ntiles; t++) {
         if (possible & (((u36)1) << (t))) {
-            /* substitutions++; */
-                                                                      ;
             pp[cp].tile = t;
             pp[cp].rot = 0;
             avail &= ~(((u36)1) << (t));
@@ -41036,64 +41054,81 @@ static inline bool right(void)
         }
     }
 
-                                                     ;
-
     return false;
 }
 
+/* move up the search tree */
 static bool up(void)
 {
-                    ;
     avail |= (((u36)1) << (pp[cp].tile));
     pp[cp].tile = 0;
     cp--;
-    if (cp == 1)
-                                 ;
     if (cp < 0)
-                                                         ;
-    return true;
+     terminate = true;
+  return true;
 }
 
+/* move up and right in the search tree until we reach a valid state */
+static void backtrack(void)
+{
+    do {
+        while (!right() && !terminate)
+            up();
+    } while (!check(cp) && !terminate);
+}
+
+/* step to the next valid state in the search tree,
+ * going down if possible and otherwise backtracking */
 static void step(void)
 {
-                               ;
+ if (!down())
+  backtrack();
 
-    down();
-
-    if (cp == side * side)
-        return;
-
-    if (check())
-        return;
-
-    do {
-        while (!right()) {
-            up();
-        }
-    } while (!check());
+    if (!check(cp))
+     backtrack();
 }
 
+/* run the solver until a solution is found */
 static void solve(void)
 {
-    avail &= ~(((u36)1) << (0));
-    while (cp < side * side) {
+    do {
         step();
+    } while ((cp < ntiles - 1) && !terminate);
+}
+
+/* reset all data structures */
+static void init(void)
+{
+ /* reset position */
+    cp = 0;
+
+    /* reset termination flag */
+    terminate = false;
+
+    // reset available set
+    for (u8 t = 0; t < (6 * 6); t++)
+        avail |= (((u36)1) << (t));
+
+    // reset colour sets
+    for (u4 c = 0; c < 10; c++)
+     colours[c] = 0;
+
+    for (u8 p = 0; p < (6 * 6); p++) {
+     pp[p].tile = 0;
+     pp[p].rot = 0;
     }
 }
 
-static void init(void)
-{
-    cp = 0;
-    for (int t = 0; t < (6 * 6); t++)
-        avail |= (((u36)1) << (t));
-}
-
+/* build the colour -> valid tile sets lookup table */
 static void mapcolours(void)
 {
-    for (int t = 0; t < side * side; t++)
+    for (int t = 0; t < ntiles; t++)
         for (int e = 0; e < 4; e++)
             colours[tiles[t][e]] |= (((u36)1) << (t));
 }
+
+/* magic flag to enforce sequencing */
+volatile bool seq;
 
 //Top-level function
 
@@ -41162,6 +41197,24 @@ inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__s
 
 };
 template< int _AP_W >
+class aesl_keep_name_class___hls_global__ap_uint_tiles{
+public:
+inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_uint_tiles(ap_uint< 4 >* tiles) {aesl_keep_name_class___hls_global__ap_int_base_ap_uint_tiles< 4 >::aesl_keep_name___hls_global__ap_int_base_tiles(tiles);}
+
+};
+template< int _AP_W >
+class aesl_keep_name_class___hls_global__ap_int_base_ap_uint_tiles{
+public:
+inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_int_base_tiles(ap_int_base< _AP_W, false >* tiles) {aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_tiles< _AP_W, false >::aesl_keep_name___hls_global__ssdm_int_tiles(tiles);}
+
+};
+template< int _AP_W, bool _AP_S >
+class aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_tiles{
+public:
+inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ssdm_int_tiles(ssdm_int< _AP_W, _AP_S >* tiles) {_ssdm_op_SpecExt("member_name", "tiles.V", &tiles->V);; }
+
+};
+template< int _AP_W >
 class aesl_keep_name_class___hls_global__ap_uint_avail{
 public:
 inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_uint_avail(ap_uint< 36 >* avail) {aesl_keep_name_class___hls_global__ap_int_base_ap_uint_avail< 36 >::aesl_keep_name___hls_global__ap_int_base_avail(avail);}
@@ -41177,6 +41230,24 @@ template< int _AP_W, bool _AP_S >
 class aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_avail{
 public:
 inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ssdm_int_avail(ssdm_int< _AP_W, _AP_S >* avail) {_ssdm_op_SpecExt("member_name", "avail.V", &avail->V);; }
+
+};
+template< int _AP_W >
+class aesl_keep_name_class___hls_global__ap_uint_all_tiles{
+public:
+inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_uint_all_tiles(const ap_uint< 36 >* all_tiles) {aesl_keep_name_class___hls_global__ap_int_base_ap_uint_all_tiles< 36 >::aesl_keep_name___hls_global__ap_int_base_all_tiles(all_tiles);}
+
+};
+template< int _AP_W >
+class aesl_keep_name_class___hls_global__ap_int_base_ap_uint_all_tiles{
+public:
+inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_int_base_all_tiles(const ap_int_base< _AP_W, false >* all_tiles) {aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_all_tiles< _AP_W, false >::aesl_keep_name___hls_global__ssdm_int_all_tiles(all_tiles);}
+
+};
+template< int _AP_W, bool _AP_S >
+class aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_all_tiles{
+public:
+inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ssdm_int_all_tiles(const ssdm_int< _AP_W, _AP_S >* all_tiles) {_ssdm_op_SpecExt("member_name", "all_tiles.V", &all_tiles->V);; }
 
 };
 template< int _AP_W >
@@ -41198,33 +41269,15 @@ inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__s
 
 };
 template< int _AP_W >
-class aesl_keep_name_class___hls_global__ap_uint_tiles{
+class aesl_keep_name_class___hls_global__ap_int_cp{
 public:
-inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_uint_tiles(ap_uint< 4 >* tiles) {aesl_keep_name_class___hls_global__ap_int_base_ap_uint_tiles< 4 >::aesl_keep_name___hls_global__ap_int_base_tiles(tiles);}
+inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_int_cp(ap_int< 8 >* cp) {aesl_keep_name_class___hls_global__ap_int_base_ap_int_cp< 8 >::aesl_keep_name___hls_global__ap_int_base_cp(cp);}
 
 };
 template< int _AP_W >
-class aesl_keep_name_class___hls_global__ap_int_base_ap_uint_tiles{
+class aesl_keep_name_class___hls_global__ap_int_base_ap_int_cp{
 public:
-inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_int_base_tiles(ap_int_base< _AP_W, false >* tiles) {aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_tiles< _AP_W, false >::aesl_keep_name___hls_global__ssdm_int_tiles(tiles);}
-
-};
-template< int _AP_W, bool _AP_S >
-class aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_tiles{
-public:
-inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ssdm_int_tiles(ssdm_int< _AP_W, _AP_S >* tiles) {_ssdm_op_SpecExt("member_name", "tiles.V", &tiles->V);; }
-
-};
-template< int _AP_W >
-class aesl_keep_name_class___hls_global__ap_uint_cp{
-public:
-inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_uint_cp(ap_uint< 8 >* cp) {aesl_keep_name_class___hls_global__ap_int_base_ap_uint_cp< 8 >::aesl_keep_name___hls_global__ap_int_base_cp(cp);}
-
-};
-template< int _AP_W >
-class aesl_keep_name_class___hls_global__ap_int_base_ap_uint_cp{
-public:
-inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_int_base_cp(ap_int_base< _AP_W, false >* cp) {aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_cp< _AP_W, false >::aesl_keep_name___hls_global__ssdm_int_cp(cp);}
+inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_int_base_cp(ap_int_base< _AP_W, true >* cp) {aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_cp< _AP_W, true >::aesl_keep_name___hls_global__ssdm_int_cp(cp);}
 
 };
 template< int _AP_W, bool _AP_S >
@@ -41252,68 +41305,87 @@ inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__s
 
 };
 template< int _AP_W >
-class aesl_keep_name_class___hls_global__ap_int_c_left{
+class aesl_keep_name_class___hls_global__ap_uint_ntiles{
 public:
-inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_int_c_left(ap_int< 8 >* c_left) {aesl_keep_name_class___hls_global__ap_int_base_ap_int_c_left< 8 >::aesl_keep_name___hls_global__ap_int_base_c_left(c_left);}
+inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_uint_ntiles(ap_uint< 8 >* ntiles) {aesl_keep_name_class___hls_global__ap_int_base_ap_uint_ntiles< 8 >::aesl_keep_name___hls_global__ap_int_base_ntiles(ntiles);}
 
 };
 template< int _AP_W >
-class aesl_keep_name_class___hls_global__ap_int_base_ap_int_c_left{
+class aesl_keep_name_class___hls_global__ap_int_base_ap_uint_ntiles{
 public:
-inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_int_base_c_left(ap_int_base< _AP_W, true >* c_left) {aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_c_left< _AP_W, true >::aesl_keep_name___hls_global__ssdm_int_c_left(c_left);}
+inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_int_base_ntiles(ap_int_base< _AP_W, false >* ntiles) {aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_ntiles< _AP_W, false >::aesl_keep_name___hls_global__ssdm_int_ntiles(ntiles);}
 
 };
 template< int _AP_W, bool _AP_S >
-class aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_c_left{
+class aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_ntiles{
 public:
-inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ssdm_int_c_left(ssdm_int< _AP_W, _AP_S >* c_left) {_ssdm_op_SpecExt("member_name", "c_left.V", &c_left->V);; }
-
-};
-template< int _AP_W >
-class aesl_keep_name_class___hls_global__ap_int_c_up{
-public:
-inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_int_c_up(ap_int< 8 >* c_up) {aesl_keep_name_class___hls_global__ap_int_base_ap_int_c_up< 8 >::aesl_keep_name___hls_global__ap_int_base_c_up(c_up);}
-
-};
-template< int _AP_W >
-class aesl_keep_name_class___hls_global__ap_int_base_ap_int_c_up{
-public:
-inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ap_int_base_c_up(ap_int_base< _AP_W, true >* c_up) {aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_c_up< _AP_W, true >::aesl_keep_name___hls_global__ssdm_int_c_up(c_up);}
-
-};
-template< int _AP_W, bool _AP_S >
-class aesl_keep_name_class___hls_global__ssdm_int_ap_int_base_c_up{
-public:
-inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ssdm_int_c_up(ssdm_int< _AP_W, _AP_S >* c_up) {_ssdm_op_SpecExt("member_name", "c_up.V", &c_up->V);; }
+inline __attribute__((always_inline)) static void aesl_keep_name___hls_global__ssdm_int_ntiles(ssdm_int< _AP_W, _AP_S >* ntiles) {_ssdm_op_SpecExt("member_name", "ntiles.V", &ntiles->V);; }
 
 };
 };
-# 211 "toplevel.cpp"
-void toplevel(hls::stream<uint32> &input, hls::stream<uint32> &output) {::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_int_c_up< 8 >::aesl_keep_name___hls_global__ap_int_c_up(&c_up);::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_int_c_left< 8 >::aesl_keep_name___hls_global__ap_int_c_left(&c_left);::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_uint_side< 8 >::aesl_keep_name___hls_global__ap_uint_side(&side);::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_uint_cp< 8 >::aesl_keep_name___hls_global__ap_uint_cp(&cp);::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_uint_tiles< 4 >::aesl_keep_name___hls_global__ap_uint_tiles(*tiles);::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_uint_colours< 36 >::aesl_keep_name___hls_global__ap_uint_colours(colours);::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_uint_avail< 36 >::aesl_keep_name___hls_global__ap_uint_avail(&avail);::aesl_keep_name_class::aesl_keep_name___hls_global__0_pp(pp);::aesl_keep_name_class::aesl_keep_name_class_stream_output< ap_uint< 32 > >::aesl_keep_name_stream_output(output);::aesl_keep_name_class::aesl_keep_name_class_stream_input< ap_uint< 32 > >::aesl_keep_name_stream_input(input);
+# 234 "toplevel.cpp"
+void toplevel(hls::stream<uint32> &input, hls::stream<uint32> &output) {::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_uint_ntiles< 8 >::aesl_keep_name___hls_global__ap_uint_ntiles(&ntiles);::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_uint_side< 8 >::aesl_keep_name___hls_global__ap_uint_side(&side);::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_int_cp< 8 >::aesl_keep_name___hls_global__ap_int_cp(&cp);::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_uint_colours< 36 >::aesl_keep_name___hls_global__ap_uint_colours(colours);::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_uint_all_tiles< 36 >::aesl_keep_name___hls_global__ap_uint_all_tiles(&all_tiles);::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_uint_avail< 36 >::aesl_keep_name___hls_global__ap_uint_avail(&avail);::aesl_keep_name_class::aesl_keep_name_class___hls_global__ap_uint_tiles< 4 >::aesl_keep_name___hls_global__ap_uint_tiles(*tiles);::aesl_keep_name_class::aesl_keep_name___hls_global__0_pp(pp);::aesl_keep_name_class::aesl_keep_name_class_stream_output< ap_uint< 32 > >::aesl_keep_name_stream_output(output);::aesl_keep_name_class::aesl_keep_name_class_stream_input< ap_uint< 32 > >::aesl_keep_name_stream_input(input);
 _ssdm_op_SpecFifo(&input, "ap_fifo", 0, 0, 0, "");
 _ssdm_op_SpecFifo(&output, "ap_fifo", 0, 0, 0, "");
 _ssdm_op_SpecResource(&input, "", "AXI4Stream", "", "", "", "");
 _ssdm_op_SpecResource(&output, "", "AXI4Stream", "", "", "", "");
 _ssdm_op_SpecWire(0, "ap_ctrl_none", 0, 0, 0, "");
 
+  uint32 command;
+
   init();
 
   side = input.read();
+  ntiles = side * side;
 
-  for(u8 t = 0; t < side * side; t++) {
-   for (u8 e = 0; e < 4; e++) {
+  for(u8 t = 0; t < ntiles; t++)
+   for (u8 e = 0; e < 4; e++)
     tiles[t][e] = input.read();
-   }
-  }
 
   mapcolours();
 
-  solve();
+  // we start off with tile 0 in position 0
+     avail &= ~(((u36)1) << (0));
 
-  for (u8 p = 0; p < side * side; p++) {
-   for(u8 e = 0; e < 4; e++) {
-    output.write(colour(p, e));
+     seq = 1;
+     while (!terminate) {
+      if (seq == 1)
+       solve();
+
+   if (terminate) {
+    output.write(0);
+    break;
    }
-  }
 
+   /* use magic flag to enforce sequencing */
+   seq = 0;
+   output.write(1);
+   if (seq == 0)
+    command = input.read();
+   seq = 1;
+
+   /* command 0: terminate */
+   if (command == 0)
+    break;
+
+   /* command 1: write output */
+   if (command == 1)
+    for (u8 p = 0; p < ntiles; p++)
+     for(u8 e = 0; e < 4; e++)
+      output.write(colour(p, e));
+
+   /* any other command (canonically 2) will cause search
+			 * to continue without output */
+   if (seq == 0)
+    backtrack();
+   seq = 1;
+     }
 }
+
+class ssdm_global_array_toplevelpp0cppaplinecpp {
+ public:
+   inline __attribute__((always_inline)) ssdm_global_array_toplevelpp0cppaplinecpp() {
+   _ssdm_SpecConstant(&all_tiles);
+  }
+};
+static ssdm_global_array_toplevelpp0cppaplinecpp ssdm_global_array_ins;

@@ -40868,7 +40868,14 @@ typedef ap_int<32> int32;
 //Prototypes
 void toplevel(hls::stream<uint32> &input, hls::stream<uint32> &output);
 #pragma line 2 "toplevel.cpp" 2
-#pragma line 15 "toplevel.cpp"
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
 typedef ap_uint<36> u36;
 typedef ap_uint<8> u8;
 typedef ap_int<8> s8;
@@ -40881,24 +40888,34 @@ typedef struct {
     u2 rot;
 } Placement;
 #pragma empty_line
+/* implicit search tree of placements. We call it pp because it's everywhere */
 static Placement pp[(6 * 6)];
-/* static int avail[MAX_TILES]; */
-static u36 avail;
+#pragma empty_line
+/* big set of tiles */
 static u4 tiles[(6 * 6)][4];
+#pragma empty_line
+/* bitmask set of available tiles*/
+static u36 avail;
+#pragma empty_line
+/* bitmask constant for all tiles */
+static const u36 all_tiles = 0xfffffffff;
+#pragma empty_line
+/* lookup table from colours to bitmask set of tiles having that colour */
 static u36 colours[10];
 #pragma empty_line
-/* static int avail_tiles; */
+/* current position in tree */
+static s8 cp;
 #pragma empty_line
-static u8 cp;
-#pragma empty_line
+/* side length of square to tile */
 static u8 side;
 #pragma empty_line
-static s8 c_left = -1;
-static s8 c_up = -1;
+/* number of tiles */
+static u8 ntiles;
 #pragma empty_line
-/* static u36 rotations = 0; */
-/* static u36 substitutions = 0; */
+/* flag to indicate finishing */
+static bool terminate;
 #pragma empty_line
+/* map from a placement-index and an edge to the colour on that edge */
 static inline u4 colour(u8 p, u2 edge)
 {
     const u8 tile = pp[p].tile;
@@ -40906,55 +40923,66 @@ static inline u4 colour(u8 p, u2 edge)
     return tiles[tile][(edge + rot) % 4];
 }
 #pragma empty_line
-static void left_up_colours(void)
+static bool left_colour_match(s8 p)
 {
-    s8 left = cp - 1;
-    s8 up = cp - side;
-#pragma empty_line
-    if (left / side != cp / side)
-        left = -1;
-#pragma empty_line
-    c_left = (left >= 0) ? (s8)colour(left, 1) : (s8)-1;
-#pragma empty_line
-    c_up = (up >= 0) ? (s8)colour(up, 2) : (s8)-1;
+ if (p == 0 || (p % side) == 0)
+  return true;
+ return colour(p - 1, 1) == colour(p, 3);
 }
 #pragma empty_line
-static inline bool check(void)
+static bool up_colour_match(s8 p)
 {
-    left_up_colours();
-#pragma empty_line
-    if (c_left >= 0 && colour(cp, 3) != c_left)
-        return false;
-#pragma empty_line
-    if (c_up >= 0 && colour(cp, 0) != c_up)
-        return false;
-#pragma empty_line
-                        ;
-#pragma empty_line
-    return true;
+ s8 up = p - side;
+ if (up < 0)
+  return true;
+ return colour(up, 2) == colour(p, 0);
 }
 #pragma empty_line
-static inline bool down(void)
+static u36 left_possible_mask(s8 p)
 {
-    u36 possible = avail;
+ s8 left = p - 1;
+ if (p == 0)
+  return all_tiles;
+ if ((left / side) != (p / side))
+  return all_tiles;
+ return colours[colour(left, 1)];
+}
 #pragma empty_line
-                      ;
+static u36 up_possible_mask(s8 p)
+{
+ s8 up = p - side;
+ if (up < 0)
+  return all_tiles;
+ return colours[colour(up, 2)];
+}
 #pragma empty_line
+/* check that the most-recent tile fits with the rest */
+static inline bool check(s8 p)
+{
+ return left_colour_match(p) && up_colour_match(p);
+}
+#pragma empty_line
+/* move down the search tree */
+static bool down(void)
+{
+    u36 possible;
+#pragma empty_line
+    /* ensure that cp stays in range */
+    if (cp >= (ntiles - 1))
+     return false;
+#pragma empty_line
+    /* move current position down the tree */
     cp++;
 #pragma empty_line
-    left_up_colours();
+    /* filter tiles to those which are unused */
+    possible = avail;
+    /* filter tiles to those which include the colours of neighbours*/
+    possible &= left_possible_mask(cp);
+    possible &= up_possible_mask(cp);
 #pragma empty_line
-    if (c_left >= 0)
-        possible &= colours[c_left];
-#pragma empty_line
-    if (c_up >= 0)
-        possible &= colours[c_up];
-#pragma empty_line
-                                       ;
-#pragma empty_line
-    for (int t = 0; t < side * side; t++) {
+    /* choose the next possible tile */
+    for (int t = 0; t < ntiles; t++) {
         if (possible & (((u36)1) << (t))) {
-                                                        ;
             pp[cp].tile = t;
             pp[cp].rot = 0;
             avail &= ~(((u36)1) << (t));
@@ -40962,42 +40990,32 @@ static inline bool down(void)
         }
     }
 #pragma empty_line
-                                          ;
     return false;
 }
 #pragma empty_line
-static inline bool right(void)
+/* move right to the next sibling in the search tree */
+static bool right(void)
 {
     u36 possible;
-                       ;
     /* if we can, find a sibling to try by rotating this tile */
     if (pp[cp].rot < 3) {
         pp[cp].rot++;
-                                                                               ;
         return true;
     }
 #pragma empty_line
     /* otherwise, find a new tile */
     avail |= (((u36)1) << (pp[cp].tile));
 #pragma empty_line
+    /* filter tiles to those which are unused */
     possible = avail;
 #pragma empty_line
-    left_up_colours();
+    /* filter tiles to those which include the colours of neighbours*/
+    possible &= left_possible_mask(cp);
+    possible &= up_possible_mask(cp);
 #pragma empty_line
-    if (c_left >= 0)
-        possible &= colours[c_left];
-#pragma empty_line
-    if (c_up >= 0)
-        possible &= colours[c_up];
-#pragma empty_line
-#pragma empty_line
-                                       ;
-#pragma empty_line
-    u8 t;
-    for (t = pp[cp].tile + 1; t < side * side; t++) {
+    /* choose the first available tile, slowly */
+    for (u8 t = pp[cp].tile + 1; t < ntiles; t++) {
         if (possible & (((u36)1) << (t))) {
-            /* substitutions++; */
-                                                                      ;
             pp[cp].tile = t;
             pp[cp].rot = 0;
             avail &= ~(((u36)1) << (t));
@@ -41005,64 +41023,81 @@ static inline bool right(void)
         }
     }
 #pragma empty_line
-                                                     ;
-#pragma empty_line
     return false;
 }
 #pragma empty_line
+/* move up the search tree */
 static bool up(void)
 {
-                    ;
     avail |= (((u36)1) << (pp[cp].tile));
     pp[cp].tile = 0;
     cp--;
-    if (cp == 1)
-                                 ;
     if (cp < 0)
-                                                         ;
-    return true;
+     terminate = true;
+  return true;
 }
 #pragma empty_line
+/* move up and right in the search tree until we reach a valid state */
+static void backtrack(void)
+{
+    do {
+        while (!right() && !terminate)
+            up();
+    } while (!check(cp) && !terminate);
+}
+#pragma empty_line
+/* step to the next valid state in the search tree,
+ * going down if possible and otherwise backtracking */
 static void step(void)
 {
-                               ;
+ if (!down())
+  backtrack();
 #pragma empty_line
-    down();
-#pragma empty_line
-    if (cp == side * side)
-        return;
-#pragma empty_line
-    if (check())
-        return;
-#pragma empty_line
-    do {
-        while (!right()) {
-            up();
-        }
-    } while (!check());
+    if (!check(cp))
+     backtrack();
 }
 #pragma empty_line
+/* run the solver until a solution is found */
 static void solve(void)
 {
-    avail &= ~(((u36)1) << (0));
-    while (cp < side * side) {
+    do {
         step();
+    } while ((cp < ntiles - 1) && !terminate);
+}
+#pragma empty_line
+/* reset all data structures */
+static void init(void)
+{
+ /* reset position */
+    cp = 0;
+#pragma empty_line
+    /* reset termination flag */
+    terminate = false;
+#pragma empty_line
+    // reset available set
+    for (u8 t = 0; t < (6 * 6); t++)
+        avail |= (((u36)1) << (t));
+#pragma empty_line
+    // reset colour sets
+    for (u4 c = 0; c < 10; c++)
+     colours[c] = 0;
+#pragma empty_line
+    for (u8 p = 0; p < (6 * 6); p++) {
+     pp[p].tile = 0;
+     pp[p].rot = 0;
     }
 }
 #pragma empty_line
-static void init(void)
-{
-    cp = 0;
-    for (int t = 0; t < (6 * 6); t++)
-        avail |= (((u36)1) << (t));
-}
-#pragma empty_line
+/* build the colour -> valid tile sets lookup table */
 static void mapcolours(void)
 {
-    for (int t = 0; t < side * side; t++)
+    for (int t = 0; t < ntiles; t++)
         for (int e = 0; e < 4; e++)
             colours[tiles[t][e]] |= (((u36)1) << (t));
 }
+#pragma empty_line
+/* magic flag to enforce sequencing */
+volatile bool seq;
 #pragma empty_line
 //Top-level function
 void toplevel(hls::stream<uint32> &input, hls::stream<uint32> &output) {
@@ -41072,24 +41107,53 @@ void toplevel(hls::stream<uint32> &input, hls::stream<uint32> &output) {
 #pragma HLS RESOURCE variable=output core=AXI4Stream
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma empty_line
+  uint32 command;
+#pragma empty_line
   init();
 #pragma empty_line
   side = input.read();
+  ntiles = side * side;
 #pragma empty_line
-  for(u8 t = 0; t < side * side; t++) {
-   for (u8 e = 0; e < 4; e++) {
+  for(u8 t = 0; t < ntiles; t++)
+   for (u8 e = 0; e < 4; e++)
     tiles[t][e] = input.read();
-   }
-  }
 #pragma empty_line
   mapcolours();
 #pragma empty_line
-  solve();
+  // we start off with tile 0 in position 0
+     avail &= ~(((u36)1) << (0));
 #pragma empty_line
-  for (u8 p = 0; p < side * side; p++) {
-   for(u8 e = 0; e < 4; e++) {
-    output.write(colour(p, e));
+     seq = 1;
+     while (!terminate) {
+      if (seq == 1)
+       solve();
+#pragma empty_line
+   if (terminate) {
+    output.write(0);
+    break;
    }
-  }
 #pragma empty_line
+   /* use magic flag to enforce sequencing */
+   seq = 0;
+   output.write(1);
+   if (seq == 0)
+    command = input.read();
+   seq = 1;
+#pragma empty_line
+   /* command 0: terminate */
+   if (command == 0)
+    break;
+#pragma empty_line
+   /* command 1: write output */
+   if (command == 1)
+    for (u8 p = 0; p < ntiles; p++)
+     for(u8 e = 0; e < 4; e++)
+      output.write(colour(p, e));
+#pragma empty_line
+   /* any other command (canonically 2) will cause search
+			 * to continue without output */
+   if (seq == 0)
+    backtrack();
+   seq = 1;
+     }
 }

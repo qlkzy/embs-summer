@@ -1,0 +1,6 @@
+AR plb_address_decoder imp /opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_address_decoder.vhd sub00/vhpl01 1400147979
+EN plbv46_slave_single NULL /opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plbv46_slave_single.vhd sub00/vhpl04 1400147982
+AR plbv46_slave_single implementation /opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plbv46_slave_single.vhd sub00/vhpl05 1400147983
+AR plb_slave_attachment implementation /opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd sub00/vhpl03 1400147981
+EN plb_address_decoder NULL /opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_address_decoder.vhd sub00/vhpl00 1400147978
+EN plb_slave_attachment NULL /opt/york/cs/net/xilinx-design-suite-14.3-x86_64-1/14.3/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/plbv46_slave_single_v1_01_a/hdl/vhdl/plb_slave_attachment.vhd sub00/vhpl02 1400147980

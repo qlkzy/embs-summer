@@ -1,0 +1,9 @@
+V3 7
+FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_clock_generator_0_wrapper.vhd 2014/05/15.10:55:50 P.40xd
+EN work/system_clock_generator_0_wrapper 1400148154 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_clock_generator_0_wrapper.vhd \
+      PB ieee/std_logic_1164 1350103243 LB UNISIM PH unisim/VCOMPONENTS 1350103252 \
+      LB clock_generator_0_v4_03_a LB clock_generator_v4_03_a
+AR work/system_clock_generator_0_wrapper/STRUCTURE 1400148155 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_clock_generator_0_wrapper.vhd \
+      EN work/system_clock_generator_0_wrapper 1400148154 CP clock_generator

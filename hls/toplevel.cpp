@@ -1,9 +1,7 @@
+/* EMBS Summer Assessment Y8143160 */
+
+
 #include "toplevel.h"
-
-#define ERROR(...)
-#define INFO(...)
-#define VERB(...)
-
 
 #define BIT(n) (1 << (n))
 #define BIT36(n) (((u36)1) << (n))
@@ -24,24 +22,34 @@ typedef struct {
     u2 rot;
 } Placement;
 
+/* implicit search tree of placements. We call it pp because it's everywhere */
 static Placement pp[MAX_TILES];
-/* static int avail[MAX_TILES]; */
-static u36 avail;
+
+/* big set of tiles */
 static u4 tiles[MAX_TILES][4];
+
+/* bitmask set of available tiles*/
+static u36 avail;
+
+/* bitmask constant for all tiles */
+static const u36 all_tiles = 0xfffffffff;
+
+/* lookup table from colours to bitmask set of tiles having that colour */
 static u36 colours[MAX_COLOURS];
 
-/* static int avail_tiles; */
+/* current position in tree */
+static s8 cp;
 
-static u8 cp;
-
+/* side length of square to tile */
 static u8 side;
 
-static s8 c_left = -1;
-static s8 c_up = -1;
+/* number of tiles */
+static u8 ntiles;
 
-/* static u36 rotations = 0; */
-/* static u36 substitutions = 0; */
+/* flag to indicate finishing */
+static bool terminate;
 
+/* map from a placement-index and an edge to the colour on that edge */
 static inline u4 colour(u8 p, u2 edge)
 {
     const u8 tile = pp[p].tile;
@@ -49,55 +57,66 @@ static inline u4 colour(u8 p, u2 edge)
     return tiles[tile][(edge + rot) % 4];
 }
 
-static void left_up_colours(void)
+static bool left_colour_match(s8 p)
 {
-    s8 left = cp - 1;
-    s8 up = cp - side;
-
-    if (left / side != cp / side)
-        left = -1;
-
-    c_left = (left >= 0) ? (s8)colour(left, 1) : (s8)-1;
-
-    c_up = (up >= 0) ? (s8)colour(up, 2) : (s8)-1;
+	if (p == 0 || (p % side) == 0)
+		return true;
+	return colour(p - 1, 1) == colour(p, 3);
 }
 
-static inline bool check(void)
+static bool up_colour_match(s8 p)
 {
-    left_up_colours();
-
-    if (c_left >= 0 && colour(cp, 3) != c_left)
-        return false;
-
-    if (c_up >= 0 && colour(cp, 0) != c_up)
-        return false;
-
-    VERB("Check passed");
-
-    return true;
+	s8 up = p - side;
+	if (up < 0)
+		return true;
+	return colour(up, 2) == colour(p, 0);
 }
 
-static inline bool down(void)
+static u36 left_possible_mask(s8 p)
 {
-    u36 possible = avail;
+	s8 left = p - 1;
+	if (p == 0)
+		return all_tiles;
+	if ((left / side) != (p / side))
+		return all_tiles;
+	return colours[colour(left, 1)];
+}
 
-    VERB("GOING DOWN");
+static u36 up_possible_mask(s8 p)
+{
+	s8 up = p - side;
+	if (up < 0)
+		return all_tiles;
+	return colours[colour(up, 2)];
+}
 
+/* check that the most-recent tile fits with the rest */
+static inline bool check(s8 p)
+{
+	return left_colour_match(p) && up_colour_match(p);
+}
+
+/* move down the search tree */
+static bool down(void)
+{
+    u36 possible;
+
+    /* ensure that cp stays in range */
+    if (cp >= (ntiles - 1))
+    	return false;
+
+    /* move current position down the tree */
     cp++;
 
-    left_up_colours();
+    /* filter tiles to those which are unused */
+    possible = avail;
+    /* filter tiles to those which include the colours of neighbours*/
+    possible &= left_possible_mask(cp);
+    possible &= up_possible_mask(cp);
 
-    if (c_left >= 0)
-        possible &= colours[c_left];
-
-    if (c_up >= 0)
-        possible &= colours[c_up];
-
-    VERB("possible=%" PRIX36, possible);
-
-    for (int t = 0; t < side * side; t++) {
+    /* choose the next possible tile */
+    for (int t = 0; t < ntiles; t++) {
         if (possible & BIT36(t)) {
-            VERB("Choosing tile %d for place %d", t, cp);
             pp[cp].tile = t;
             pp[cp].rot = 0;
             avail &= ~BIT36(t);
@@ -105,42 +124,32 @@ static inline bool down(void)
         }
     }
 
-    VERB("Unable to move down, cp=%d", cp);
     return false;
 }
 
-static inline bool right(void)
+/* move right to the next sibling in the search tree */
+static bool right(void)
 {
     u36 possible;
-    VERB("GOING RIGHT");
     /* if we can, find a sibling to try by rotating this tile */
     if (pp[cp].rot < 3) {
         pp[cp].rot++;
-        VERB("Tile %d in place %d at rotation %d", pp[cp].tile, cp, pp[cp].rot);
         return true;
     }
 
     /* otherwise, find a new tile */
     avail |= BIT36(pp[cp].tile);
 
+    /* filter tiles to those which are unused */
     possible = avail;
 
-    left_up_colours();
+    /* filter tiles to those which include the colours of neighbours*/
+    possible &= left_possible_mask(cp);
+    possible &= up_possible_mask(cp);
 
-    if (c_left >= 0)
-        possible &= colours[c_left];
-
-    if (c_up >= 0)
-        possible &= colours[c_up];
-
-
-    VERB("possible=%" PRIX36, possible);
-
-    u8 t;
-    for (t = pp[cp].tile + 1; t < side * side; t++) {
+    /* choose the first available tile, slowly */
+    for (u8 t = pp[cp].tile + 1; t < ntiles; t++) {
         if (possible & BIT36(t)) {
-            /* substitutions++; */
-            VERB("Moving right, choosing tile %d for place %d", t, cp);
             pp[cp].tile = t;
             pp[cp].rot = 0;
             avail &= ~BIT36(t);
@@ -148,64 +157,81 @@ static inline bool right(void)
         }
     }
 
-    VERB("No more distance to move right, cp=%d", cp);
-
     return false;
 }
 
+/* move up the search tree */
 static bool up(void)
 {
-    VERB("GOING UP");
     avail |= BIT36(pp[cp].tile);
     pp[cp].tile = 0;
     cp--;
-    if (cp == 1)
-        INFO("Went up to tile 3");
     if (cp < 0)
-        ERROR("Tried to rewind past the top of the tree");
-    return true;
+    	terminate = true;
+ 	return true;
 }
 
+/* move up and right in the search tree until we reach a valid state */
+static void backtrack(void)
+{
+    do {
+        while (!right() && !terminate)
+            up();
+    } while (!check(cp) && !terminate);
+}
+
+/* step to the next valid state in the search tree,
+ * going down if possible and otherwise backtracking */
 static void step(void)
 {
-    VERB("Stepping, cp=%d", cp);
+	if (!down())
+		backtrack();
 
-    down();
-
-    if (cp == side * side)
-        return;
-
-    if (check())
-        return;
-
-    do {
-        while (!right()) {
-            up();
-        }
-    } while (!check());
+    if (!check(cp))
+    	backtrack();
 }
 
+/* run the solver until a solution is found */
 static void solve(void)
 {
-    avail &= ~BIT36(0);
-    while (cp < side * side) {
+    do {
         step();
+    } while ((cp < ntiles - 1) && !terminate);
+}
+
+/* reset all data structures */
+static void init(void)
+{
+	/* reset position */
+    cp = 0;
+
+    /* reset termination flag */
+    terminate = false;
+
+    // reset available set
+    for (u8 t = 0; t < MAX_TILES; t++)
+        avail |= BIT36(t);
+
+    // reset colour sets
+    for (u4 c = 0; c < MAX_COLOURS; c++)
+    	colours[c] = 0;
+
+    for (u8 p = 0; p < MAX_TILES; p++) {
+    	pp[p].tile = 0;
+    	pp[p].rot = 0;
     }
 }
 
-static void init(void)
-{
-    cp = 0;
-    for (int t = 0; t < MAX_TILES; t++)
-        avail |= BIT36(t);
-}
-
+/* build the colour -> valid tile sets lookup table */
 static void mapcolours(void)
 {
-    for (int t = 0; t < side * side; t++)
+    for (int t = 0; t < ntiles; t++)
         for (int e = 0; e < 4; e++)
             colours[tiles[t][e]] |= BIT36(t);
 }
+
+/* magic flag to enforce sequencing */
+volatile bool seq;
 
 //Top-level function
 void toplevel(hls::stream<uint32> &input, hls::stream<uint32> &output) {
@@ -215,24 +241,53 @@ void toplevel(hls::stream<uint32> &input, hls::stream<uint32> &output) {
 #pragma HLS RESOURCE variable=output core=AXI4Stream
 #pragma HLS INTERFACE ap_ctrl_none port=return
 
+		uint32 command;
+
 		init();
 
 		side = input.read();
+		ntiles = side * side;
 
-		for(u8 t = 0; t < side * side; t++) {
-			for (u8 e = 0; e < 4; e++) {
+		for(u8 t = 0; t < ntiles; t++)
+			for (u8 e = 0; e < 4; e++)
 				tiles[t][e] = input.read();
-			}
-		}
 
 		mapcolours();
 
-		solve();
+		// we start off with tile 0 in position 0
+	    avail &= ~BIT36(0);
 
-		for (u8 p = 0; p < side * side; p++) {
-			for(u8 e = 0; e < 4; e++) {
-				output.write(colour(p, e));
+	    seq = 1;
+	    while (!terminate) {
+	    	if (seq == 1)
+	    		solve();
+
+			if (terminate) {
+				output.write(0);
+				break;
 			}
-		}
 
+			/* use magic flag to enforce sequencing */
+			seq = 0;
+			output.write(1);
+			if (seq == 0)
+				command = input.read();
+			seq = 1;
+
+			/* command 0: terminate */
+			if (command == 0)
+				break;
+
+			/* command 1: write output */
+			if (command == 1)
+				for (u8 p = 0; p < ntiles; p++)
+					for(u8 e = 0; e < 4; e++)
+						output.write(colour(p, e));
+
+			/* any other command (canonically 2) will cause search
+			 * to continue without output */
+			if (seq == 0)
+				backtrack();
+			seq = 1;
+	    }
 }

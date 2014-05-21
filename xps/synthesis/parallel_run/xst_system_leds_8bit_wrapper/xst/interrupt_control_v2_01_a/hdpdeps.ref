@@ -1,0 +1,11 @@
+V3 5
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/interrupt_control_v2_01_a/hdl/vhdl/interrupt_control.vhd 2012/10/02.11:14:58 P.40xd
+EN interrupt_control_v2_01_a/interrupt_control 1400147984 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/interrupt_control_v2_01_a/hdl/vhdl/interrupt_control.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/std_logic_misc 1350103245 \
+      PB ieee/NUMERIC_STD 1350103249 LB proc_common_v3_00_a \
+      PB proc_common_v3_00_a/proc_common_pkg 1400147862 \
+      PB proc_common_v3_00_a/ipif_pkg 1400147977
+AR interrupt_control_v2_01_a/interrupt_control/implementation 1400147985 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/interrupt_control_v2_01_a/hdl/vhdl/interrupt_control.vhd \
+      EN interrupt_control_v2_01_a/interrupt_control 1400147984 CP std_logic

@@ -4,16 +4,25 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../src/main.c 
+../src/eth.c \
+../src/main.c \
+../src/uart.c \
+../src/vga.c 
 
 LD_SRCS += \
 ../src/lscript.ld 
 
 OBJS += \
-./src/main.o 
+./src/eth.o \
+./src/main.o \
+./src/uart.o \
+./src/vga.o 
 
 C_DEPS += \
-./src/main.d 
+./src/eth.d \
+./src/main.d \
+./src/uart.d \
+./src/vga.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

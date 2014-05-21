@@ -1,7 +1,7 @@
 @I [LIC-101] Checked out feature [VIVADO_HLS]
 @W [HLS-40] Vivado in the PATH variable is not from the same build as Vivado HLS. The mismatch may result in unexpected behaviors.
 @I [HLS-10] Running '/opt/york/cs/pkg/xilinx-design-suite-14.3-x86_64-1/Vivado_HLS/2013.4/bin/unwrapped/lnx64.o/vivado_hls'
-            for user 'drm511' on host 'pc768s.cs.york.ac.uk' (Linux_x86_64 version 3.2.0-61-generic) on Tue May 13 16:19:23 BST 2014
+            for user 'drm511' on host 'pc767s.cs.york.ac.uk' (Linux_x86_64 version 3.2.0-61-generic) on Thu May 15 10:45:06 BST 2014
             in directory '/usr/userfs/d/drm511/embs/embs-summer/hls'
 @I [HLS-10] Opening project '/usr/userfs/d/drm511/embs/embs-summer/hls/tiler'.
 @I [HLS-10] Opening solution '/usr/userfs/d/drm511/embs/embs-summer/hls/tiler/solution1'.

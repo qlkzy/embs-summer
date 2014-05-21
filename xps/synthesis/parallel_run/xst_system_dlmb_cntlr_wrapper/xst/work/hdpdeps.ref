@@ -1,0 +1,9 @@
+V3 6
+FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_dlmb_cntlr_wrapper.vhd 2014/05/15.10:55:50 P.40xd
+EN work/system_dlmb_cntlr_wrapper 1400147824 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_dlmb_cntlr_wrapper.vhd \
+      PB ieee/std_logic_1164 1350103243 LB UNISIM PH unisim/VCOMPONENTS 1350103252 \
+      LB lmb_bram_if_cntlr_v3_10_b
+AR work/system_dlmb_cntlr_wrapper/STRUCTURE 1400147825 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_dlmb_cntlr_wrapper.vhd \
+      EN work/system_dlmb_cntlr_wrapper 1400147824 CP lmb_bram_if_cntlr

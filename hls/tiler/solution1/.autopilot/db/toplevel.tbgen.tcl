@@ -34,8 +34,8 @@ set Spec2ImplPortList {
 
 # RTL port scheduling information:
 set fifoSchedulingInfoList { 
-	input_V_V { fifo_read 5 no_conditional }
-	output_V_V { fifo_write 4 no_conditional }
+	input_V_V { fifo_read 6 has_conditional }
+	output_V_V { fifo_write 6 has_conditional }
 }
 
 # RTL bus port read request latency information:

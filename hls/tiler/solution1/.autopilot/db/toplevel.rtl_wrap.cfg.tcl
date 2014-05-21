@@ -320,53 +320,53 @@ set gportInitilizer26 ""
 set gextern26 0
 set gport26 [list $gportName26 $gportInterface26 $gportData26 $gportPointer26 $gportArrayDim26 $gportConst26 $gportVolatile26 $gportInitilizer26 $gextern26]
 lappend globalVariable $gport26
-set gportName27 "avail"
-set gportInterface27 "wire"
-set gportData27 "[list ap_uint "36" ]"
+set gportName27 "tiles"
+set gportInterface27 "memory"
+set gportData27 "[list ap_uint "4" ]"
 set gportPointer27 "0"
-set gportArrayDim27 0
+set gportArrayDim27 [list 36 4]
 set gportConst27 "0"
 set gportVolatile27 "0"
 set gportInitilizer27 ""
 set gextern27 0
 set gport27 [list $gportName27 $gportInterface27 $gportData27 $gportPointer27 $gportArrayDim27 $gportConst27 $gportVolatile27 $gportInitilizer27 $gextern27]
 lappend globalVariable $gport27
-set gportName28 "tiles"
-set gportInterface28 "memory"
-set gportData28 "[list ap_uint "4" ]"
+set gportName28 "avail"
+set gportInterface28 "wire"
+set gportData28 "[list ap_uint "36" ]"
 set gportPointer28 "0"
-set gportArrayDim28 [list 36 4]
+set gportArrayDim28 0
 set gportConst28 "0"
 set gportVolatile28 "0"
 set gportInitilizer28 ""
 set gextern28 0
 set gport28 [list $gportName28 $gportInterface28 $gportData28 $gportPointer28 $gportArrayDim28 $gportConst28 $gportVolatile28 $gportInitilizer28 $gextern28]
 lappend globalVariable $gport28
-set gportName29 "colours"
-set gportInterface29 "memory"
+set gportName29 "all_tiles"
+set gportInterface29 "wire"
 set gportData29 "[list ap_uint "36" ]"
 set gportPointer29 "0"
-set gportArrayDim29 [list 10]
-set gportConst29 "0"
+set gportArrayDim29 0
+set gportConst29 "1"
 set gportVolatile29 "0"
 set gportInitilizer29 ""
 set gextern29 0
 set gport29 [list $gportName29 $gportInterface29 $gportData29 $gportPointer29 $gportArrayDim29 $gportConst29 $gportVolatile29 $gportInitilizer29 $gextern29]
 lappend globalVariable $gport29
-set gportName30 "cp"
-set gportInterface30 "wire"
-set gportData30 "[list ap_uint "8" ]"
+set gportName30 "colours"
+set gportInterface30 "memory"
+set gportData30 "[list ap_uint "36" ]"
 set gportPointer30 "0"
-set gportArrayDim30 0
+set gportArrayDim30 [list 10]
 set gportConst30 "0"
 set gportVolatile30 "0"
 set gportInitilizer30 ""
 set gextern30 0
 set gport30 [list $gportName30 $gportInterface30 $gportData30 $gportPointer30 $gportArrayDim30 $gportConst30 $gportVolatile30 $gportInitilizer30 $gextern30]
 lappend globalVariable $gport30
-set gportName31 "side"
+set gportName31 "cp"
 set gportInterface31 "wire"
-set gportData31 "[list ap_uint "8" ]"
+set gportData31 "[list ap_int "8" ]"
 set gportPointer31 "0"
 set gportArrayDim31 0
 set gportConst31 "0"
@@ -375,9 +375,9 @@ set gportInitilizer31 ""
 set gextern31 0
 set gport31 [list $gportName31 $gportInterface31 $gportData31 $gportPointer31 $gportArrayDim31 $gportConst31 $gportVolatile31 $gportInitilizer31 $gextern31]
 lappend globalVariable $gport31
-set gportName32 "c_left"
+set gportName32 "side"
 set gportInterface32 "wire"
-set gportData32 "[list ap_int "8" ]"
+set gportData32 "[list ap_uint "8" ]"
 set gportPointer32 "0"
 set gportArrayDim32 0
 set gportConst32 "0"
@@ -386,9 +386,9 @@ set gportInitilizer32 ""
 set gextern32 0
 set gport32 [list $gportName32 $gportInterface32 $gportData32 $gportPointer32 $gportArrayDim32 $gportConst32 $gportVolatile32 $gportInitilizer32 $gextern32]
 lappend globalVariable $gport32
-set gportName33 "c_up"
+set gportName33 "ntiles"
 set gportInterface33 "wire"
-set gportData33 "[list ap_int "8" ]"
+set gportData33 "[list ap_uint "8" ]"
 set gportPointer33 "0"
 set gportArrayDim33 0
 set gportConst33 "0"
@@ -397,6 +397,28 @@ set gportInitilizer33 ""
 set gextern33 0
 set gport33 [list $gportName33 $gportInterface33 $gportData33 $gportPointer33 $gportArrayDim33 $gportConst33 $gportVolatile33 $gportInitilizer33 $gextern33]
 lappend globalVariable $gport33
+set gportName34 "terminate"
+set gportInterface34 "wire"
+set gportData34 "bool"
+set gportPointer34 "0"
+set gportArrayDim34 0
+set gportConst34 "0"
+set gportVolatile34 "0"
+set gportInitilizer34 ""
+set gextern34 0
+set gport34 [list $gportName34 $gportInterface34 $gportData34 $gportPointer34 $gportArrayDim34 $gportConst34 $gportVolatile34 $gportInitilizer34 $gextern34]
+lappend globalVariable $gport34
+set gportName35 "seq"
+set gportInterface35 "wire"
+set gportData35 "bool"
+set gportPointer35 "0"
+set gportArrayDim35 0
+set gportConst35 "0"
+set gportVolatile35 "1"
+set gportInitilizer35 ""
+set gextern35 0
+set gport35 [list $gportName35 $gportInterface35 $gportData35 $gportPointer35 $gportArrayDim35 $gportConst35 $gportVolatile35 $gportInitilizer35 $gextern35]
+lappend globalVariable $gport35
 set staticVariable ""
 set moduleName "toplevel"
 set rawDecl [list "void" "toplevel\(hls::stream<uint32> &input, hls::stream<uint32> &output\)"]

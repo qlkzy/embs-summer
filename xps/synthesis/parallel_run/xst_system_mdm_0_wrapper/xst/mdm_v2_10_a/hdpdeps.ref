@@ -1,0 +1,40 @@
+V3 40
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/jtag_control.vhd 2012/10/02.11:15:01 P.40xd
+EN mdm_v2_10_a/JTAG_CONTROL 1400148277 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/jtag_control.vhd \
+      PB ieee/std_logic_1164 1350103243 PB ieee/NUMERIC_STD 1350103249
+AR mdm_v2_10_a/JTAG_CONTROL/IMP 1400148278 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/jtag_control.vhd \
+      EN mdm_v2_10_a/JTAG_CONTROL 1400148277 LB unisim PH unisim/VCOMPONENTS 1350103252 \
+      LB mdm_v2_10_a CP FDC_1 CP std_logic CP signal CP LUT4 CP FDRE_1 CP SRL16E \
+      CP std_logic_vector CP FDRSE CP SRL_FIFO EN mdm_v2_10_a/SRL_FIFO 1400148273
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/mdm.vhd 2012/10/02.11:15:01 P.40xd
+EN mdm_v2_10_a/MDM 1400148285 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/mdm.vhd \
+      PB ieee/std_logic_1164 1350103243 LB unisim PH unisim/VCOMPONENTS 1350103252 \
+      LB mdm_v2_10_a LB proc_common_v3_00_a LB axi_lite_ipif_v1_01_a \
+      PB proc_common_v3_00_a/family_support 1400148155 \
+      PB proc_common_v3_00_a/ipif_pkg 1400148272 \
+      EN axi_lite_ipif_v1_01_a/axi_lite_ipif 1400148281
+AR mdm_v2_10_a/MDM/IMP 1400148286 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/mdm.vhd \
+      EN mdm_v2_10_a/MDM 1400148285 CP BSCAN_SPARTAN3 CP BSCAN_SPARTAN3A \
+      CP BSCAN_SPARTAN6 CP BSCAN_VIRTEX4 CP BSCAN_VIRTEX5 CP BSCAN_VIRTEX6 \
+      CP BSCANE2 CP BUFG CP MDM_Core CP axi_lite_ipif_v1_01_a/axi_lite_ipif
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/mdm_core.vhd 2012/10/02.11:15:01 P.40xd
+EN mdm_v2_10_a/MDM_Core 1400148283 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/mdm_core.vhd \
+      PB ieee/std_logic_1164 1350103243
+AR mdm_v2_10_a/MDM_CORE/IMP 1400148284 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/mdm_core.vhd \
+      EN mdm_v2_10_a/MDM_Core 1400148283 LB proc_common_v3_00_a LB unisim \
+      PH unisim/VCOMPONENTS 1350103252 LB mdm_v2_10_a CP std_logic_vector \
+      CP pselect CP FDRE CP std_logic CP JTAG_CONTROL EN proc_common_v3_00_a/pselect 1400148237
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/srl_fifo.vhd 2012/10/02.11:15:01 P.40xd
+EN mdm_v2_10_a/SRL_FIFO 1400148273 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/srl_fifo.vhd \
+      PB ieee/std_logic_1164 1350103243
+AR mdm_v2_10_a/SRL_FIFO/IMP 1400148274 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/srl_fifo.vhd \
+      EN mdm_v2_10_a/SRL_FIFO 1400148273 LB unisim PH unisim/VCOMPONENTS 1350103252 \
+      CP MUXCY_L CP XORCY CP FDRE CP SRL16E

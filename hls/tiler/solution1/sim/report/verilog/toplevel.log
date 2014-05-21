@@ -1,0 +1,3 @@
+@I [SIM-47] Using ISIM for RTL simulation.
+@I [SIM-14] Instrumenting C test bench ...
+@E [SIM-4] *** C/RTL co-simulation finished: FAIL ***

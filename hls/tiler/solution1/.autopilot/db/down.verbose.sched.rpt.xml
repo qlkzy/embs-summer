@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'down'" level="0">
-<item name = "Date">Tue May 13 16:18:56 2014
+<item name = "Date">Thu May 15 10:44:46 2014
 </item>
 <item name = "Version">2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)</item>
 <item name = "Project">tiler</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="default">20.00, 15.33, 2.50</column>
+<column name="default">20.00, 13.60, 2.50</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">15, 65040, 15, 65040, none</column>
+<column name="">1, 273, 1, 273, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- Loop 1">0, 65025, 1, -, -, 0 ~ 65025, no</column>
+<column name="- Loop 1">0, 255, 1, -, -, 0 ~ 255, no</column>
 </table>
 </item>
 </section>

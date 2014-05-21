@@ -1,0 +1,9 @@
+V3 6
+FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_ethernet_mac_wrapper.vhd 2014/05/15.10:55:50 P.40xd
+EN work/system_ethernet_mac_wrapper 1400148231 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_ethernet_mac_wrapper.vhd \
+      PB ieee/std_logic_1164 1350103243 LB UNISIM PH unisim/VCOMPONENTS 1350103252 \
+      LB xps_ethernetlite_v4_00_a
+AR work/system_ethernet_mac_wrapper/STRUCTURE 1400148232 \
+      FL /usr/userfs/d/drm511/embs/embs-summer/bsp/synthesis/parallel_run/hdl/system_ethernet_mac_wrapper.vhd \
+      EN work/system_ethernet_mac_wrapper 1400148231 CP xps_ethernetlite

@@ -1,0 +1,21 @@
+V3 17
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/xps_gpio_v2_00_a/hdl/vhdl/gpio_core.vhd 2012/10/02.11:16:22 P.40xd
+EN xps_gpio_v2_00_a/GPIO_Core 1400148026 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/xps_gpio_v2_00_a/hdl/vhdl/gpio_core.vhd \
+      PB ieee/std_logic_1164 1350103243 LB unisim PH unisim/VCOMPONENTS 1350103252 \
+      LB proc_common_v3_00_a
+AR xps_gpio_v2_00_a/GPIO_Core/IMP 1400148027 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/xps_gpio_v2_00_a/hdl/vhdl/gpio_core.vhd \
+      EN xps_gpio_v2_00_a/GPIO_Core 1400148026 CP std_logic_vector
+FL $XILINX/hw/XilinxProcessorIPLib/pcores/xps_gpio_v2_00_a/hdl/vhdl/xps_gpio.vhd 2012/10/02.11:16:22 P.40xd
+EN xps_gpio_v2_00_a/xps_gpio 1400148028 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/xps_gpio_v2_00_a/hdl/vhdl/xps_gpio.vhd \
+      PB ieee/std_logic_1164 1350103243 LB proc_common_v3_00_a \
+      LB plbv46_slave_single_v1_01_a LB interrupt_control_v2_01_a \
+      LB xps_gpio_v2_00_a PB proc_common_v3_00_a/ipif_pkg 1400148017
+AR xps_gpio_v2_00_a/xps_gpio/imp 1400148029 \
+      FL $XILINX/hw/XilinxProcessorIPLib/pcores/xps_gpio_v2_00_a/hdl/vhdl/xps_gpio.vhd \
+      EN xps_gpio_v2_00_a/xps_gpio 1400148028 \
+      CP plbv46_slave_single_v1_01_a/plbv46_slave_single CP natural CP integer \
+      CP std_logic_vector CP interrupt_control_v2_01_a/interrupt_control \
+      CP xps_gpio_v2_00_a/gpio_core

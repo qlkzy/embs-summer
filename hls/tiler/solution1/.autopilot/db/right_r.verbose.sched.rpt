@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'right_r'
 ================================================================
-* Date:           Tue May 13 16:18:57 2014
+* Date:           Thu May 15 10:44:46 2014
 
 * Version:        2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)
 * Project:        tiler
@@ -20,7 +20,7 @@
     +---------+-------+----------+------------+
     |  Clock  | Target| Estimated| Uncertainty|
     +---------+-------+----------+------------+
-    |default  |  20.00|     15.33|        2.50|
+    |default  |  20.00|     14.73|        2.50|
     +---------+-------+----------+------------+
 
 + Latency (clock cycles): 
@@ -29,7 +29,7 @@
     |  Latency  |  Interval | Pipeline|
     | min | max | min | max |   Type  |
     +-----+-----+-----+-----+---------+
-    |    2|   16|    2|   16|   none  |
+    |    2|   20|    2|   20|   none  |
     +-----+-----+-----+-----+---------+
 
     + Detail: 
@@ -124,7 +124,7 @@ IsGatedGlobalClock: 0
 ============================================================
 + Verbose Summary: Schedule
 ============================================================
-* Number of FSM states: 17
+* Number of FSM states: 21
 * Pipeline: 0
 * Dataflow Pipeline: 0
 
@@ -133,9 +133,10 @@ IsGatedGlobalClock: 0
 	2  / true
 2 --> 
 	3  / (tmp_s)
-	17  / (!tmp_s)
+	21  / (!tmp_s)
 3 --> 
-	4  / true
+	4  / (!tmp_i)
+	17  / (tmp_i)
 4 --> 
 	5  / true
 5 --> 
@@ -157,13 +158,22 @@ IsGatedGlobalClock: 0
 13 --> 
 	14  / true
 14 --> 
-	15  / true
+	15  / (tmp_i_24)
+	17  / (!tmp_i_24)
 15 --> 
 	16  / true
 16 --> 
 	17  / true
 17 --> 
-	17  / (tmp_s & tmp_6 & tmp_8)
+	18  / true
+18 --> 
+	19  / true
+19 --> 
+	20  / true
+20 --> 
+	21  / true
+21 --> 
+	21  / (tmp_s & tmp_3 & tmp_5)
 * FSM state operations: 
 
  <State 1>: 2.39ns
@@ -171,7 +181,7 @@ ST_1: cp_V_load [1/1] 0.00ns
 :0  %cp_V_load = load i8* @cp_V, align 1
 
 ST_1: tmp [1/1] 0.00ns
-:1  %tmp = zext i8 %cp_V_load to i64
+:1  %tmp = sext i8 %cp_V_load to i64
 
 ST_1: pp_rot_V_addr [1/1] 0.00ns
 :2  %pp_rot_V_addr = getelementptr [36 x i2]* @pp_rot_V, i64 0, i64 %tmp
@@ -180,378 +190,374 @@ ST_1: pp_rot_V_load [2/2] 2.39ns
 :3  %pp_rot_V_load = load i2* %pp_rot_V_addr, align 1
 
 
- <State 2>: 11.04ns
+ <State 2>: 6.06ns
 ST_2: pp_rot_V_load [1/2] 2.39ns
 :3  %pp_rot_V_load = load i2* %pp_rot_V_addr, align 1
 
 ST_2: tmp_s [1/1] 2.35ns
 :4  %tmp_s = icmp eq i2 %pp_rot_V_load, -1
 
-ST_2: stg_24 [1/1] 0.00ns
-:5  br i1 %tmp_s, label %_ifconv, label %1
+ST_2: stg_28 [1/1] 0.00ns
+:5  br i1 %tmp_s, label %2, label %1
 
-ST_2: tmp_5 [1/1] 1.28ns
-:0  %tmp_5 = add i2 %pp_rot_V_load, 1
+ST_2: tmp_2 [1/1] 1.28ns
+:0  %tmp_2 = add i2 %pp_rot_V_load, 1
 
-ST_2: stg_26 [1/1] 2.39ns
-:1  store i2 %tmp_5, i2* %pp_rot_V_addr, align 1
+ST_2: stg_30 [1/1] 2.39ns
+:1  store i2 %tmp_2, i2* %pp_rot_V_addr, align 1
 
-ST_2: stg_27 [1/1] 2.15ns
+ST_2: stg_31 [1/1] 2.15ns
 :2  br label %.loopexit
 
 ST_2: pp_tile_V_addr [1/1] 0.00ns
-_ifconv:0  %pp_tile_V_addr = getelementptr [36 x i8]* @pp_tile_V, i64 0, i64 %tmp
+:0  %pp_tile_V_addr = getelementptr [36 x i8]* @pp_tile_V, i64 0, i64 %tmp
 
-ST_2: left_V [1/1] 3.50ns
-_ifconv:7  %left_V = add i8 %cp_V_load, -1
-
-ST_2: side_V_load [1/1] 0.00ns
-_ifconv:8  %side_V_load = load i8* @side_V, align 1
-
-ST_2: tmp_tr_i [1/1] 0.00ns
-_ifconv:10  %tmp_tr_i = sext i8 %left_V to i9
-
-ST_2: tmp_tr_i_20 [1/1] 0.00ns
-_ifconv:11  %tmp_tr_i_20 = zext i8 %side_V_load to i9
-
-ST_2: tmp_i [12/12] 7.54ns
-_ifconv:12  %tmp_i = sdiv i9 %tmp_tr_i, %tmp_tr_i_20
+ST_2: pp_tile_V_load [2/2] 2.39ns
+:1  %pp_tile_V_load = load i8* %pp_tile_V_addr, align 2
 
 
- <State 3>: 7.54ns
-ST_3: up_V [1/1] 3.50ns
-_ifconv:9  %up_V = sub i8 %cp_V_load, %side_V_load
+ <State 3>: 11.04ns
+ST_3: pp_tile_V_load [1/2] 2.39ns
+:1  %pp_tile_V_load = load i8* %pp_tile_V_addr, align 2
 
-ST_3: tmp_i [11/12] 7.54ns
-_ifconv:12  %tmp_i = sdiv i9 %tmp_tr_i, %tmp_tr_i_20
+ST_3: tmp_1 [1/1] 0.00ns
+:2  %tmp_1 = zext i8 %pp_tile_V_load to i36
 
-ST_3: r_V_2 [11/11] 7.40ns
-_ifconv:14  %r_V_2 = udiv i8 %cp_V_load, %side_V_load
+ST_3: r_V [1/1] 3.24ns
+:3  %r_V = shl i36 1, %tmp_1
 
-ST_3: tmp_36 [1/1] 0.00ns
-_ifconv:33  %tmp_36 = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %up_V, i32 7)
+ST_3: avail_V_load [1/1] 0.00ns
+:4  %avail_V_load = load i36* @avail_V, align 8
 
-ST_3: tmp_i23_i [1/1] 0.00ns
-_ifconv:34  %tmp_i23_i = zext i8 %up_V to i64
+ST_3: possible_V [1/1] 2.00ns
+:5  %possible_V = or i36 %avail_V_load, %r_V
 
-ST_3: pp_tile_V_addr_7 [1/1] 0.00ns
-_ifconv:35  %pp_tile_V_addr_7 = getelementptr [36 x i8]* @pp_tile_V, i64 0, i64 %tmp_i23_i
+ST_3: stg_39 [1/1] 2.67ns
+:6  store i36 %possible_V, i36* @avail_V, align 8
 
-ST_3: tile_V_7 [2/2] 2.39ns
-_ifconv:36  %tile_V_7 = load i8* %pp_tile_V_addr_7, align 2
+ST_3: left_V [1/1] 3.50ns
+:7  %left_V = add i8 %cp_V_load, -1
 
-ST_3: pp_rot_V_addr_7 [1/1] 0.00ns
-_ifconv:37  %pp_rot_V_addr_7 = getelementptr [36 x i2]* @pp_rot_V, i64 0, i64 %tmp_i23_i
+ST_3: tmp_i [1/1] 3.40ns
+:8  %tmp_i = icmp eq i8 %cp_V_load, 0
 
-ST_3: rot_V_7 [2/2] 2.39ns
-_ifconv:38  %rot_V_7 = load i2* %pp_rot_V_addr_7, align 1
+ST_3: stg_42 [1/1] 2.67ns
+:9  br i1 %tmp_i, label %left_possible_mask.exit_ifconv, label %3
+
+ST_3: side_V_load [1/1] 0.00ns
+:0  %side_V_load = load i8* @side_V, align 1
+
+ST_3: tmp_tr_i [1/1] 0.00ns
+:1  %tmp_tr_i = sext i8 %left_V to i9
+
+ST_3: tmp_40_tr_i [1/1] 0.00ns
+:2  %tmp_40_tr_i = zext i8 %side_V_load to i9
+
+ST_3: tmp_1_i [12/12] 7.54ns
+:3  %tmp_1_i = sdiv i9 %tmp_tr_i, %tmp_40_tr_i
+
+ST_3: tmp_42_tr_i [1/1] 0.00ns
+:5  %tmp_42_tr_i = sext i8 %cp_V_load to i9
+
+ST_3: tmp_2_i [12/12] 7.54ns
+:6  %tmp_2_i = sdiv i9 %tmp_42_tr_i, %tmp_40_tr_i
 
 
  <State 4>: 7.54ns
-ST_4: tmp_i [10/12] 7.54ns
-_ifconv:12  %tmp_i = sdiv i9 %tmp_tr_i, %tmp_tr_i_20
+ST_4: tmp_1_i [11/12] 7.54ns
+:3  %tmp_1_i = sdiv i9 %tmp_tr_i, %tmp_40_tr_i
 
-ST_4: r_V_2 [10/11] 7.40ns
-_ifconv:14  %r_V_2 = udiv i8 %cp_V_load, %side_V_load
-
-ST_4: tile_V_7 [1/2] 2.39ns
-_ifconv:36  %tile_V_7 = load i8* %pp_tile_V_addr_7, align 2
-
-ST_4: rot_V_7 [1/2] 2.39ns
-_ifconv:38  %rot_V_7 = load i2* %pp_rot_V_addr_7, align 1
-
-ST_4: r_V_3 [1/1] 2.00ns
-_ifconv:39  %r_V_3 = xor i2 %rot_V_7, -2
-
-ST_4: tmp_25 [1/1] 0.00ns
-_ifconv:40  %tmp_25 = call i10 @_ssdm_op_BitConcatenate.i10.i8.i2(i8 %tile_V_7, i2 %r_V_3)
-
-ST_4: tmp_26 [1/1] 0.00ns
-_ifconv:41  %tmp_26 = zext i10 %tmp_25 to i64
-
-ST_4: tiles_V_addr_7 [1/1] 0.00ns
-_ifconv:42  %tiles_V_addr_7 = getelementptr [144 x i4]* @tiles_V, i64 0, i64 %tmp_26
-
-ST_4: tiles_V_load_6 [2/2] 2.39ns
-_ifconv:43  %tiles_V_load_6 = load i4* %tiles_V_addr_7, align 1
+ST_4: tmp_2_i [11/12] 7.54ns
+:6  %tmp_2_i = sdiv i9 %tmp_42_tr_i, %tmp_40_tr_i
 
 
  <State 5>: 7.54ns
-ST_5: tmp_i [9/12] 7.54ns
-_ifconv:12  %tmp_i = sdiv i9 %tmp_tr_i, %tmp_tr_i_20
+ST_5: tmp_1_i [10/12] 7.54ns
+:3  %tmp_1_i = sdiv i9 %tmp_tr_i, %tmp_40_tr_i
 
-ST_5: r_V_2 [9/11] 7.40ns
-_ifconv:14  %r_V_2 = udiv i8 %cp_V_load, %side_V_load
-
-ST_5: tiles_V_load_6 [1/2] 2.39ns
-_ifconv:43  %tiles_V_load_6 = load i4* %tiles_V_addr_7, align 1
+ST_5: tmp_2_i [10/12] 7.54ns
+:6  %tmp_2_i = sdiv i9 %tmp_42_tr_i, %tmp_40_tr_i
 
 
  <State 6>: 7.54ns
-ST_6: tmp_i [8/12] 7.54ns
-_ifconv:12  %tmp_i = sdiv i9 %tmp_tr_i, %tmp_tr_i_20
+ST_6: tmp_1_i [9/12] 7.54ns
+:3  %tmp_1_i = sdiv i9 %tmp_tr_i, %tmp_40_tr_i
 
-ST_6: r_V_2 [8/11] 7.40ns
-_ifconv:14  %r_V_2 = udiv i8 %cp_V_load, %side_V_load
+ST_6: tmp_2_i [9/12] 7.54ns
+:6  %tmp_2_i = sdiv i9 %tmp_42_tr_i, %tmp_40_tr_i
 
 
  <State 7>: 7.54ns
-ST_7: tmp_i [7/12] 7.54ns
-_ifconv:12  %tmp_i = sdiv i9 %tmp_tr_i, %tmp_tr_i_20
+ST_7: tmp_1_i [8/12] 7.54ns
+:3  %tmp_1_i = sdiv i9 %tmp_tr_i, %tmp_40_tr_i
 
-ST_7: r_V_2 [7/11] 7.40ns
-_ifconv:14  %r_V_2 = udiv i8 %cp_V_load, %side_V_load
+ST_7: tmp_2_i [8/12] 7.54ns
+:6  %tmp_2_i = sdiv i9 %tmp_42_tr_i, %tmp_40_tr_i
 
 
  <State 8>: 7.54ns
-ST_8: tmp_i [6/12] 7.54ns
-_ifconv:12  %tmp_i = sdiv i9 %tmp_tr_i, %tmp_tr_i_20
+ST_8: tmp_1_i [7/12] 7.54ns
+:3  %tmp_1_i = sdiv i9 %tmp_tr_i, %tmp_40_tr_i
 
-ST_8: r_V_2 [6/11] 7.40ns
-_ifconv:14  %r_V_2 = udiv i8 %cp_V_load, %side_V_load
+ST_8: tmp_2_i [7/12] 7.54ns
+:6  %tmp_2_i = sdiv i9 %tmp_42_tr_i, %tmp_40_tr_i
 
 
  <State 9>: 7.54ns
-ST_9: tmp_i [5/12] 7.54ns
-_ifconv:12  %tmp_i = sdiv i9 %tmp_tr_i, %tmp_tr_i_20
+ST_9: tmp_1_i [6/12] 7.54ns
+:3  %tmp_1_i = sdiv i9 %tmp_tr_i, %tmp_40_tr_i
 
-ST_9: r_V_2 [5/11] 7.40ns
-_ifconv:14  %r_V_2 = udiv i8 %cp_V_load, %side_V_load
+ST_9: tmp_2_i [6/12] 7.54ns
+:6  %tmp_2_i = sdiv i9 %tmp_42_tr_i, %tmp_40_tr_i
 
 
  <State 10>: 7.54ns
-ST_10: tmp_i [4/12] 7.54ns
-_ifconv:12  %tmp_i = sdiv i9 %tmp_tr_i, %tmp_tr_i_20
+ST_10: tmp_1_i [5/12] 7.54ns
+:3  %tmp_1_i = sdiv i9 %tmp_tr_i, %tmp_40_tr_i
 
-ST_10: r_V_2 [4/11] 7.40ns
-_ifconv:14  %r_V_2 = udiv i8 %cp_V_load, %side_V_load
+ST_10: tmp_2_i [5/12] 7.54ns
+:6  %tmp_2_i = sdiv i9 %tmp_42_tr_i, %tmp_40_tr_i
 
 
  <State 11>: 7.54ns
-ST_11: tmp_i [3/12] 7.54ns
-_ifconv:12  %tmp_i = sdiv i9 %tmp_tr_i, %tmp_tr_i_20
+ST_11: tmp_1_i [4/12] 7.54ns
+:3  %tmp_1_i = sdiv i9 %tmp_tr_i, %tmp_40_tr_i
 
-ST_11: r_V_2 [3/11] 7.40ns
-_ifconv:14  %r_V_2 = udiv i8 %cp_V_load, %side_V_load
+ST_11: tmp_2_i [4/12] 7.54ns
+:6  %tmp_2_i = sdiv i9 %tmp_42_tr_i, %tmp_40_tr_i
 
 
  <State 12>: 7.54ns
-ST_12: tmp_i [2/12] 7.54ns
-_ifconv:12  %tmp_i = sdiv i9 %tmp_tr_i, %tmp_tr_i_20
+ST_12: tmp_1_i [3/12] 7.54ns
+:3  %tmp_1_i = sdiv i9 %tmp_tr_i, %tmp_40_tr_i
 
-ST_12: r_V_2 [2/11] 7.40ns
-_ifconv:14  %r_V_2 = udiv i8 %cp_V_load, %side_V_load
+ST_12: tmp_2_i [3/12] 7.54ns
+:6  %tmp_2_i = sdiv i9 %tmp_42_tr_i, %tmp_40_tr_i
 
 
- <State 13>: 15.33ns
-ST_13: tmp_i [1/12] 7.54ns
-_ifconv:12  %tmp_i = sdiv i9 %tmp_tr_i, %tmp_tr_i_20
+ <State 13>: 7.54ns
+ST_13: tmp_1_i [2/12] 7.54ns
+:3  %tmp_1_i = sdiv i9 %tmp_tr_i, %tmp_40_tr_i
 
-ST_13: r_V_14 [1/1] 0.00ns
-_ifconv:13  %r_V_14 = trunc i9 %tmp_i to i8
+ST_13: tmp_2_i [2/12] 7.54ns
+:6  %tmp_2_i = sdiv i9 %tmp_42_tr_i, %tmp_40_tr_i
 
-ST_13: r_V_2 [1/11] 7.40ns
-_ifconv:14  %r_V_2 = udiv i8 %cp_V_load, %side_V_load
 
-ST_13: tmp_i_cast [1/1] 0.00ns
-_ifconv:15  %tmp_i_cast = sext i8 %r_V_14 to i9
+ <State 14>: 13.60ns
+ST_14: tmp_1_i [1/12] 7.54ns
+:3  %tmp_1_i = sdiv i9 %tmp_tr_i, %tmp_40_tr_i
 
-ST_13: tmp_60_i_cast [1/1] 0.00ns
-_ifconv:16  %tmp_60_i_cast = zext i8 %r_V_2 to i9
+ST_14: r_V_5 [1/1] 0.00ns
+:4  %r_V_5 = trunc i9 %tmp_1_i to i8
 
-ST_13: tmp_61_i [1/1] 3.40ns
-_ifconv:17  %tmp_61_i = icmp eq i9 %tmp_i_cast, %tmp_60_i_cast
+ST_14: tmp_2_i [1/12] 7.54ns
+:6  %tmp_2_i = sdiv i9 %tmp_42_tr_i, %tmp_40_tr_i
 
-ST_13: this_assign_i [1/1] 2.00ns
-_ifconv:18  %this_assign_i = select i1 %tmp_61_i, i8 %left_V, i8 -1
+ST_14: r_V_8 [1/1] 0.00ns
+:7  %r_V_8 = trunc i9 %tmp_2_i to i8
 
-ST_13: tmp_35 [1/1] 0.00ns
-_ifconv:19  %tmp_35 = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %this_assign_i, i32 7)
+ST_14: tmp_i_24 [1/1] 3.40ns
+:8  %tmp_i_24 = icmp eq i8 %r_V_5, %r_V_8
 
-ST_13: tmp_i_i [1/1] 0.00ns
-_ifconv:20  %tmp_i_i = zext i8 %this_assign_i to i64
+ST_14: stg_74 [1/1] 2.67ns
+:9  br i1 %tmp_i_24, label %4, label %left_possible_mask.exit_ifconv
 
-ST_13: pp_tile_V_addr_6 [1/1] 0.00ns
-_ifconv:21  %pp_tile_V_addr_6 = getelementptr [36 x i8]* @pp_tile_V, i64 0, i64 %tmp_i_i
+ST_14: tmp_i_i [1/1] 0.00ns
+:0  %tmp_i_i = zext i8 %left_V to i64
 
-ST_13: tile_V [2/2] 2.39ns
-_ifconv:22  %tile_V = load i8* %pp_tile_V_addr_6, align 2
+ST_14: pp_tile_V_addr_3 [1/1] 0.00ns
+:1  %pp_tile_V_addr_3 = getelementptr [36 x i8]* @pp_tile_V, i64 0, i64 %tmp_i_i
 
-ST_13: pp_rot_V_addr_6 [1/1] 0.00ns
-_ifconv:23  %pp_rot_V_addr_6 = getelementptr [36 x i2]* @pp_rot_V, i64 0, i64 %tmp_i_i
+ST_14: tile_V [2/2] 2.39ns
+:2  %tile_V = load i8* %pp_tile_V_addr_3, align 2
 
-ST_13: rot_V [2/2] 2.39ns
-_ifconv:24  %rot_V = load i2* %pp_rot_V_addr_6, align 1
+ST_14: pp_rot_V_addr_2 [1/1] 0.00ns
+:3  %pp_rot_V_addr_2 = getelementptr [36 x i2]* @pp_rot_V, i64 0, i64 %tmp_i_i
 
+ST_14: rot_V [2/2] 2.39ns
+:4  %rot_V = load i2* %pp_rot_V_addr_2, align 1
 
- <State 14>: 6.06ns
-ST_14: tile_V [1/2] 2.39ns
-_ifconv:22  %tile_V = load i8* %pp_tile_V_addr_6, align 2
 
-ST_14: rot_V [1/2] 2.39ns
-_ifconv:24  %rot_V = load i2* %pp_rot_V_addr_6, align 1
+ <State 15>: 6.06ns
+ST_15: tile_V [1/2] 2.39ns
+:2  %tile_V = load i8* %pp_tile_V_addr_3, align 2
 
-ST_14: r_V_s [1/1] 1.28ns
-_ifconv:25  %r_V_s = add i2 %rot_V, 1
+ST_15: rot_V [1/2] 2.39ns
+:4  %rot_V = load i2* %pp_rot_V_addr_2, align 1
 
-ST_14: tmp_23 [1/1] 0.00ns
-_ifconv:26  %tmp_23 = call i10 @_ssdm_op_BitConcatenate.i10.i8.i2(i8 %tile_V, i2 %r_V_s)
+ST_15: r_V_6 [1/1] 1.28ns
+:5  %r_V_6 = add i2 %rot_V, 1
 
-ST_14: tmp_24 [1/1] 0.00ns
-_ifconv:27  %tmp_24 = zext i10 %tmp_23 to i64
+ST_15: tmp_19 [1/1] 0.00ns
+:6  %tmp_19 = call i10 @_ssdm_op_BitConcatenate.i10.i8.i2(i8 %tile_V, i2 %r_V_6)
 
-ST_14: tiles_V_addr [1/1] 0.00ns
-_ifconv:28  %tiles_V_addr = getelementptr [144 x i4]* @tiles_V, i64 0, i64 %tmp_24
+ST_15: tmp_20 [1/1] 0.00ns
+:7  %tmp_20 = zext i10 %tmp_19 to i64
 
-ST_14: tiles_V_load [2/2] 2.39ns
-_ifconv:29  %tiles_V_load = load i4* %tiles_V_addr, align 1
+ST_15: tiles_V_addr [1/1] 0.00ns
+:8  %tiles_V_addr = getelementptr [144 x i4]* @tiles_V, i64 0, i64 %tmp_20
 
+ST_15: tiles_V_load [2/2] 2.39ns
+:9  %tiles_V_load = load i4* %tiles_V_addr, align 1
 
- <State 15>: 6.78ns
-ST_15: pp_tile_V_load [2/2] 2.39ns
-_ifconv:1  %pp_tile_V_load = load i8* %pp_tile_V_addr, align 2
 
-ST_15: tiles_V_load [1/2] 2.39ns
-_ifconv:29  %tiles_V_load = load i4* %tiles_V_addr, align 1
+ <State 16>: 4.78ns
+ST_16: tiles_V_load [1/2] 2.39ns
+:9  %tiles_V_load = load i4* %tiles_V_addr, align 1
 
-ST_15: tmp_63_i_cast [1/1] 0.00ns
-_ifconv:30  %tmp_63_i_cast = zext i4 %tiles_V_load to i5
+ST_16: tmp_30_i [1/1] 0.00ns
+:10  %tmp_30_i = zext i4 %tiles_V_load to i64
 
-ST_15: p_i [1/1] 2.00ns
-_ifconv:31  %p_i = select i1 %tmp_35, i5 -1, i5 %tmp_63_i_cast
+ST_16: colours_V_addr [1/1] 0.00ns
+:11  %colours_V_addr = getelementptr [10 x i36]* @colours_V, i64 0, i64 %tmp_30_i
 
-ST_15: p_i_cast [1/1] 0.00ns
-_ifconv:32  %p_i_cast = sext i5 %p_i to i8
+ST_16: colours_V_load [2/2] 2.39ns
+:12  %colours_V_load = load i36* %colours_V_addr, align 8
 
-ST_15: tmp_65_i_cast [1/1] 0.00ns
-_ifconv:44  %tmp_65_i_cast = zext i4 %tiles_V_load_6 to i5
 
-ST_15: p_5_i [1/1] 2.00ns
-_ifconv:45  %p_5_i = select i1 %tmp_36, i5 -1, i5 %tmp_65_i_cast
+ <State 17>: 5.89ns
+ST_17: colours_V_load [1/2] 2.39ns
+:12  %colours_V_load = load i36* %colours_V_addr, align 8
 
-ST_15: p_5_i_cast [1/1] 0.00ns
-_ifconv:46  %p_5_i_cast = sext i5 %p_5_i to i8
+ST_17: stg_92 [1/1] 2.67ns
+:13  br label %left_possible_mask.exit_ifconv
 
-ST_15: tmp_3 [1/1] 0.00ns
-_ifconv:47  %tmp_3 = zext i8 %p_i_cast to i64
+ST_17: side_V_load_1 [1/1] 0.00ns
+left_possible_mask.exit_ifconv:1  %side_V_load_1 = load i8* @side_V, align 1
 
-ST_15: colours_V_addr [1/1] 0.00ns
-_ifconv:48  %colours_V_addr = getelementptr [10 x i36]* @colours_V, i64 0, i64 %tmp_3
+ST_17: up_V [1/1] 3.50ns
+left_possible_mask.exit_ifconv:2  %up_V = sub i8 %cp_V_load, %side_V_load_1
 
-ST_15: colours_V_load [2/2] 2.39ns
-_ifconv:49  %colours_V_load = load i36* %colours_V_addr, align 8
+ST_17: tmp_26 [1/1] 0.00ns
+left_possible_mask.exit_ifconv:3  %tmp_26 = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %up_V, i32 7)
 
-ST_15: tmp_4 [1/1] 0.00ns
-_ifconv:51  %tmp_4 = zext i8 %p_5_i_cast to i64
+ST_17: tmp_i_i2 [1/1] 0.00ns
+left_possible_mask.exit_ifconv:4  %tmp_i_i2 = zext i8 %up_V to i64
 
-ST_15: colours_V_addr_2 [1/1] 0.00ns
-_ifconv:52  %colours_V_addr_2 = getelementptr [10 x i36]* @colours_V, i64 0, i64 %tmp_4
+ST_17: pp_tile_V_addr_4 [1/1] 0.00ns
+left_possible_mask.exit_ifconv:5  %pp_tile_V_addr_4 = getelementptr [36 x i8]* @pp_tile_V, i64 0, i64 %tmp_i_i2
 
-ST_15: colours_V_load_2 [2/2] 2.39ns
-_ifconv:53  %colours_V_load_2 = load i36* %colours_V_addr_2, align 8
+ST_17: tile_V_4 [2/2] 2.39ns
+left_possible_mask.exit_ifconv:6  %tile_V_4 = load i8* %pp_tile_V_addr_4, align 2
 
+ST_17: pp_rot_V_addr_3 [1/1] 0.00ns
+left_possible_mask.exit_ifconv:7  %pp_rot_V_addr_3 = getelementptr [36 x i2]* @pp_rot_V, i64 0, i64 %tmp_i_i2
 
- <State 16>: 10.30ns
-ST_16: pp_tile_V_load [1/2] 2.39ns
-_ifconv:1  %pp_tile_V_load = load i8* %pp_tile_V_addr, align 2
+ST_17: rot_V_4 [2/2] 2.39ns
+left_possible_mask.exit_ifconv:8  %rot_V_4 = load i2* %pp_rot_V_addr_3, align 1
 
-ST_16: tmp_2 [1/1] 0.00ns
-_ifconv:2  %tmp_2 = zext i8 %pp_tile_V_load to i36
 
-ST_16: r_V [1/1] 3.24ns
-_ifconv:3  %r_V = shl i36 1, %tmp_2
+ <State 18>: 6.78ns
+ST_18: tile_V_4 [1/2] 2.39ns
+left_possible_mask.exit_ifconv:6  %tile_V_4 = load i8* %pp_tile_V_addr_4, align 2
 
-ST_16: avail_V_load [1/1] 0.00ns
-_ifconv:4  %avail_V_load = load i36* @avail_V, align 8
+ST_18: rot_V_4 [1/2] 2.39ns
+left_possible_mask.exit_ifconv:8  %rot_V_4 = load i2* %pp_rot_V_addr_3, align 1
 
-ST_16: possible_V [1/1] 2.00ns
-_ifconv:5  %possible_V = or i36 %avail_V_load, %r_V
+ST_18: r_V_7 [1/1] 2.00ns
+left_possible_mask.exit_ifconv:9  %r_V_7 = xor i2 %rot_V_4, -2
 
-ST_16: stg_108 [1/1] 2.67ns
-_ifconv:6  store i36 %possible_V, i36* @avail_V, align 8
+ST_18: tmp_21 [1/1] 0.00ns
+left_possible_mask.exit_ifconv:10  %tmp_21 = call i10 @_ssdm_op_BitConcatenate.i10.i8.i2(i8 %tile_V_4, i2 %r_V_7)
 
-ST_16: colours_V_load [1/2] 2.39ns
-_ifconv:49  %colours_V_load = load i36* %colours_V_addr, align 8
+ST_18: tmp_22 [1/1] 0.00ns
+left_possible_mask.exit_ifconv:11  %tmp_22 = zext i10 %tmp_21 to i64
 
-ST_16: possible_V_3 [1/1] 2.00ns
-_ifconv:50  %possible_V_3 = select i1 %tmp_35, i36 -1, i36 %colours_V_load
+ST_18: tiles_V_addr_3 [1/1] 0.00ns
+left_possible_mask.exit_ifconv:12  %tiles_V_addr_3 = getelementptr [144 x i4]* @tiles_V, i64 0, i64 %tmp_22
 
-ST_16: colours_V_load_2 [1/2] 2.39ns
-_ifconv:53  %colours_V_load_2 = load i36* %colours_V_addr_2, align 8
+ST_18: tiles_V_load_2 [2/2] 2.39ns
+left_possible_mask.exit_ifconv:13  %tiles_V_load_2 = load i4* %tiles_V_addr_3, align 1
 
-ST_16: possible_V_4 [1/1] 2.00ns
-_ifconv:54  %possible_V_4 = select i1 %tmp_36, i36 -1, i36 %colours_V_load_2
 
-ST_16: lhs_V [1/1] 0.00ns
-_ifconv:55  %lhs_V = zext i8 %side_V_load to i16
+ <State 19>: 4.78ns
+ST_19: tiles_V_load_2 [1/2] 2.39ns
+left_possible_mask.exit_ifconv:13  %tiles_V_load_2 = load i4* %tiles_V_addr_3, align 1
 
-ST_16: r_V_7 [1/1] 5.08ns
-_ifconv:56  %r_V_7 = mul i16 %lhs_V, %lhs_V
+ST_19: tmp_i5 [1/1] 0.00ns
+left_possible_mask.exit_ifconv:14  %tmp_i5 = zext i4 %tiles_V_load_2 to i64
 
-ST_16: tmp1 [1/1] 2.00ns
-_ifconv:57  %tmp1 = and i36 %possible_V, %possible_V_3
+ST_19: colours_V_addr_2 [1/1] 0.00ns
+left_possible_mask.exit_ifconv:15  %colours_V_addr_2 = getelementptr [10 x i36]* @colours_V, i64 0, i64 %tmp_i5
 
-ST_16: stg_116 [1/1] 2.10ns
-_ifconv:58  br label %._crit_edge188
+ST_19: colours_V_load_1 [2/2] 2.39ns
+left_possible_mask.exit_ifconv:16  %colours_V_load_1 = load i36* %colours_V_addr_2, align 8
 
 
- <State 17>: 14.73ns
-ST_17: p_078_0_in [1/1] 0.00ns
-._crit_edge188:0  %p_078_0_in = phi i8 [ %pp_tile_V_load, %_ifconv ], [ %t_V, %2 ]
+ <State 20>: 4.39ns
+ST_20: agg_result_V_i [1/1] 0.00ns
+left_possible_mask.exit_ifconv:0  %agg_result_V_i = phi i36 [ %colours_V_load, %4 ], [ -1, %2 ], [ -1, %3 ]
 
-ST_17: t_V [1/1] 3.50ns
-._crit_edge188:1  %t_V = add i8 %p_078_0_in, 1
+ST_20: colours_V_load_1 [1/2] 2.39ns
+left_possible_mask.exit_ifconv:16  %colours_V_load_1 = load i36* %colours_V_addr_2, align 8
 
-ST_17: tmp_36_cast [1/1] 0.00ns
-._crit_edge188:2  %tmp_36_cast = zext i8 %t_V to i16
+ST_20: agg_result_V_i1 [1/1] 2.00ns
+left_possible_mask.exit_ifconv:17  %agg_result_V_i1 = select i1 %tmp_26, i36 -1, i36 %colours_V_load_1
 
-ST_17: tmp_6 [1/1] 3.38ns
-._crit_edge188:3  %tmp_6 = icmp ult i16 %tmp_36_cast, %r_V_7
+ST_20: ntiles_V_load [1/1] 0.00ns
+left_possible_mask.exit_ifconv:18  %ntiles_V_load = load i8* @ntiles_V, align 1
 
-ST_17: stg_121 [1/1] 2.15ns
-._crit_edge188:4  br i1 %tmp_6, label %2, label %.loopexit
+ST_20: tmp1 [1/1] 2.00ns
+left_possible_mask.exit_ifconv:19  %tmp1 = and i36 %agg_result_V_i, %possible_V
 
-ST_17: tmp_7 [1/1] 0.00ns
-:0  %tmp_7 = zext i8 %t_V to i36
+ST_20: stg_117 [1/1] 2.10ns
+left_possible_mask.exit_ifconv:20  br label %._crit_edge
 
-ST_17: r_V_15 [1/1] 3.24ns
-:1  %r_V_15 = shl i36 1, %tmp_7
 
-ST_17: tmp2 [1/1] 2.00ns
-:2  %tmp2 = and i36 %possible_V_4, %r_V_15
+ <State 21>: 14.73ns
+ST_21: p_058_0_in [1/1] 0.00ns
+._crit_edge:0  %p_058_0_in = phi i8 [ %pp_tile_V_load, %left_possible_mask.exit_ifconv ], [ %t_V, %5 ]
 
-ST_17: r_V_9 [1/1] 2.00ns
-:3  %r_V_9 = and i36 %tmp2, %tmp1
+ST_21: t_V [1/1] 3.50ns
+._crit_edge:1  %t_V = add i8 %p_058_0_in, 1
 
-ST_17: tmp_8 [1/1] 3.99ns
-:4  %tmp_8 = icmp eq i36 %r_V_9, 0
+ST_21: tmp_3 [1/1] 3.40ns
+._crit_edge:2  %tmp_3 = icmp ult i8 %t_V, %ntiles_V_load
 
-ST_17: stg_127 [1/1] 0.00ns
-:5  br i1 %tmp_8, label %._crit_edge188, label %3
+ST_21: stg_121 [1/1] 2.15ns
+._crit_edge:3  br i1 %tmp_3, label %5, label %.loopexit
 
-ST_17: stg_128 [1/1] 2.39ns
+ST_21: tmp_4 [1/1] 0.00ns
+:0  %tmp_4 = zext i8 %t_V to i36
+
+ST_21: r_V_10 [1/1] 3.24ns
+:1  %r_V_10 = shl i36 1, %tmp_4
+
+ST_21: tmp2 [1/1] 2.00ns
+:2  %tmp2 = and i36 %agg_result_V_i1, %r_V_10
+
+ST_21: r_V_2 [1/1] 2.00ns
+:3  %r_V_2 = and i36 %tmp2, %tmp1
+
+ST_21: tmp_5 [1/1] 3.99ns
+:4  %tmp_5 = icmp eq i36 %r_V_2, 0
+
+ST_21: stg_127 [1/1] 0.00ns
+:5  br i1 %tmp_5, label %._crit_edge, label %6
+
+ST_21: stg_128 [1/1] 2.39ns
 :0  store i8 %t_V, i8* %pp_tile_V_addr, align 2
 
-ST_17: stg_129 [1/1] 2.39ns
+ST_21: stg_129 [1/1] 2.39ns
 :1  store i2 0, i2* %pp_rot_V_addr, align 1
 
-ST_17: p_4 [1/1] 2.00ns
-:2  %p_4 = xor i36 %r_V_15, -1
+ST_21: p_s [1/1] 2.00ns
+:2  %p_s = xor i36 %r_V_10, -1
 
-ST_17: tmp_9 [1/1] 2.00ns
-:3  %tmp_9 = and i36 %possible_V, %p_4
+ST_21: tmp_6 [1/1] 2.00ns
+:3  %tmp_6 = and i36 %possible_V, %p_s
 
-ST_17: stg_132 [1/1] 2.67ns
-:4  store i36 %tmp_9, i36* @avail_V, align 8
+ST_21: stg_132 [1/1] 2.67ns
+:4  store i36 %tmp_6, i36* @avail_V, align 8
 
-ST_17: stg_133 [1/1] 2.15ns
+ST_21: stg_133 [1/1] 2.15ns
 :5  br label %.loopexit
 
-ST_17: p_s [1/1] 0.00ns
-.loopexit:0  %p_s = phi i1 [ true, %1 ], [ true, %3 ], [ false, %._crit_edge188 ]
+ST_21: p_0 [1/1] 0.00ns
+.loopexit:0  %p_0 = phi i1 [ true, %1 ], [ true, %6 ], [ false, %._crit_edge ]
 
-ST_17: stg_135 [1/1] 0.00ns
-.loopexit:1  ret i1 %p_s
+ST_21: stg_135 [1/1] 0.00ns
+.loopexit:1  ret i1 %p_0
 
 
 
@@ -579,6 +585,10 @@ N/A
 	State 15
 	State 16
 	State 17
+	State 18
+	State 19
+	State 20
+	State 21
 
 
 ============================================================

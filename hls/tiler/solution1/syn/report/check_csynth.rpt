@@ -1,0 +1,167 @@
+
+
+================================================================
+== Vivado HLS Report for 'check'
+================================================================
+* Date:           Thu May 15 10:44:48 2014
+
+* Version:        2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)
+* Project:        tiler
+* Solution:       solution1
+* Product family: spartan3e spartan3e_fpv5 
+* Target device:  xc3s500efg320-4
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |  20.00|     10.94|        2.50|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    2|   16|    2|   16|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+------+----------+
+|       Name      | BRAM_18K|  FF |  LUT | MULT18x18|
++-----------------+---------+-----+------+----------+
+|Expression       |        -|    0|    36|         -|
+|FIFO             |        -|    -|     -|         -|
+|Instance         |        -|  110|   130|         -|
+|Memory           |        -|    -|     -|         -|
+|Multiplexer      |        -|    -|    40|         -|
+|Register         |        -|   11|     -|         -|
+|ShiftMemory      |        -|    -|     -|         -|
++-----------------+---------+-----+------+----------+
+|Total            |        0|  121|   206|         0|
++-----------------+---------+-----+------+----------+
+|Available        |       20|    -|  9312|        20|
++-----------------+---------+-----+------+----------+
+|Utilization (%)  |        0|    -|     2|         0|
++-----------------+---------+-----+------+----------+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------+------------------------------+---------+-------+-----+-----+
+    |             Instance             |            Module            | BRAM_18K| DSP48E|  FF | LUT |
+    +----------------------------------+------------------------------+---------+-------+-----+-----+
+    |toplevel_srem_10s_10ns_10_13_U31  |toplevel_srem_10s_10ns_10_13  |        0|      0|  110|  130|
+    +----------------------------------+------------------------------+---------+-------+-----+-----+
+    |Total                             |                              |        0|      0|  110|  130|
+    +----------------------------------+------------------------------+---------+-------+-----+-----+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Shift register: 
+    N/A
+
+    * Expression: 
+    +-------------------------+----------+-------+---+----+------------+------------+
+    |      Variable Name      | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------+----------+-------+---+----+------------+------------+
+    |r_V_9_fu_230_p2          |     +    |      0|  0|   2|           2|           1|
+    |r_V_s_fu_249_p2          |     +    |      0|  0|   2|           2|           2|
+    |this_assign_i_fu_214_p2  |     +    |      0|  0|   8|           8|           2|
+    |up_V_fu_268_p2           |     -    |      0|  0|   8|           8|           8|
+    |grp_fu_177_p2            |   icmp   |      0|  0|   3|           4|           4|
+    |tmp_28_i_fu_208_p2       |   icmp   |      0|  0|   5|           8|           1|
+    |tmp_i_fu_184_p2          |   icmp   |      0|  0|   5|           8|           1|
+    |r_V_1_fu_292_p2          |    xor   |      0|  0|   3|           2|           3|
+    +-------------------------+----------+-------+---+----+------------+------------+
+    |Total                    |          |      0|  0|  36|          42|          22|
+    +-------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------+----+-----------+-----+-----------+
+    |        Name        | LUT| Input Size| Bits| Total Bits|
+    +--------------------+----+-----------+-----+-----------+
+    |pp_rot_V_address0   |   6|          3|    6|         18|
+    |pp_rot_V_address1   |   6|          3|    6|         18|
+    |pp_tile_V_address0  |   6|          3|    6|         18|
+    |pp_tile_V_address1  |   6|          3|    6|         18|
+    |tiles_V_address0    |   8|          3|    8|         24|
+    |tiles_V_address1    |   8|          3|    8|         24|
+    +--------------------+----+-----------+-----+-----------+
+    |Total               |  40|         18|   40|        120|
+    +--------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------+---+-----+-----------+
+    |       Name       | FF| Bits| Const Bits|
+    +------------------+---+-----+-----------+
+    |ap_CS_fsm         |  5|    5|          0|
+    |ap_return_preg    |  1|    1|          0|
+    |tmp_28_i_reg_346  |  1|    1|          0|
+    |tmp_29_i_reg_380  |  1|    1|          0|
+    |tmp_32_reg_384    |  1|    1|          0|
+    |tmp_i_reg_332     |  1|    1|          0|
+    |tmp_s_reg_157     |  1|    1|          0|
+    +------------------+---+-----+-----------+
+    |Total             | 11|   11|          0|
+    +------------------+---+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------+-----+-----+------------+--------------+--------------+
+|      RTL Ports     | Dir | Bits|  Protocol  | Source Object|    C Type    |
++--------------------+-----+-----+------------+--------------+--------------+
+|ap_clk              |  in |    1| ap_ctrl_hs |     check    | return value |
+|ap_rst              |  in |    1| ap_ctrl_hs |     check    | return value |
+|ap_start            |  in |    1| ap_ctrl_hs |     check    | return value |
+|ap_done             | out |    1| ap_ctrl_hs |     check    | return value |
+|ap_idle             | out |    1| ap_ctrl_hs |     check    | return value |
+|ap_ready            | out |    1| ap_ctrl_hs |     check    | return value |
+|ap_return           | out |    1| ap_ctrl_hs |     check    | return value |
+|p_V                 |  in |    8|   ap_none  |      p_V     |    scalar    |
+|side_V              |  in |    8|   ap_none  |    side_V    |    pointer   |
+|pp_tile_V_address0  | out |    6|  ap_memory |   pp_tile_V  |     array    |
+|pp_tile_V_ce0       | out |    1|  ap_memory |   pp_tile_V  |     array    |
+|pp_tile_V_q0        |  in |    8|  ap_memory |   pp_tile_V  |     array    |
+|pp_tile_V_address1  | out |    6|  ap_memory |   pp_tile_V  |     array    |
+|pp_tile_V_ce1       | out |    1|  ap_memory |   pp_tile_V  |     array    |
+|pp_tile_V_q1        |  in |    8|  ap_memory |   pp_tile_V  |     array    |
+|pp_rot_V_address0   | out |    6|  ap_memory |   pp_rot_V   |     array    |
+|pp_rot_V_ce0        | out |    1|  ap_memory |   pp_rot_V   |     array    |
+|pp_rot_V_q0         |  in |    2|  ap_memory |   pp_rot_V   |     array    |
+|pp_rot_V_address1   | out |    6|  ap_memory |   pp_rot_V   |     array    |
+|pp_rot_V_ce1        | out |    1|  ap_memory |   pp_rot_V   |     array    |
+|pp_rot_V_q1         |  in |    2|  ap_memory |   pp_rot_V   |     array    |
+|tiles_V_address0    | out |    8|  ap_memory |    tiles_V   |     array    |
+|tiles_V_ce0         | out |    1|  ap_memory |    tiles_V   |     array    |
+|tiles_V_q0          |  in |    4|  ap_memory |    tiles_V   |     array    |
+|tiles_V_address1    | out |    8|  ap_memory |    tiles_V   |     array    |
+|tiles_V_ce1         | out |    1|  ap_memory |    tiles_V   |     array    |
+|tiles_V_q1          |  in |    4|  ap_memory |    tiles_V   |     array    |
++--------------------+-----+-----+------------+--------------+--------------+
+

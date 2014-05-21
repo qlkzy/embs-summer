@@ -15,7 +15,6 @@
 typedef uint64_t u64;
 typedef uint8_t u8;
 typedef int8_t s8;
-typedef bit u8;
 
 typedef struct {
     int tile;
@@ -25,7 +24,7 @@ typedef struct {
 static Placement pp[MAX_TILES];
 /* static int avail[MAX_TILES]; */
 static u64 avail;
-static u8 tiles[MAX_TILES][4];
+static int tiles[MAX_TILES][4];
 static u64 colours[MAX_COLOURS];
 
 /* static int avail_tiles; */
@@ -39,6 +38,9 @@ static int c_up = -1;
 
 /* static u64 rotations = 0; */
 /* static u64 substitutions = 0; */
+
+
+static int terminate;
 
 static inline int colour(int p, int edge)
 {
@@ -160,7 +162,7 @@ static int up(void)
     if (cp == 1)
         INFO("Went up to tile 3");
     if (cp < 0)
-        ERROR("Tried to rewind past the top of the tree");
+        terminate = 1;
     return 1;
 }
 
@@ -180,19 +182,27 @@ static void step(void)
         while (!right()) {
             up();
         }
+        if (terminate)
+            break;
     } while (!check());
 }
 
-static void solve(void)
+static void run(void)
 {
-    int steps = 0;
-    avail &= ~BIT64(0);
     while (cp < side * side) {
         step();
-        steps++;
+        if (terminate)
+            break;
     }
-    INFO("Solution took %d steps", steps);
 }
+
+/* 
+ * static void solve(void)
+ * {
+ *     avail &= ~BIT64(0);
+ *     run();
+ * }
+ */
 
 static void init(void)
 {
@@ -243,6 +253,8 @@ static void print(void)
 
 int main(int argc, char *argv[])
 {
+    int solutions = 0;
+    uint32_t csum, old_csum = 0;
     init();
 
     readargs(argc, argv);
@@ -251,12 +263,27 @@ int main(int argc, char *argv[])
 
     mapcolours();
 
-    solve();
+    /* solve(); */
 
     /* for (int p = 0; p < side * side; p++) */
         /* INFO("p=%d: pp[p].tile=%d; pp[p].rot=%d", p, pp[p].tile, pp[p].rot); */
-    
-    print();
+    avail &= ~BIT64(0);
+
+    do {
+        run();
+        csum = 0;
+        for (int p = 0; p < side * side; p++)
+            csum += pp[p].tile * p;
+        if (old_csum == 0 || csum != old_csum) {
+            print();
+            solutions++;
+            old_csum = csum;
+        }
+        do {
+            while (!right())
+                up();
+        } while (!check());
+    } while (!terminate && solutions < 8);
 
     return 0;
 }

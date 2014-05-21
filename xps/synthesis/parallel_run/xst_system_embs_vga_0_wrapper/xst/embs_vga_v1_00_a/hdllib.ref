@@ -1,0 +1,6 @@
+MO user_logic NULL /usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/embs_vga_v1_00_a/hdl/verilog/user_logic.v vlg08/user__logic.bin 1400148191
+MO vga NULL /usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/embs_vga_v1_00_a/hdl/verilog/vga.v vlg6A/vga.bin 1400148191
+AR embs_vga imp /usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/embs_vga_v1_00_a/hdl/vhdl/embs_vga.vhd sub00/vhpl01 1400148329
+EN embs_vga NULL /usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/embs_vga_v1_00_a/hdl/vhdl/embs_vga.vhd sub00/vhpl00 1400148328
+MO vga_fifo_x1 NULL /usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/embs_vga_v1_00_a/hdl/verilog/vga_fifo_x1.v vlg39/vga__fifo__x1.bin 1400148191
+MO vga_fifo_x2 NULL /usr/userfs/d/drm511/embs/embs-summer/bsp/pcores/embs_vga_v1_00_a/hdl/verilog/vga_fifo_x2.v vlg3A/vga__fifo__x2.bin 1400148191

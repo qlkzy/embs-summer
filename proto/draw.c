@@ -40,14 +40,19 @@ int main(int argc, char *argv[])
     if (side > MAX_SIDE)
         ERROR("Given side is greater than max_side");
     
-    for (int r = 0; r < side; r++)
-        for (int c = 0; c < side; c++)
-            scanf("(%d,%d,%d,%d)\n",
-                  &board[r][c][0], &board[r][c][1],
-                  &board[r][c][2], &board[r][c][3]);
+    while (!feof(stdin)) {
+        for (int r = 0; r < side; r++)
+            for (int c = 0; c < side; c++)
+                scanf("(%d,%d,%d,%d)\n",
+                      &board[r][c][0], &board[r][c][1],
+                      &board[r][c][2], &board[r][c][3]);
     
-    for (int r = 0; r < side; r++)
-        draw_row(side, r);
+        for (int r = 0; r < side; r++)
+            draw_row(side, r);
+
+        printf("\n\n----\n\n");
+    }
+
 
     /* 
      * for (int c = 0; c < NELEM(colours); c++)

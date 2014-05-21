@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'right_r'" level="0">
-<item name = "Date">Tue May 13 16:18:58 2014
+<item name = "Date">Thu May 15 10:44:47 2014
 </item>
 <item name = "Version">2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)</item>
 <item name = "Project">tiler</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="default">20.00, 15.33, 2.50</column>
+<column name="default">20.00, 14.73, 2.50</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">2, 16, 2, 16, none</column>
+<column name="">2, 20, 2, 20, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -47,23 +47,23 @@
 <section name = "Utilization Estimates" level="0">
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="5">Name, BRAM_18K, FF, LUT, MULT18x18</keys>
-<column name="Expression">-, 0, 372, 1</column>
+<column name="Expression">-, 0, 318, -</column>
 <column name="FIFO">-, -, -, -</column>
-<column name="Instance">-, 176, 208, -</column>
+<column name="Instance">-, 220, 260, -</column>
 <column name="Memory">-, -, -, -</column>
-<column name="Multiplexer">-, -, 78, -</column>
-<column name="Register">-, 174, -, -</column>
+<column name="Multiplexer">-, -, 118, -</column>
+<column name="Register">-, 255, -, -</column>
 <column name="ShiftMemory">-, -, -, -</column>
 <specialColumn name="Available">20, -, 9312, 20</specialColumn>
-<specialColumn name="Utilization (%)">0, -, 7, 5</specialColumn>
+<specialColumn name="Utilization (%)">0, -, 7, 0</specialColumn>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
-<column name="toplevel_sdiv_9s_9ns_9_12_U10">toplevel_sdiv_9s_9ns_9_12, 0, 0, 88, 104</column>
-<column name="toplevel_udiv_8ns_8ns_8_11_U11">toplevel_udiv_8ns_8ns_8_11, 0, 0, 88, 104</column>
+<column name="toplevel_sdiv_9s_9ns_9_12_U11">toplevel_sdiv_9s_9ns_9_12, 0, 0, 110, 130</column>
+<column name="toplevel_sdiv_9s_9ns_9_12_U12">toplevel_sdiv_9s_9ns_9_12, 0, 0, 110, 130</column>
 </table>
 </item>
 <item name = "Memory"><table name="" hasTotal="1">
@@ -80,59 +80,58 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="r_V_7_fu_390_p2">*, 0, 0, 0, 8, 8</column>
-<column name="grp_fu_170_p2">+, 0, 0, 2, 2, 1</column>
-<column name="left_V_fu_192_p2">+, 0, 0, 8, 8, 2</column>
-<column name="t_V_fu_402_p2">+, 0, 0, 8, 8, 1</column>
-<column name="up_V_fu_215_p2">-, 0, 0, 8, 8, 8</column>
-<column name="p_5_i_fu_326_p3">Select, 0, 0, 5, 1, 2</column>
-<column name="p_i_fu_312_p3">Select, 0, 0, 5, 1, 2</column>
-<column name="possible_V_3_fu_373_p3">Select, 0, 0, 36, 1, 2</column>
-<column name="possible_V_4_fu_380_p3">Select, 0, 0, 36, 1, 2</column>
-<column name="this_assign_i_fu_274_p3">Select, 0, 0, 8, 1, 8</column>
-<column name="ap_sig_bdd_146">and, 0, 0, 1, 1, 1</column>
-<column name="ap_sig_bdd_406">and, 0, 0, 1, 1, 1</column>
-<column name="r_V_9_fu_433_p2">and, 0, 0, 36, 36, 36</column>
-<column name="tmp1_fu_396_p2">and, 0, 0, 36, 36, 36</column>
-<column name="tmp2_fu_428_p2">and, 0, 0, 36, 36, 36</column>
-<column name="tmp_9_fu_450_p2">and, 0, 0, 36, 36, 36</column>
-<column name="tmp_61_i_fu_268_p2">icmp, 0, 0, 6, 9, 9</column>
-<column name="tmp_6_fu_413_p2">icmp, 0, 0, 9, 16, 16</column>
-<column name="tmp_8_fu_438_p2">icmp, 0, 0, 19, 36, 1</column>
-<column name="tmp_s_fu_186_p2">icmp, 0, 0, 1, 2, 2</column>
-<column name="possible_V_fu_361_p2">or, 0, 0, 36, 36, 36</column>
-<column name="p_4_fu_444_p2">xor, 0, 0, 36, 36, 2</column>
-<column name="r_V_3_fu_237_p2">xor, 0, 0, 3, 2, 3</column>
+<column name="grp_fu_184_p2">+, 0, 0, 2, 2, 1</column>
+<column name="left_V_fu_236_p2">+, 0, 0, 8, 8, 2</column>
+<column name="t_V_fu_365_p2">+, 0, 0, 8, 8, 1</column>
+<column name="up_V_fu_306_p2">-, 0, 0, 8, 8, 8</column>
+<column name="agg_result_V_i1_fu_349_p3">Select, 0, 0, 36, 1, 2</column>
+<column name="ap_sig_bdd_157">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_bdd_390">and, 0, 0, 1, 1, 1</column>
+<column name="r_V_2_fu_392_p2">and, 0, 0, 36, 36, 36</column>
+<column name="tmp1_fu_360_p2">and, 0, 0, 36, 36, 36</column>
+<column name="tmp2_fu_387_p2">and, 0, 0, 36, 36, 36</column>
+<column name="tmp_6_fu_409_p2">and, 0, 0, 36, 36, 36</column>
+<column name="tmp_3_fu_372_p2">icmp, 0, 0, 5, 8, 8</column>
+<column name="tmp_5_fu_397_p2">icmp, 0, 0, 19, 36, 1</column>
+<column name="tmp_i_24_fu_277_p2">icmp, 0, 0, 5, 8, 8</column>
+<column name="tmp_i_fu_241_p2">icmp, 0, 0, 5, 8, 1</column>
+<column name="tmp_s_fu_204_p2">icmp, 0, 0, 1, 2, 2</column>
+<column name="possible_V_fu_224_p2">or, 0, 0, 36, 36, 36</column>
+<column name="p_s_fu_403_p2">xor, 0, 0, 36, 36, 2</column>
+<column name="r_V_7_fu_325_p2">xor, 0, 0, 3, 2, 3</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="agg_result_V_i_reg_145">36, 2, 36, 72</column>
 <column name="avail_V_o">36, 3, 36, 108</column>
-<column name="p_078_0_in_reg_145">8, 2, 8, 16</column>
+<column name="colours_V_address0">4, 3, 4, 12</column>
+<column name="p_058_0_in_reg_159">8, 2, 8, 16</column>
 <column name="pp_rot_V_address0">12, 5, 6, 30</column>
 <column name="pp_rot_V_d0">2, 3, 2, 6</column>
-<column name="pp_tile_V_address0">12, 4, 6, 24</column>
+<column name="pp_tile_V_address0">12, 5, 6, 30</column>
 <column name="tiles_V_address0">8, 3, 8, 24</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="4">Name, FF, Bits, Const Bits</keys>
+<column name="agg_result_V_i1_reg_537">36, 36, 0</column>
+<column name="agg_result_V_i_reg_145">36, 36, 0</column>
 <column name="ap_CS_fsm">5, 5, 0</column>
 <column name="ap_return_preg">1, 1, 0</column>
-<column name="left_V_reg_487">8, 8, 0</column>
-<column name="p_078_0_in_reg_145">8, 8, 0</column>
-<column name="p_s_reg_154">1, 1, 0</column>
-<column name="possible_V_4_reg_576">36, 36, 0</column>
-<column name="possible_V_reg_571">36, 36, 0</column>
-<column name="pp_rot_V_addr_reg_473">6, 6, 0</column>
-<column name="pp_tile_V_addr_reg_482">6, 6, 0</column>
-<column name="r_V_7_reg_581">16, 16, 0</column>
-<column name="tiles_V_load_6_reg_530">4, 4, 0</column>
-<column name="tmp1_reg_586">36, 36, 0</column>
-<column name="tmp_35_reg_535">1, 1, 0</column>
-<column name="tmp_36_reg_509">1, 1, 0</column>
-<column name="tmp_reg_468">8, 64, 56</column>
-<column name="tmp_s_reg_478">1, 1, 0</column>
+<column name="left_V_reg_458">8, 8, 0</column>
+<column name="p_058_0_in_reg_159">8, 8, 0</column>
+<column name="p_0_reg_168">1, 1, 0</column>
+<column name="possible_V_reg_452">36, 36, 0</column>
+<column name="pp_rot_V_addr_reg_433">6, 6, 0</column>
+<column name="pp_tile_V_addr_reg_442">6, 6, 0</column>
+<column name="pp_tile_V_load_reg_447">8, 8, 0</column>
+<column name="tmp1_reg_547">36, 36, 0</column>
+<column name="tmp_26_reg_512">1, 1, 0</column>
+<column name="tmp_i_24_reg_483">1, 1, 0</column>
+<column name="tmp_i_reg_463">1, 1, 0</column>
+<column name="tmp_reg_428">64, 64, 0</column>
+<column name="tmp_s_reg_438">1, 1, 0</column>
 </table>
 </item>
 </section>
@@ -170,9 +169,7 @@
 <column name="colours_V_address0">out, 4, ap_memory, colours_V, array</column>
 <column name="colours_V_ce0">out, 1, ap_memory, colours_V, array</column>
 <column name="colours_V_q0">in, 36, ap_memory, colours_V, array</column>
-<column name="colours_V_address1">out, 4, ap_memory, colours_V, array</column>
-<column name="colours_V_ce1">out, 1, ap_memory, colours_V, array</column>
-<column name="colours_V_q1">in, 36, ap_memory, colours_V, array</column>
+<column name="ntiles_V">in, 8, ap_none, ntiles_V, pointer</column>
 </table>
 </item>
 </section>

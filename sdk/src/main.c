@@ -1,354 +1,195 @@
+/* EMBS Summer Assessment Y8143160 */
+
+#include "uart.h"
+#include "vga.h"
+#include "eth.h"
+#include "config.h"
+
 #include "xparameters.h"
-#include <stdio.h>
+
 #include "xil_types.h"
-#include "xuartlite_l.h"
-#include "xemaclite.h"
 #include "fsl.h"
 
-#define WIDTH          640
-#define HEIGHT         480
-#define BITS_PER_PIXEL 4
+#include <stdio.h>
+#include <ctype.h>
 
-#define QVGA_HEIGHT 240
-#define QVGA_WIDTH  320
-#define TILE_WIDTH 40
-#define TILE_HEIGHT 40
-
-#define MAX_SIDE 6
 
 #define NELEM(x) (sizeof(x) / sizeof(x[0]))
 #define SENTINEL(x) (&x[NELEM(x)])
 
-#define SIDE 6
-
-// Set frame buffer location to start of DDR
-#define FRAME_BUFFER XPAR_DDR_SDRAM_MPMC_BASEADDR
-
-static u8 colours[2][10] = {
-        {
-                0x44,  // Red
-                0x22,  // Green
-                0x11,  // Blue
-                0x33,  // Cyan
-                0x55,  // Magenta
-                0x66,  // Yellow
-                0x77,  // White
-                0x00,  // Black
-                0x70,  // Vertical stripes
-                0x00,  // Horizontal stripe
-        },
-        {
-
-                0x44,  // Red
-                0x22,  // Green
-                0x11,  // Blue
-                0x33,  // Cyan
-                0x55,  // Magenta
-                0x66,  // Yellow
-                0x77,  // White
-                0x00,  // Black
-                0x70,  // Vertical stripes
-                0x77,  // Horizontal stripe
-        }
-};
-
 static u8 tiles[MAX_SIDE * MAX_SIDE * 4];
+static u8 *init_tiles;
 
-XEmacLite ether;
+static u8 max_colours = 10;
+static u32 seed = 0;
+static u8 side = 4;
+static int run = 0;
 
-static const u8 mac_address[] = {0x00, 0x11, 0x22, 0x33, 0x00, 0x12};
-static const u8 server_mac[] = {0x00, 0x11, 0x22, 0x44, 0x00, 0x50};
-
-#define DATA_OFFSET 14
-#define TILES_OFFSET 7
-
-/*
- * Buffers used for Transmission and Reception of Packets. These are declared
- * as global so that they are not a part of the stack.
- */
-static u8 tx_buffer[DATA_OFFSET + TILES_OFFSET + 2];
-static u8 rx_buffer[DATA_OFFSET + TILES_OFFSET + (MAX_SIDE * MAX_SIDE * 4)];
-
-static u8 * const destaddr = &tx_buffer[NELEM(mac_address)-1];
-
-
-static void uart_putc(char c)
+static void do_command(void)
 {
-    if (c == '\n')
-        XUartLite_SendByte(XPAR_RS232_DTE_BASEADDR, '\r');
-    XUartLite_SendByte(XPAR_RS232_DTE_BASEADDR, c);
-}
-
-static int uart_getc()
-{
-    return XUartLite_RecvByte(XPAR_RS232_DTE_BASEADDR);
-}
-
-static int uart_getc_echo()
-{
-    char c = uart_getc();
-    uart_putc(c);
-    return c;
-}
-static u8 hex2i(char c)
-{
-    if (c >= 'a') {
-        return c-'a';
-    } else if (c >= 'A') {
-        return c-'A';
-    } else {
-        return c-'0';
+    int command;
+    while (isspace(command = uart_getc_echo()))
+        ;
+    switch (command) {
+    case 'c':
+        max_colours = uart_read_u32();
+        break;
+    case 's':
+        seed = uart_read_u32();
+        break;
+    case 'd':
+        side = uart_read_u32();
+        break;
+    case 'r':
+        run = 1;
+        break;
     }
 }
 
-static char nyb2hex(u8 nyb)
-{
-    return "0123456789ABCDEF"[nyb & 0xf];
-}
-
-// do constant setup stuff
-static u8 *setup_buffer()
-{
-    u8 *txbuf = tx_buffer;
-
-    // destination address
-    memcpy(txbuf, server_mac, NELEM(server_mac));
-    txbuf += NELEM(server_mac);
-
-    // source address
-    memcpy(txbuf, mac_address, NELEM(mac_address));
-    txbuf += NELEM(mac_address);
-
-    // type field
-    *txbuf++ = 0x55;
-    *txbuf++ = 0xab;
-
-    // return fill pointer
-    return txbuf;
-}
-
-static void display_packet(u8 *buf)
-{
-    int i;
-    print("\r\nDest MAC: ");
-
-    for (i = 0; i < 6; i++) {
-        print("0x");
-        uart_putc(nyb2hex(*buf >> 4));
-        uart_putc(nyb2hex(*buf));
-        buf++;
-        print(", ");
-    }
-
-    print("\r\nSource MAC: ");
-    for (i = 0; i < 6; i++) {
-        print("0x");
-        uart_putc(nyb2hex(*buf >> 4));
-        uart_putc(nyb2hex(*buf));
-        buf++;
-        print(", ");
-    }
-
-    print("\r\nType: ");
-    for (i = 0; i < 2; i++) {
-        print("0x");
-        uart_putc(nyb2hex(*buf >> 4));
-        uart_putc(nyb2hex(*buf));
-        buf++;
-        print(", ");
-    }
-
-    print("\r\nMarker: ");
-    print("0x");
-    uart_putc(nyb2hex(*buf >> 4));
-    uart_putc(nyb2hex(*buf));
-    buf++;
-    print("\r\n");
-
-    print("\r\nSize: ");
-    print("0x");
-    uart_putc(nyb2hex(*buf >> 4));
-    uart_putc(nyb2hex(*buf));
-    buf++;
-    print("\r\n");
 
 
-    print("\r\nRandom: ");
-    for (i = 0; i < 4; i++) {
-        print("0x");
-        uart_putc(nyb2hex(*buf >> 4));
-        uart_putc(nyb2hex(*buf));
-        buf++;
-        print(", ");
-    }
-    print("\r\n");
-
-
-    print("\r\nMax Colours: ");
-    print("0x");
-    uart_putc(nyb2hex(*buf >> 4));
-    uart_putc(nyb2hex(*buf));
-    buf++;
-    print("\r\n");
-}
-
-static void request_puzzle()
-{
-    u8 *txbuf = setup_buffer();
-    u8 req[] = {
-            0x01,
-            SIDE,
-            0x00, 0x00, 0x00, 0x00,
-            10,
-            0x00,
-    };
-
-    memcpy(&tx_buffer[DATA_OFFSET], req, NELEM(req));
-
-    //display_packet(tx_buffer);
-
-    XEmacLite_FlushReceive(&ether); //Clear any received messages
-    XEmacLite_Send(&ether, tx_buffer, NELEM(req) + XEL_HEADER_SIZE);
-}
-
-
-void drawTile(volatile u8 *offset_fb, u8 *start_edge)
-{
-    int r, c, i;
-    int e = 0;
-    int d1 = 0;
-    int d2 = TILE_WIDTH;
-    // 2-pixel rows
-    for (r = 0; r < TILE_HEIGHT / 2; r++) {
-        // interleaved rows (for striping)
-        for (i = 0; i < 2; i++) {
-            // columns
-            for (c = 0; c < TILE_WIDTH; c++) {
-                if (c == 0 ||  r+i == 0 ||
-                    c == d1 || c == d2) {
-                    *offset_fb++ = 0;
-                    continue;
-                }
-
-                if (c > d1 && c < d2) {
-                    e = 0;
-                } else if (c > d1 && c > d2) {
-                    e = 1;
-                } else if (c < d1 && c > d2) {
-                    e = 2;
-                } else if (c < d1 && c < d2) {
-                    e = 3;
-                } else {
-                }
-                *offset_fb++ = colours[i][*(start_edge + e)];
-            }
-            d1++;
-            d2--;
-            offset_fb += QVGA_WIDTH - TILE_WIDTH;
-        }
-    }
-}
-
-void drawBoard(int side, u8 *tiles)
+void print_board(int side, u8 *tiles)
 {
     int r, c;
-    volatile u8 *fb = (volatile u8*)FRAME_BUFFER;
-
+    uart_putc('\n');
     for (r = 0; r < side; r++) {
         for (c = 0; c < side; c++) {
-            drawTile(fb + (TILE_WIDTH * c) + (QVGA_WIDTH * TILE_HEIGHT * r), &tiles[(r * side + c) * 4]);
+            uart_putc(' ');
+            uart_print_u32(tiles[(r * side + c) * 4]);
+            uart_putc(' ');
         }
+        uart_putc('\n');
+        for (c = 0; c < side; c++) {
+            uart_print_u32(tiles[(r * side + c) * 4 + 3]);
+            uart_putc(' ');
+            uart_print_u32(tiles[(r * side + c) * 4 + 1]);
+        }
+        uart_putc('\n');
+        for (c = 0; c < side; c++) {
+            uart_putc(' ');
+            uart_print_u32(tiles[(r * side + c) * 4 + 2]);
+            uart_putc(' ');
+        }
+        uart_putc('\n');
     }
 }
 
-void clearScreen(void)
-{
-    int i;
-    volatile u8 *fb = (volatile u8*)FRAME_BUFFER;
 
-    for (i = 0; i < QVGA_WIDTH * QVGA_HEIGHT * 2; i++) {
-        *fb++ = 0;
-    }
-}
-
-// Waits for any byte to be received over UART
-void waitForKey(void) {
-	XUartLite_RecvByte(XPAR_RS232_DTE_BASEADDR);
-}
-
-
-static void receive_tiles()
-{
-    int done = 0;
-    //Poll for receive packet. rx_len must be defined as volatile!
-    volatile int rx_len = 0;
-
-    while (!done) {
-        while (rx_len == 0)
-            rx_len = XEmacLite_Recv(&ether, rx_buffer);
-
-        if (rx_buffer[0] != 0xff) {
-            done = 1;
-        } else {
-            print("Received unwanted packet");
-            continue;
-        }
-
-        if (rx_len) {
-            u8 *buffer = &rx_buffer[DATA_OFFSET];
-
-           // display_packet(rx_buffer);
-
-            memcpy(tiles, buffer+7, SIDE * SIDE * 4);
-//            drawBoard(SIDE, buffer+7);
-        }
-    }
-}
-
-void solve(void)
+void hls_send_tiles(void)
 {
     int e;
-    putfslx(SIDE, 0, FSL_DEFAULT);
-    for (e = 0; e < SIDE * SIDE * 4; e++) {
-        putfslx(tiles[e], 0, FSL_DEFAULT);
+    putfslx(side, 0, FSL_DEFAULT);
+    for (e = 0; e < side * side * 4; e++) {
+        putfslx(init_tiles[e], 0, FSL_DEFAULT);
     }
+}
 
-    for (e = 0; e < SIDE * SIDE * 4; e++) {
+void hls_receive_tiles(void)
+{
+    int e;
+    for (e = 0; e < side * side * 4; e++) {
         getfslx(tiles[e], 0, FSL_DEFAULT);
     }
 }
 
+/* solve using hardware. a little convoluted because previous==restart+fast-forward*/
+void solve(void)
+{
+    int response;
+    int command;
+    int done = 0;
+    int solution = 0;
+    int target_solution = 1;
+
+    hls_send_tiles();
+
+    uart_print_str("Solving...");
+
+    while (!done) {
+
+        getfslx(response, 0, FSL_DEFAULT);
+
+        if (response == 0) {
+            uart_print_str("no more solutions to display...");
+            return;
+        }
+
+        uart_print_str("solution found");
+
+        UART_PRINTVAR(solution);
+        UART_PRINTVAR(target_solution);
+        solution++;
+        if (target_solution > solution) {
+            uart_print_str("...");
+            putfslx(2, 0, FSL_DEFAULT);
+            continue;
+        }
+
+        putfslx(1, 0, FSL_DEFAULT);
+
+        hls_receive_tiles();
+
+        vga_clear_screen();
+        vga_draw_board(side, tiles);
+        print_board(side, tiles);
+
+        while (1) {
+            command = uart_getc();
+
+            if (command == 'a') {
+                done = 1;
+                break;
+            } else if (command == 'p') {
+                target_solution--;
+                if (target_solution < 0)
+                    target_solution = 0;
+                getfslx(response, 0, FSL_DEFAULT);
+                if (response == 0)
+                    return;
+                putfslx(0, 0, FSL_DEFAULT);
+                hls_send_tiles();
+                solution = 0;
+                break;
+            } else if (command == 'n') {
+                target_solution++;
+                break;
+            }
+        }
+
+        uart_print_str("next solution...");
+    }
+
+    getfslx(response, 0, FSL_DEFAULT);
+    if (response != 0)
+        putfslx(0, 0, FSL_DEFAULT);
+
+}
+
 int main(void) {
-    print("\n\n\rSTARTING...\n\r\n");
+    uart_print_str("\n\nSTARTING...\n\n");
 
-    //Initialise the driver
-    XEmacLite_Config *etherconfig = XEmacLite_LookupConfig(XPAR_EMACLITE_0_DEVICE_ID);
-    XEmacLite_CfgInitialize(&ether, etherconfig, etherconfig->BaseAddress);
-
-    XEmacLite_SetMacAddress(&ether, mac_address); //Set our sending MAC address
-
-    XEmacLite_FlushReceive(&ether); //Clear any received messages
-
-	print("\r\n----\r\nVGA test running. Press any key to enable output.\r\n");
-
-	// Set VGA core frame buffer location
-	*((volatile unsigned int *) XPAR_EMBS_VGA_0_BASEADDR) = FRAME_BUFFER;
-
-	// Enable VGA core
-	*((volatile unsigned int *) XPAR_EMBS_VGA_0_BASEADDR + 1) = 1;
+    vga_init();
 
 	while (1) {
-	    print("\r\nRequesting tiles...");
-	    request_puzzle();
-	    print("tiles requested...");
-	    receive_tiles();
-	    print("tiles received\r\n");
-	    print("Solving...");
+
+
+	    while (!run) {
+	        uart_print_str("\nEnter a command: ");
+	        do_command();
+	    }
+        run = 0;
+
+        UART_PRINTVAR(seed);
+
+	    uart_print_str("\nRequesting puzzle...");
+	    eth_request_tiles(side, seed, max_colours, &init_tiles);
+	    uart_print_str("received.\n");
+
+	    UART_PRINTVAR(seed);
+
+	    uart_print_str("Solving...");
 	    solve();
-	    print("done.\r\n");
-        clearScreen();
-	    drawBoard(SIDE, tiles);
-	    waitForKey();
+	    uart_print_str("done.\n");
 	}
 
 	return 0;
